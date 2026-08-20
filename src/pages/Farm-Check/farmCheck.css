@@ -28,10 +28,6 @@ body {
 }
 
 
-/* =========================
-   FORM HEADER
-   ========================= */
-
 .form-header {
     position: relative;
     text-align: center;
@@ -66,100 +62,113 @@ body {
 }
 
 
-/* =========================
-   FORM SECTIONS GRID (SHORTER HEIGHT + SECTION IMAGES)
-   ========================= */
-
 form > div {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 16px;
 }
 
 .form-section {
+    flex: 1 1 calc(50% - 6px);
+    box-sizing: border-box;
     padding: 10px 12px;
     margin-bottom: 0;
     border-radius: 12px;
-    border: 4px solid #16a34a;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    border: 3px solid #16a34a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-wrap: wrap;
     gap: 6px 10px;
-    align-content: start;
+    align-content: flex-start;
     align-items: center;
     text-align: center;
     transition: all 0.2s ease;
+    position: relative;
 }
 
 .form-section h2 {
-    grid-column: 1 / -1;
+    width: 100%;
+    flex: 1 1 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0 2px 0;
+    margin: 0 0 4px 0;
     font-size: 14.5px;
-    font-weight: 700;
-    color: #034524;
-    padding-bottom: 4px;
+    font-weight: 800;
+    background-color: rgba(6, 78, 39, 0.82);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 
-
-
 .field {
+    flex: 1 1 calc(50% - 5px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #83f7ae;
-    border-radius: 8px;
-    padding: 6px 6px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(22, 163, 74, 0.35);
+    border-radius: 10px;
+    padding: 8px 10px;
     box-sizing: border-box;
-    transition: all 0.15s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
 }
 
 .field:hover {
-    border-color: #86efac;
-    background-color: #f0fdf4;
+    border-color: #16a34a;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15);
 }
 
 .field:has(.radio-group) {
-    grid-column: 1 / -1;
-    padding: 6px 8px;
+    width: 100%;
+    flex: 1 1 100%;
+    padding: 8px 12px;
 }
 
 .label {
     display: block;
     width: 100%;
     text-align: center;
-    margin-bottom: 3px;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #374151;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: 0.1px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-
-/* =========================
-   SELECT + INPUT
-   ========================= */
 
 .input,
 .select {
     width: 100%;
-    max-width: 170px;
-    height: 28px;
-    padding: 2px 8px;
+    max-width: 180px;
+    height: 32px;
+    padding: 4px 10px;
     box-sizing: border-box;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 12px;
-    color: #1f2937;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #1e293b;
     background-color: #ffffff;
     text-align: center;
     text-align-last: center;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.input:hover,
+.select:hover {
+    border-color: #86efac;
 }
 
 .input:focus,
@@ -167,20 +176,16 @@ form > div {
     outline: none;
     border-color: #16a34a;
     background-color: #ffffff;
-    box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.18);
 }
 
-
-/* =========================
-   RADIO PILLS
-   ========================= */
 
 .radio-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     width: 100%;
 }
 
@@ -188,17 +193,17 @@ form > div {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 3px 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
+    padding: 4px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 16px;
     background-color: #ffffff;
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 500;
-    color: #4b5563;
+    color: #475569;
     cursor: pointer;
     user-select: none;
     text-align: center;
-    transition: all 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .radio input[type="radio"] {
@@ -206,9 +211,10 @@ form > div {
 }
 
 .radio:hover {
-    border-color: #86efac;
+    border-color: #4ade80;
     background-color: #f0fdf4;
     color: #16a34a;
+    transform: translateY(-1px);
 }
 
 .radio:has(input:checked) {
@@ -216,40 +222,33 @@ form > div {
     background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
     color: #ffffff;
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(22, 163, 74, 0.25);
+    box-shadow: 0 3px 8px rgba(22, 163, 74, 0.3);
+    transform: translateY(-1px);
 }
 
 
-/* =========================
-   ANALYSE BUTTON
-   ========================= */
 
 button[type="submit"] {
     display: block;
     width: 100%;
     max-width: 260px;
+    margin: 16px auto 0;
     padding: 9px 18px;
-    margin: 14px auto 0;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     background: linear-gradient(135deg, #16a34a 0%, #047857 100%);
     color: #ffffff;
     font-size: 14px;
     font-weight: 700;
-    text-align: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
 button[type="submit"]:hover {
+    opacity: 0.95;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
 }
 
-button[type="submit"]:active {
-    transform: translateY(0);
-}
 
 
 /* =========================
@@ -260,15 +259,16 @@ button[type="submit"]:active {
     margin-top: 20px;
     padding-top: 14px;
     border-top: 2px dashed #cbd5e1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     text-align: center;
     align-items: stretch;
 }
 
 .results > h2 {
-    grid-column: 1 / -1;
+    width: 100%;
+    flex: 1 1 100%;
     text-align: center;
     font-size: 17px;
     font-weight: 800;
@@ -277,9 +277,8 @@ button[type="submit"]:active {
 }
 
 .score {
-    grid-column: 1 / -1;
-    justify-self: center;
-    display: inline-block;
+    width: 100%;
+    flex: 1 1 100%;
     margin: 0 auto;
     padding: 6px 20px;
     background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
@@ -289,21 +288,19 @@ button[type="submit"]:active {
     font-weight: 800;
     color: #065f46;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(16, 185, 129, 0.15);
+    box-sizing: border-box;
 }
 
 .results > div:nth-child(3) {
-    grid-column: 1 / -1;
+    width: 100%;
+    flex: 1 1 100%;
     background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
     border: 1.5px solid #a7f3d0;
     border-radius: 10px;
     padding: 8px 14px;
     max-width: 440px;
-    width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.08);
 }
 
 .results > div h3 {
@@ -323,30 +320,26 @@ button[type="submit"]:active {
 }
 
 .output {
+    flex: 1 1 calc(50% - 5px);
+    box-sizing: border-box;
     background: #ffffff;
-    margin-bottom: 0;
     padding: 10px 12px;
     border-radius: 10px;
-    border: 1px solid #e2e8f0;
-    border-top: 3.5px solid #10b981;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    border: 3.5px solid #10b981;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     text-align: center;
-    box-sizing: border-box;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .output:hover {
-    transform: translateY(-1px);
+    transform: scale(1.03);
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.12);
 }
 
 .output h3 {
-    margin-top: 0;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     font-size: 13.5px;
     font-weight: 700;
     color: #14532d;
@@ -357,9 +350,9 @@ button[type="submit"]:active {
 .output .whiteScore {
     display: inline-block;
     padding: 2px 8px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 11.5px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 15px;
     margin-bottom: 4px;
     text-align: center;
 }
@@ -378,16 +371,14 @@ button[type="submit"]:active {
 
 .recommendation {
     width: 100%;
-    box-sizing: border-box;
-    margin-top: 4px;
-    padding: 6px 8px;
-    background-color: #fffbeb;
-    border: 1px solid #fde68a;
-    border-radius: 6px;
-    font-size: 11.5px;
+    padding: 8px;
+    border: 1px solid #d5e1ce;
+    border-radius: 5px;
+    font-size: 11px;
     color: #92400e;
-    line-height: 1.3;
+    line-height: 1.5;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .output p {
@@ -399,34 +390,31 @@ button[type="submit"]:active {
 }
 
 
-/* =========================
-   FUTURE RISKS
-   ========================= */
-
 .future-risks {
     margin-top: 18px;
     padding: 12px;
-    background-color: #ffffff;
+    border: 5px solid rgb(239, 169, 169);
     border-radius: 12px;
-    border: 1.5px solid #e2e8f0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .future-risks h2 {
-    grid-column: 1 / -1;
-    margin-top: 0;
-    margin-bottom: 4px;
+    width: 100%;
+    flex: 1 1 100%;
     font-size: 15px;
     font-weight: 700;
     color: #14532d;
     text-align: center;
+    margin-top: 0;
 }
 
 .risk {
+    flex: 1 1 calc(50% - 4px);
+    box-sizing: border-box;
     padding: 8px 10px;
     margin-bottom: 0;
     border-radius: 8px;
@@ -436,7 +424,6 @@ button[type="submit"]:active {
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .risk h3 {
@@ -457,7 +444,7 @@ button[type="submit"]:active {
 .risk.high {
     background-color: #fef2f2;
     border-color: #fca5a5;
-    border-left: 4px solid #ef4444;
+    border: 4px solid #ef4444;
 }
 
 .risk.high h3 {
@@ -467,7 +454,7 @@ button[type="submit"]:active {
 .risk.medium {
     background-color: #fffbeb;
     border-color: #fde68a;
-    border-left: 4px solid #f59e0b;
+    border: 4px solid #f59e0b;
 }
 
 .risk.medium h3 {
@@ -477,17 +464,13 @@ button[type="submit"]:active {
 .risk.low {
     background-color: #f0fdf4;
     border-color: #bbf7d0;
-    border-left: 4px solid #22c55e;
+    border: 4px solid #22c55e;
 }
 
 .risk.low h3 {
     color: #15803d;
 }
 
-
-/* =========================
-   RESPONSIVE DESIGN
-   ========================= */
 
 @media (max-width: 768px) {
     .container {
@@ -497,25 +480,27 @@ button[type="submit"]:active {
     }
 
     form > div {
-        grid-template-columns: 1fr;
         gap: 10px;
+    }
+
+    form > div > .form-section {
+        flex: 1 1 100%;
     }
 
     .form-section {
         padding: 10px;
-        grid-template-columns: 1fr;
     }
 
-    .field:has(.radio-group) {
-        grid-column: 1;
+    .form-section > .field {
+        flex: 1 1 100%;
     }
 
-    .results {
-        grid-template-columns: 1fr;
+    .results > .output {
+        flex: 1 1 100%;
     }
 
-    .future-risks {
-        grid-template-columns: 1fr;
+    .future-risks > .risk {
+        flex: 1 1 100%;
     }
 
     .input,

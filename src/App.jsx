@@ -3,7 +3,7 @@ import FarmCheck from './pages/Farm-Check/farmCheck'
 import './App.css'
 
 function App() {
-    return <FarmCheck />
+    
 }
 
 export default App

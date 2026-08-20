@@ -128,6 +128,7 @@ function getSections(change) {
                 <div className="form-section" key={section.id}
                 style={{ background: `url("${getImgUrl(section.id)}") center / cover no-repeat`}} >
                     <h2> {section.title} </h2>
+                    
                     {getFields(section.fields,change)}
                 </div>
             ))}
