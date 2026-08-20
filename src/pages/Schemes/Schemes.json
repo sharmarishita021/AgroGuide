@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "Groundwater Depletion & Water Scarcity",
+    "name": "Per Drop More Crop (PM-KSY)",
+    "department": "Government of India / State Agri Dept",
+    "benefit": "50% to 80% Subsidy on Drip & Sprinkler Irrigation Equipment",
+    "description": "Financial assistance for installing micro-irrigation systems (drip and sprinkler) to maximize water use efficiency.",
+    "benefits": [
+      "Upto 80% financial subsidy for small and marginal farmers",
+      "Reduces farm water usage by up to 50%",
+      "Direct benefit transfer to vendor or farmer bank account"
+    ],
+    "steps": [
+      "Visit your district Agriculture/Horticulture department office",
+      "Submit land ownership records (7/12 extract) and Aadhaar card",
+      "Choose an empanelled drip irrigation manufacturer for installation"
+    ]
+  },
+  {
+    "id": 2,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "Chemical Pressure & Soil Degradation",
+    "name": "Soil Health Card Scheme",
+    "department": "Ministry of Agriculture",
+    "benefit": "Free Soil Testing & Customized Fertilizer Dosage Card",
+    "description": "Provides farmers with a physical Soil Health Card detailing N, P, K, micro-nutrients, and organic carbon levels every 2 years.",
+    "benefits": [
+      "Free comprehensive lab test of soil samples from your land",
+      "Exact dosage recommendations for fertilizers to prevent over-use",
+      "Helps reduce fertilizer expenses by 15-20%"
+    ],
+    "steps": [
+      "Contact your local Gram Panchayat or Agricultural Extension Officer (AEO)",
+      "Soil samples are collected directly from your field by testing officers",
+      "Receive your Soil Health Card with recommended nutrient doses"
+    ]
+  },
+  {
+    "id": 3,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "Crop Residue Burning",
+    "name": "Agricultural Mechanization Scheme (SMAM)",
+    "department": "Department of Agriculture & Farmers Welfare",
+    "benefit": "50% to 80% Subsidy on Stubble Management Machinery",
+    "description": "Promotes in-situ residue management machines like Happy Seeder, Super Seeder, Straw Chopper, and Mulchers to avoid stubble burning.",
+    "benefits": [
+      "50% subsidy for individual farmers buying Happy Seeders or Mulchers",
+      "80% financial assistance for Custom Hiring Centers (CHCs) formed by farmer groups",
+      "Allows direct seeding without removing or burning crop straw"
+    ],
+    "steps": [
+      "Register on the SMAM portal (agrimachinery.nic.in)",
+      "Select required machinery and submit bank details and land documents",
+      "Approval notification sent via SMS"
+    ]
+  },
+  {
+    "id": 4,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "High Pumping Fuel Costs & Grid Dependence",
+    "name": "PM-KUSUM Solar Pump Scheme",
+    "department": "Ministry of New & Renewable Energy",
+    "benefit": "60% Central & State Subsidy for Off-Grid Solar Water Pumps",
+    "description": "Enables farmers to install standalone solar agriculture pumps, reducing diesel fuel costs and ensuring daytime irrigation access.",
+    "benefits": [
+      "30% Central Financial Assistance + 30% State Subsidy (Total 60%)",
+      "30% bank loan facility available (farmer pays only 10% upfront)",
+      "Provides reliable daytime power for irrigation"
+    ],
+    "steps": [
+      "Apply online through your state Renewable Energy Development Agency portal",
+      "Provide land records, electricity connection status, and identity proof",
+      "Solar pump installed by authorized green-energy vendors"
+    ]
+  },
+  {
+    "id": 5,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "Climate Risks & Crop Damage",
+    "name": "PM Fasal Bima Yojana (Crop Insurance)",
+    "department": "Government of India & Insurance Companies",
+    "benefit": "Low Premium Crop Insurance (1.5% - 2% Premium)",
+    "description": "Comprehensive risk insurance covering crop losses due to drought, floods, unseasonal rainfall, and pest attacks.",
+    "benefits": [
+      "Nominal premium: 1.5% for Rabi crops, 2.0% for Kharif crops",
+      "Government covers up to 90% of the actuarial premium cost",
+      "Direct compensation for yield loss caused by natural calamities"
+    ],
+    "steps": [
+      "Enroll through your bank branch, CSC center, or PMFBY portal",
+      "Submit crop sowing certificate and land details before cutoff date"
+    ]
+  },
+  {
+    "id": 6,
+    "type": "credit",
+    "category": "Credit & Institutional",
+    "target": "High Initial Cost for Sustainable Farming",
+    "name": "NABARD Organic & Sustainable Credit Scheme",
+    "department": "NABARD & Regional Rural Banks",
+    "benefit": "Concessional Interest Loans & Capital Subsidies",
+    "description": "Provides low-interest credit and capital investment subsidies for setting up vermicompost units, bio-fertilizer production, and organic farming.",
+    "benefits": [
+      "25% to 33% capital subsidy on commercial bio-fertilizer and compost units",
+      "Concessional interest rate for sustainable farming group loans",
+      "Support for organic certification expenses"
+    ],
+    "steps": [
+      "Approach your local Cooperative Bank or Regional Rural Bank (RRB)",
+      "Submit a simple farm project plan for vermicompost or organic conversion",
+      "Bank sanctions loan with embedded NABARD capital subsidy"
+    ]
+  },
+  {
+    "id": 7,
+    "type": "government",
+    "category": "Government Subsidy",
+    "target": "Chemical Residues & Soil Restoration",
+    "name": "Paramparagat Krishi Vikas Yojana (PKVY)",
+    "department": "Ministry of Agriculture",
+    "benefit": "Rs 50,000 per Hectare Assistance for Organic Clusters",
+    "description": "Encourages organic cluster farming and Participatory Guarantee System (PGS) certification among smallholder farmer groups.",
+    "benefits": [
+      "Rs 31,000 per hectare directly provided for organic inputs (seeds, bio-manures)",
+      "Rs 8,800 per hectare for post-harvest packaging and organic branding",
+      "Free organic certification for farmer groups"
+    ],
+    "steps": [
+      "Form a cluster of 20 or more farmers with a total of 50 acres",
+      "Register cluster with your local District Agriculture Extension Officer"
+    ]
+  }
+]
