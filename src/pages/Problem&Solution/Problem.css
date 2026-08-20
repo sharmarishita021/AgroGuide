@@ -1,0 +1,545 @@
+/* =====================================================
+   AGRICULTURAL PROBLEM SOLVER
+===================================================== */
+
+.problem-solver {
+    min-height: 100vh;
+    padding: 60px 5%;
+    background-color: #F7F3EB;
+    color: #2C3E2F;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.problem-solver h1 {
+    margin: 0;
+    text-align: center;
+
+    color: #2E7D32;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.problem-solver h1::after {
+    content: "";
+    display: block;
+
+    width: 65px;
+    height: 4px;
+
+    margin: 16px auto 0;
+
+    background-color: #4CAF50;
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   CATEGORY NAVIGATION
+===================================================== */
+
+.category-buttons {
+    max-width: 1200px;
+    margin: 50px auto 55px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+
+/* Category buttons */
+
+.category-buttons {
+    max-width: 1150px;
+    margin: 45px auto 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px;
+
+    background-color: #416c48;
+    border-radius: 14px;
+
+    box-shadow: 0 6px 18px rgba(44, 62, 47, 0.15);
+}
+
+.category-buttons button {
+    flex: 1;
+
+    padding: 15px 20px;
+
+    background-color: transparent;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.category-buttons button:hover {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+}
+.category-buttons button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   CATEGORY TITLE
+===================================================== */
+
+.problem-heading {
+    max-width: 1400px;
+    margin: 0 auto 28px;
+
+    color: #2C3E2F;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+
+    text-transform: capitalize;
+
+    border-left: 5px solid #4CAF50;
+    padding-left: 15px;
+}
+
+
+/* =====================================================
+   PROBLEM CARD GRID
+===================================================== */
+
+.problem-grid {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+
+/* =====================================================
+   PROBLEM CARDS
+===================================================== */
+
+.problem-card {
+    align-self: center;   
+    margin-top: auto;
+    background-color: #FFFFFF;
+
+    min-height: 280px;
+
+    padding: 32px;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 5px 18px rgba(44, 62, 47, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+
+.problem-card button:hover {
+    background-color: #4CAF50;
+    transform: translateY(-2px);
+}
+
+
+.problem-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 28px rgba(44, 62, 47, 0.13);
+}
+
+
+/* Card title */
+
+.problem-card h3 {
+    margin: 0 0 16px;
+
+    color: #2E7D32;
+
+    font-size: 1.45rem;
+    font-weight: 650;
+
+    line-height: 1.3;
+}
+
+
+/* Card description */
+
+.problem-card p {
+    margin: 0;
+
+    color: #5F6D63;
+
+    font-size: 1.08rem;
+    line-height: 1.7;
+
+    flex-grow: 1;
+}
+
+
+/* =====================================================
+   READ MORE
+===================================================== */
+
+.problem-card button {
+    align-self: flex-start;
+
+    margin-top: 25px;
+
+    padding: 10px 18px;
+
+    background-color: #2E7D32;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.problem-card button:hover {
+    background-color: #4CAF50;
+
+    transform: translateX(2px);
+}
+
+
+/* ==========================================
+   PROBLEM DETAILS PAGE
+========================================== */
+
+.problem-details {
+    min-height: 100vh;
+
+    padding: 45px 6% 70px;
+
+    background-color: #F7F3EB;
+
+    color: #2C3E2F;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-button {
+    display: block;
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto 25px;
+
+    padding: 0;
+
+    background: none;
+    border: none;
+
+    text-align: left;
+
+    color: #2E7D32;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.back-button:hover {
+    color: #4CAF50;
+}
+
+
+/* ==========================================
+   MAIN TITLE
+========================================== */
+
+.problem-details > h1 {
+    max-width: 1200px;
+
+    margin: 0 auto 35px;
+
+    color: #2E7D32;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 2.7rem;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================
+   ABOUT + IMAGE
+========================================== */
+
+.details-intro {
+    max-width: 1200px;
+
+    margin: 0 auto 30px;
+
+    display: grid;
+
+    grid-template-columns: 1.2fr 0.8fr;
+
+    gap: 25px;
+
+    align-items: stretch;
+}
+
+
+/* About box */
+
+.about-section {
+    background-color: #FFFFFF;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(44, 62, 47, 0.07);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* About heading */
+
+.about-section h2 {
+    margin: 0 0 15px;
+
+    color: #2C3E2F;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1.35rem;
+}
+
+
+/* About text */
+
+.about-section p {
+    margin: 0;
+
+    color: #5F6D63;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.problem-image {
+    min-height: 280px;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background-color: #E3F2FD;
+
+    box-shadow: 0 5px 18px rgba(44, 62, 47, 0.07);
+}
+
+.problem-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* ==========================================
+   EFFECTS + SOLUTIONS
+========================================== */
+
+.details-two-column {
+    max-width: 1200px;
+
+    margin: 0 auto 30px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+
+/* Individual section */
+
+.details-section {
+    background-color: #FFFFFF;
+
+    padding: 28px 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(44, 62, 47, 0.07);
+}
+
+
+/* Section headings */
+
+.details-section h2,
+.crop-section h2 {
+    margin: 0 0 18px;
+
+    color: #2E7D32;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1.3rem;
+}
+
+
+/* Lists */
+
+.details-section ul,
+.crop-section ul {
+    margin: 0;
+
+    padding-left: 22px;
+}
+
+
+/* List items */
+
+.details-section li,
+.crop-section li {
+    margin-bottom: 10px;
+
+    color: #5F6D63;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+}
+
+.details-section li:last-child,
+.crop-section li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================
+   CROP SUGGESTIONS
+========================================== */
+
+.crop-section {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 28px 30px;
+
+    background-color: #FFFFFF;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(44, 62, 47, 0.07);
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 850px) {
+
+    .details-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-image {
+        height: 300px;
+    }
+
+    .details-two-column {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .problem-details {
+        padding: 35px 18px 50px;
+    }
+
+    .problem-details > h1 {
+        font-size: 2rem;
+    }
+
+    .about-section,
+    .details-section,
+    .crop-section {
+        padding: 22px;
+    }
+
+    .problem-image {
+        height: 230px;
+    }
+
+}
