@@ -1,0 +1,455 @@
+{
+  "title": "Farm Sustainability Assessment",
+
+  "sections": [
+    {
+      "id": "location",
+      "title": "Farm & Location",
+      "fields": [
+        {
+          "id": "state",
+          "label": "State",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Punjab",
+            "Haryana",
+            "Uttar Pradesh",
+            "Rajasthan",
+            "Madhya Pradesh",
+            "Other"
+          ]
+        },
+        {
+          "id": "district",
+          "label": "District",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "tehsil",
+          "label": "Tehsil / Taluka",
+          "type": "text"
+        },
+        {
+          "id": "village",
+          "label": "Village",
+          "type": "text"
+        },
+        {
+          "id": "farmSize",
+          "label": "Farm Size",
+          "type": "number",
+          "unit": "acre",
+          "required": true
+        },
+        {
+          "id": "roadAccess",
+          "label": "Road Access",
+          "type": "radio",
+          "options": [
+            "highway",
+            "main_road",
+            "village_road",
+            "poor"
+          ]
+        },
+        {
+          "id": "marketDistance",
+          "label": "Distance from nearest mandi",
+          "type": "number",
+          "unit": "km"
+        }
+      ]
+    },
+
+    {
+      "id": "land",
+      "title": "Land",
+      "fields": [
+        {
+          "id": "landType",
+          "label": "Land Type",
+          "type": "radio",
+          "options": [
+            "irrigated",
+            "partially_irrigated",
+            "rainfed"
+          ]
+        },
+        {
+          "id": "soilType",
+          "label": "Soil Type",
+          "type": "radio",
+          "options": [
+            "alluvial",
+            "loamy",
+            "sandy",
+            "clayey",
+            "black",
+            "red"
+          ]
+        },
+        {
+          "id": "soilFertility",
+          "label": "Soil Fertility",
+          "type": "radio",
+          "options": [
+            "excellent",
+            "good",
+            "moderate",
+            "poor"
+          ]
+        },
+        {
+          "id": "soilPH",
+          "label": "Soil pH",
+          "type": "number"
+        },
+        {
+          "id": "organicCarbon",
+          "label": "Organic Carbon",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "id": "drainage",
+          "label": "Drainage",
+          "type": "radio",
+          "options": [
+            "excellent",
+            "good",
+            "moderate",
+            "poor"
+          ]
+        },
+        {
+          "id": "waterlogging",
+          "label": "Waterlogging",
+          "type": "radio",
+          "options": [
+            "none",
+            "rare",
+            "seasonal",
+            "frequent"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "weather",
+      "title": "Weather & Climate",
+      "fields": [
+        {
+          "id": "rainfall",
+          "label": "Rainfall Pattern",
+          "type": "radio",
+          "options": [
+            "stable",
+            "variable",
+            "highly_variable"
+          ]
+        },
+        {
+          "id": "droughtRisk",
+          "label": "Drought Risk",
+          "type": "radio",
+          "options": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "id": "floodRisk",
+          "label": "Flood Risk",
+          "type": "radio",
+          "options": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "id": "heatRisk",
+          "label": "Heat Stress Risk",
+          "type": "radio",
+          "options": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "id": "climateAdaptation",
+          "label": "Climate Adaptation Practices",
+          "type": "radio",
+          "options": [
+            "none",
+            "basic",
+            "good",
+            "advanced"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "water",
+      "title": "Irrigation & Water",
+      "fields": [
+        {
+          "id": "irrigationMethod",
+          "label": "Irrigation Method",
+          "type": "radio",
+          "options": [
+            "rainfed",
+            "flood",
+            "furrow",
+            "sprinkler",
+            "drip"
+          ]
+        },
+        {
+          "id": "waterAvailability",
+          "label": "Water Availability",
+          "type": "radio",
+          "options": [
+            "year_round",
+            "most_year",
+            "seasonal",
+            "limited"
+          ]
+        },
+        {
+          "id": "waterSource",
+          "label": "Main Water Source",
+          "type": "radio",
+          "options": [
+            "rain",
+            "borewell",
+            "canal",
+            "river",
+            "pond",
+            "mixed"
+          ]
+        },
+        {
+          "id": "waterQuality",
+          "label": "Water Quality",
+          "type": "radio",
+          "options": [
+            "excellent",
+            "good",
+            "moderate",
+            "poor"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "crop",
+      "title": "Crop & Farming System",
+      "fields": [
+        {
+          "id": "mainCrop",
+          "label": "Main Crop",
+          "type": "select",
+          "options": [
+            "Rice",
+            "Wheat",
+            "Maize",
+            "Millets",
+            "Pulses",
+            "Vegetables",
+            "Cotton",
+            "Sugarcane",
+            "Other"
+          ]
+        },
+        {
+          "id": "cropDiversity",
+          "label": "Crop Diversity",
+          "type": "radio",
+          "options": [
+            "single",
+            "two",
+            "multiple",
+            "mixed"
+          ]
+        },
+        {
+          "id": "cropRotation",
+          "label": "Crop Rotation",
+          "type": "radio",
+          "options": [
+            "yes",
+            "no"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "soilManagement",
+      "title": "Soil & Nutrient Management",
+      "fields": [
+        {
+          "id": "fertilizerUse",
+          "label": "Fertilizer Usage",
+          "type": "radio",
+          "options": [
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        {
+          "id": "organicFertilizer",
+          "label": "Organic Fertilizer",
+          "type": "radio",
+          "options": [
+            "none",
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        {
+          "id": "soilTesting",
+          "label": "Soil Testing",
+          "type": "radio",
+          "options": [
+            "never",
+            "occasionally",
+            "regularly"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "chemicals",
+      "title": "Pest & Chemical Management",
+      "fields": [
+        {
+          "id": "pesticideUse",
+          "label": "Pesticide Usage",
+          "type": "radio",
+          "options": [
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        {
+          "id": "biologicalControl",
+          "label": "Biological Pest Control",
+          "type": "radio",
+          "options": [
+            "none",
+            "some",
+            "regular"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "soilConservation",
+      "title": "Soil Conservation",
+      "fields": [
+        {
+          "id": "tillage",
+          "label": "Tillage Method",
+          "type": "radio",
+          "options": [
+            "conventional",
+            "reduced",
+            "minimum"
+          ]
+        },
+        {
+          "id": "coverCrop",
+          "label": "Cover Crops",
+          "type": "radio",
+          "options": [
+            "none",
+            "occasional",
+            "regular"
+          ]
+        },
+        {
+          "id": "residueManagement",
+          "label": "Crop Residue Management",
+          "type": "radio",
+          "options": [
+            "burned",
+            "managed",
+            "mulched",
+            "composted",
+            "feed"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "energy",
+      "title": "Energy",
+      "fields": [
+        {
+          "id": "energySource",
+          "label": "Main Energy Source",
+          "type": "radio",
+          "options": [
+            "diesel",
+            "electricity",
+            "solar",
+            "mixed"
+          ]
+        },
+        {
+          "id": "solar",
+          "label": "Solar Usage",
+          "type": "radio",
+          "options": [
+            "none",
+            "partial",
+            "major"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "biodiversity",
+      "title": "Biodiversity",
+      "fields": [
+        {
+          "id": "treeCover",
+          "label": "Tree / Vegetation Cover",
+          "type": "radio",
+          "options": [
+            "none",
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        {
+          "id": "pollinatorHabitat",
+          "label": "Pollinator Habitat",
+          "type": "radio",
+          "options": [
+            "none",
+            "limited",
+            "good"
+          ]
+        }
+      ]
+    }
+  ]
+}
