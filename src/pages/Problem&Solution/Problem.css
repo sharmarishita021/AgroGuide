@@ -1,19 +1,13 @@
-/* =====================================================
-   AGRICULTURAL PROBLEM SOLVER
-===================================================== */
-
 .problem-solver {
     min-height: 100vh;
+    
     padding: 60px 5%;
     background-color: #F7F3EB;
+
     color: #2C3E2F;
     box-sizing: border-box;
 }
 
-
-/* =====================================================
-   PAGE HEADER
-===================================================== */
 
 .problem-solver h1 {
     margin: 0;
@@ -21,6 +15,7 @@
 
     color: #2E7D32;
     font-size: 3rem;
+    
     font-weight: 700;
     letter-spacing: -0.8px;
 }
@@ -39,21 +34,7 @@
 }
 
 
-/* =====================================================
-   CATEGORY NAVIGATION
-===================================================== */
 
-.category-buttons {
-    max-width: 1200px;
-    margin: 50px auto 55px;
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-
-/* Category buttons */
 
 .category-buttons {
     max-width: 1150px;
@@ -100,10 +81,6 @@
 }
 
 
-/* =====================================================
-   CATEGORY TITLE
-===================================================== */
-
 .problem-heading {
     max-width: 1400px;
     margin: 0 auto 28px;
@@ -119,11 +96,6 @@
     padding-left: 15px;
 }
 
-
-/* =====================================================
-   PROBLEM CARD GRID
-===================================================== */
-
 .problem-grid {
     width: 100%;
     max-width: 1400px;
@@ -136,11 +108,6 @@
 
     gap: 28px;
 }
-
-
-/* =====================================================
-   PROBLEM CARDS
-===================================================== */
 
 .problem-card {
     align-self: center;   
@@ -182,8 +149,6 @@
 }
 
 
-/* Card title */
-
 .problem-card h3 {
     margin: 0 0 16px;
 
@@ -195,8 +160,6 @@
     line-height: 1.3;
 }
 
-
-/* Card description */
 
 .problem-card p {
     margin: 0;
@@ -210,9 +173,6 @@
 }
 
 
-/* =====================================================
-   READ MORE
-===================================================== */
 
 .problem-card button {
     align-self: flex-start;
@@ -244,10 +204,6 @@
 }
 
 
-/* ==========================================
-   PROBLEM DETAILS PAGE
-========================================== */
-
 .problem-details {
     min-height: 100vh;
 
@@ -261,41 +217,49 @@
 }
 
 
-/* ==========================================
-   BACK BUTTON
-========================================== */
-
 .back-button {
-    display: block;
-
-    width: 100%;
-    max-width: 1200px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
     margin: 0 auto 25px;
+    padding: 10px 16px;
 
-    padding: 0;
-
-    background: none;
-    border: none;
-
-    text-align: left;
-
+    background-color: #FFFFFF;
     color: #2E7D32;
+
+    border: 1px solid #D5E3D7;
+    border-radius: 8px;
 
     font-size: 15px;
     font-weight: 600;
 
     cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(44, 62, 47, 0.06);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
 
 .back-button:hover {
-    color: #4CAF50;
+    background-color: #E8F5E9;
+    color: #1B5E20;
+
+    transform: translateX(-3px);
+
+    box-shadow: 0 5px 14px rgba(44, 62, 47, 0.1);
 }
 
-
-/* ==========================================
-   MAIN TITLE
-========================================== */
+.back-button:focus-visible {
+    outline: 3px solid rgba(76, 175, 80, 0.35);
+    outline-offset: 2px;
+}
 
 .problem-details > h1 {
     max-width: 1200px;
@@ -313,10 +277,6 @@
 }
 
 
-/* ==========================================
-   ABOUT + IMAGE
-========================================== */
-
 .details-intro {
     max-width: 1200px;
 
@@ -331,8 +291,6 @@
     align-items: stretch;
 }
 
-
-/* About box */
 
 .about-section {
     background-color: #FFFFFF;
@@ -349,8 +307,6 @@
 }
 
 
-/* About heading */
-
 .about-section h2 {
     margin: 0 0 15px;
 
@@ -361,8 +317,6 @@
     font-size: 1.35rem;
 }
 
-
-/* About text */
 
 .about-section p {
     margin: 0;
@@ -375,11 +329,6 @@
 
     line-height: 1.8;
 }
-
-
-/* ==========================================
-   IMAGE
-========================================== */
 
 .problem-image {
     min-height: 280px;
@@ -402,11 +351,6 @@
     object-fit: cover;
 }
 
-
-/* ==========================================
-   EFFECTS + SOLUTIONS
-========================================== */
-
 .details-two-column {
     max-width: 1200px;
 
@@ -420,8 +364,6 @@
 }
 
 
-/* Individual section */
-
 .details-section {
     background-color: #FFFFFF;
 
@@ -432,8 +374,6 @@
     box-shadow: 0 5px 18px rgba(44, 62, 47, 0.07);
 }
 
-
-/* Section headings */
 
 .details-section h2,
 .crop-section h2 {
@@ -447,8 +387,6 @@
 }
 
 
-/* Lists */
-
 .details-section ul,
 .crop-section ul {
     margin: 0;
@@ -456,8 +394,6 @@
     padding-left: 22px;
 }
 
-
-/* List items */
 
 .details-section li,
 .crop-section li {
@@ -478,10 +414,6 @@
 }
 
 
-/* ==========================================
-   CROP SUGGESTIONS
-========================================== */
-
 .crop-section {
     max-width: 1200px;
 
@@ -497,9 +429,6 @@
 }
 
 
-/* ==========================================
-   TABLET
-========================================== */
 
 @media (max-width: 850px) {
 
@@ -517,10 +446,6 @@
 
 }
 
-
-/* ==========================================
-   MOBILE
-========================================== */
 
 @media (max-width: 600px) {
 
