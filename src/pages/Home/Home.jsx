@@ -71,8 +71,46 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+            <div className="tool-card">
+              <div className="icon-circle">🚜</div>
+              <div>
+                <h3>Farm Check (Sustainability Assessor)</h3>
+                <p>
+                  Assess your farming practices across soil management, water efficiency, 
+                  and chemical use to calculate your sustainability score.
+                </p>
+                <Link to="/farm-check" className="btn btn-outline-green btn-small">
+                  Check My Farm →
+                </Link>
+              </div>
+            </div>
+            <div className="tool-card">
+              <div className="icon-circle">📜</div>
+              <div>
+                <h3>Government &amp; Financial Schemes</h3>
+                <p>
+                  Explore agricultural financial schemes, subsidies, and grants 
+                  available to support sustainable farming practices.
+                </p>
+                <Link to="/schemes" className="btn btn-outline-green btn-small">
+                  View Schemes →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* ABOUT BANNER */}
+      <section className="cta">
+        <h2>Learn More About AgroGuide</h2>
+        <p>
+          Discover our mission to empower farmers with actionable diagnostic tools 
+          and sustainable agricultural solutions.
+        </p>
+        <Link to="/about" className="btn btn-primary">
+          About Us →
+        </Link>
       </section>
     </div>
   );

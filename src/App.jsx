@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import FarmCheck from './pages/Farm-Check/farmCheck';
-import CropDoctor from './pages/Crop-Doctor/CropDoctor';
+import CropDoctor from './pages/CropDoctor/CropDoctor';
 import ProblemSolver from './pages/Problem&Solution/ProblemSolver';
 import Cards from './pages/Schemes/Schemes';
 import About from './pages/About/About';
