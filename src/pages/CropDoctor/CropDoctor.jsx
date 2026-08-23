@@ -4,7 +4,7 @@ import { useState } from "react"
 
 function Heading(){
     return(
-        <div className="hero">
+        <div className="crop-doctor-hero">
             <div className="capsule">Crop Diagnostics</div>
             <div className="title">Crop Doctor — Leaf Disease Detector</div>
             <p className="abt">Upload a photo of your crop leaf or select a test sample to detect common fungal and bacterial diseases, review severity, and get immediate curative actions.</p>

@@ -58,7 +58,7 @@
   .btn-small{padding:9px 16px; font-size:.82rem;}
 
   /* ---------- HERO ---------- */
- .hero {
+ .home-hero {
   position: relative;
   min-height: 520px;
   display: flex;
@@ -66,11 +66,10 @@
   justify-content: center;
   overflow: hidden;
 
-  /* Gradients on top, image underneath */
+  /* Dark overlay for contrast, same image as About page */
   background: 
-    linear-gradient(180deg, rgba(20,30,15,.1) 0%, rgba(20,30,15,.05) 55%, var(--cream) 100%),
-    linear-gradient(180deg, #cfe0ee 0%, #e8ecd8 38%, #cfe07f 42%, #a9c95b 100%),
-    url('../../assets/farm_background.jpg') center/cover no-repeat;
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 
   padding: 100px 24px 60px;
 }

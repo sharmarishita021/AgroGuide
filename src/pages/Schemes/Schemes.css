@@ -10,8 +10,8 @@ body {
   color: #263326;
 }
 
-.hero {
-  background-color: #e5f0df;
+.schemes-hero {
+  background: #e5f0df;
   text-align: center;
   padding: 60px 20px;
 }

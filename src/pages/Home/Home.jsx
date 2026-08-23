@@ -5,7 +5,7 @@ import "./Home.css";
 export default function Home() {
   return (
     <div>
-      <section className="hero">
+      <section className="home-hero">
         <div className="hero-sun"></div>
         <div className="hero-rows"></div>
         <div className="hero-card">

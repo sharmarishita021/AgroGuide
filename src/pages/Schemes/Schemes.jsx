@@ -3,7 +3,7 @@ import "./Schemes.css";
 import { useState } from "react";
 function Heading(){
     return(
-        <section className="hero">
+        <section className="schemes-hero">
             <div className="capsule">Financial & Policy Support </div>
             <h2 className="Title">Government and Instituional Support Schemes</h2>
             <p className="abt"> Explore verified government subsidies and agricultural credit schemes

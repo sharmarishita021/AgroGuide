@@ -83,7 +83,7 @@
        HERO SECTION
     ========================================= */
 
-    .hero {
+    .about-hero {
       position: relative;
 
       height: 480px;
@@ -596,7 +596,7 @@
         display: none;
       }
 
-      .hero {
+      .about-hero {
         padding: 80px 20px 0;
       }
 

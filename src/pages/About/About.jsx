@@ -8,7 +8,7 @@ function About() {
       {/* =========================================
            HERO
       ========================================= */}
-      <section className="hero">
+      <section className="about-hero">
         <div className="hero-subtitle">We Use</div>
         <div className="hero-title">Only Reliable Methods</div>
 
