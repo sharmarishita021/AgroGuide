@@ -1,10 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
   return (
     <div>
-      {/* HERO */}
       <section className="hero">
         <div className="hero-sun"></div>
         <div className="hero-rows"></div>
@@ -22,12 +22,12 @@ export default function Home() {
             solutions, and access financial support schemes.
           </p>
           <div className="hero-actions">
-            <a href="#solutions" className="btn btn-primary">
+            <Link to="/problem-solver" className="btn btn-primary">
               Explore Problems &amp; Solutions →
-            </a>
-            <a href="#tools" className="btn btn-outline-white">
+            </Link>
+            <Link to="/farm-check" className="btn btn-outline-white">
               Check My Farm
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -52,9 +52,9 @@ export default function Home() {
                   Upload a photo of crop leaves or choose a sample image to
                   diagnose symptoms, disease identity, prevention, and cures.
                 </p>
-                <a href="#" className="btn btn-outline-green btn-small">
+                <Link to="/crop-doctor" className="btn btn-outline-green btn-small">
                   Open Crop Doctor →
-                </a>
+                </Link>
               </div>
             </div>
             <div className="tool-card">
@@ -66,16 +66,14 @@ export default function Home() {
                   crop stubble management) in plain words to generate a
                   practical blueprint.
                 </p>
-                <a href="#" className="btn btn-outline-green btn-small">
+                <Link to="/problem-solver" className="btn btn-outline-green btn-small">
                   Open Problem Solver →
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Add other sections (resources, schemes, problems, solutions, CTA, footer) here in the same JSX style */}
     </div>
   );
 }

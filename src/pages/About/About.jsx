@@ -1,27 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './About.css';
 
 function About() {
   return (
     <div className="about-page">
-      {/* =========================================
-           HEADER
-      ========================================= */}
-      <header>
-        <div className="logo">
-          AgroGuide<span>.</span>
-        </div>
-
-        <nav>
-          <a href="#" className="active">Home</a>
-          <a href="#">Farm Check Assessment</a>
-          <a href="#">Crop Doctor</a>
-          <a href="#">Farm Problem Solver</a>
-          <a href="#">Problems & Solutions</a>
-          <a href="#">Schemes</a>
-        </nav>
-      </header>
-
       {/* =========================================
            HERO
       ========================================= */}
@@ -89,7 +72,7 @@ function About() {
             </div>
           </div>
 
-          <a href="#" className="more-info-link">View More Info</a>
+          <Link to="/problem-solver" className="more-info-link">View More Info</Link>
         </div>
       </section>
 
@@ -103,7 +86,7 @@ function About() {
           and boost long-term harvest quality with custom natural
           composts and organic soil enrichers.
         </p>
-        <a href="#" className="callout-btn">LEARN MORE</a>
+        <Link to="/schemes" className="callout-btn">LEARN MORE</Link>
       </section>
 
       {/* =========================================
@@ -169,12 +152,12 @@ function About() {
           <div className="footer-column">
             <h4>Main Navigation</h4>
             <ul className="footer-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Farm Check Assessment</a></li>
-              <li><a href="#">Crop Doctor (Disease Diagnostics)</a></li>
-              <li><a href="#">Farm Problem Solver</a></li>
-              <li><a href="#">Problems, Solutions & Compare</a></li>
-              <li><a href="#">Government & Private Schemes</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/farm-check">Farm Check Assessment</Link></li>
+              <li><Link to="/crop-doctor">Crop Doctor (Disease Diagnostics)</Link></li>
+              <li><Link to="/problem-solver">Farm Problem Solver</Link></li>
+              <li><Link to="/schemes">Government & Private Schemes</Link></li>
+              <li><Link to="/about">About AgroGuide</Link></li>
             </ul>
           </div>
 
@@ -182,8 +165,8 @@ function About() {
           <div className="footer-column">
             <h4>Information</h4>
             <div className="footer-info">
-              <a href="#">About AgroGuide</a>
-              <a href="#">Back to Top ↑</a>
+              <Link to="/about">About AgroGuide</Link>
+              <a href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to Top ↑</a>
             </div>
           </div>
         </div>
