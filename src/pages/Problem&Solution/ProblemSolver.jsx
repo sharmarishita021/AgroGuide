@@ -24,19 +24,31 @@ function ProblemSolver() {
             <h1>Agricultural Problem Solver</h1>
 
             <div className="category-buttons">
-                <button onClick={() => setCategory("weather")}>
+                <button
+                    className={category === "weather" ? "active" : ""}
+                    onClick={() => setCategory("weather")}
+                >
                     Weather Problems
                 </button>
 
-                <button onClick={() => setCategory("soil")}>
+                <button
+                    className={category === "soil" ? "active" : ""}
+                    onClick={() => setCategory("soil")}
+                >
                     Soil Problems
                 </button>
 
-                <button onClick={() => setCategory("crop")}>
+                <button
+                    className={category === "crop" ? "active" : ""}
+                    onClick={() => setCategory("crop")}
+                >
                     Crop & Fertility Problems
                 </button>
 
-                <button onClick={() => setCategory("pest")}>
+                <button
+                    className={category === "pest" ? "active" : ""}
+                    onClick={() => setCategory("pest")}
+                >
                     Pest & Chemical Problems
                 </button>
             </div>

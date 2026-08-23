@@ -1,13 +1,24 @@
 function ProblemCard({ problem, onReadMore }) {
     return (
         <div className="problem-card">
-            <h3>{problem.title}</h3>
 
-            <p>{problem.description}</p>
+            <div className="card-image">
+                <img
+                    src={problem.image}
+                    alt={problem.title}
+                />
+            </div>
 
-            <button onClick={() => onReadMore(problem)}>
-                Read More
-            </button>
+            <div className="card-content">
+                <h3>{problem.title}</h3>
+
+                <p>{problem.description}</p>
+
+                <button onClick={() => onReadMore(problem)}>
+                    Read More <span>→</span>
+                </button>
+            </div>
+
         </div>
     );
 }
