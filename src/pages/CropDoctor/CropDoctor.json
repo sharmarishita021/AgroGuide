@@ -1,0 +1,106 @@
+[
+  {
+    "id": "rice-blast",
+    "name": "Rice Blast Disease",
+    "scientificName": "Magnaporthe oryzae",
+    "crop": "Rice (Paddy)",
+    "severity": "High",
+    "severityColor": "#c0392b",
+    "description": "A serious fungal disease affecting rice leaves, nodes, and panicles, often triggered by excessive nitrogen and high humidity.",
+    "image":"/rice.jpg",
+    "confidence": "94% Match",
+    "symptoms": [
+      "Spindle-shaped or diamond-shaped lesions on leaves with grayish centers and brown borders",
+      "Lesions enlarge and coalesce, causing entire leaves to dry and wither",
+      "Brownish rot at the neck of the panicle causing lodging and empty grain heads"
+    ],
+    "prevention": [
+      "Use certified blast-resistant seed varieties (e.g., IR64, Swarna sub-1)",
+      "Avoid excessive application of synthetic urea/nitrogen fertilizers",
+      "Maintain balanced plant spacing (20cm x 15cm) to ensure proper field ventilation"
+    ],
+    "cure": [
+      "Apply bio-fungicide spray containing Pseudomonas fluorescens @ 10g/liter of water",
+      "Spray copper-based organic formulations (Bordeaux mixture 1%) on infected patches",
+      "Drain stagnant water from fields for 2-3 days to lower canopy humidity"
+    ]
+  },
+  {
+    "id": "wheat-rust",
+    "name": "Wheat Stripe (Yellow) Rust",
+    "scientificName": "Puccinia striiformis",
+    "crop": "Wheat",
+    "severity": "Severe",
+    "severityColor": "#962d00",
+     "image":"/wheat.jpg",
+    "description": "A destructive airborne fungal disease that forms yellow-orange stripe patterns along leaf veins, reducing grain development.",
+    "confidence": "89% Match",
+    "symptoms": [
+      "Bright yellow-to-orange powdery fungal pustules arranged in parallel lines on leaves",
+      "Leaves turn yellow, dry up prematurely, and drop early",
+      "Severely shriveled grain development resulting in significant yield loss"
+    ],
+    "prevention": [
+      "Sow certified rust-resistant wheat varieties (e.g., HD-2967, PBW-550)",
+      "Adjust sowing time to early November to avoid peak cool-humid weather during heading",
+      "Eradicate wild grasses and volunteer wheat plants along field borders"
+    ],
+    "cure": [
+      "Spray organic wettable sulfur (3g/liter) early in the morning when dew is minimal",
+      "Apply bio-control agents such as Trichoderma harzianum to soil and foliage",
+      "Isolate and remove heavily infected border rows to reduce airborne spore spread"
+    ]
+  },
+  {
+    "id": "tomato-blight",
+    "name": "Tomato Early Blight",
+    "scientificName": "Alternaria solani",
+    "crop": "Tomato",
+    "severity": "Moderate",
+    "severityColor": "#d35400",
+    "description": "A common fungal leaf spot disease affecting older lower leaves first, commonly spread by soil splash and warm rainy weather.",
+    "confidence": "91% Match",
+     "image":"/tomato.jpg",
+    "symptoms": [
+      "Dark brown to black spots with concentric rings (target board pattern) on lower leaves",
+      "Yellow halos surrounding the spots followed by rapid leaf drop",
+      "Dark sunken leathery lesions near the stem end of developing fruits"
+    ],
+    "prevention": [
+      "Practice crop rotation: avoid planting after potatoes, brinjals, or peppers",
+      "Use drip irrigation instead of overhead sprinklers to keep foliage dry",
+      "Mulch soil surface with clean straw to prevent soil-borne fungal spores from splashing onto lower leaves"
+    ],
+    "cure": [
+      "Spray neem oil extract (5ml/liter) with mild soap emulsion every 7-10 days",
+      "Apply copper oxychloride (2.5g/liter) on lower foliage at the first sign of spots",
+      "Prune and safely discard infected lower foliage away from the main field"
+    ]
+  },
+  {
+    "id": "potato-blight",
+    "name": "Potato Late Blight",
+    "scientificName": "Phytophthora infestans",
+    "crop": "Potato",
+    "severity": "Severe",
+    "severityColor": "#962d00",
+     "image":"/potato.jpg",
+    "description": "An aggressive water-mold disease that rapidly destroys potato foliage and rots tubers during cool, damp weather.",
+    "confidence": "95% Match",
+    "symptoms": [
+      "Water-soaked dark lesions appearing rapidly near leaf tips and margins",
+      "White cottony fungal growth on the underside of leaves in high humidity",
+      "Brown, dry rot extending inward under the skin of potato tubers"
+    ],
+    "prevention": [
+      "Plant certified disease-free seed tubers from trusted agricultural institutes",
+      "Hill soil high around the base of potato plants to prevent spores reaching tubers",
+      "Ensure wide spacing between ridges for rapid drying of foliage"
+    ],
+    "cure": [
+      "Spray bio-fungicide Bacillus subtilis or copper hydroxide (2g/liter) immediately",
+      "Destroy and burn infected haulms (vines) before harvesting tubers to prevent contact rot",
+      "Store harvested tubers in a cool, dry, well-ventilated space and discard any soft-rot tubers"
+    ]
+  }
+]
