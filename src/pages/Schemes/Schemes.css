@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin:0;
+}
+
+body {
+  margin: 0;
+ font-family: "Trebuchet MS", Arial, sans-serif;
+  background-color: #f5f7f2;
+  color: #263326;
+}
+
+.hero {
+  background-color: #e5f0df;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.capsule {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+
+  background-color: #d0f3be;
+  color: #35652f;
+
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.Title {
+  margin: 20px 0 15px;
+  font-size: 40px;
+  color:#35652f;
+  font-weight:bold;
+}
+
+.abt {
+  max-width: 750px;
+  margin: auto;
+  color: #5d685b;
+}
+
+.filterTabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 20px;
+}
+
+.filterTabs button {
+  padding: 10px 20px;
+
+  border: 1px solid #b8c8b1;
+  border-radius: 8px;
+
+  background-color: white;
+  color: #365b32;
+
+  cursor: pointer;
+}
+
+.filterTabs button:hover {
+  background-color: #d4dcd1;
+}
+
+.allcards {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto 50px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.scheme-card {
+  width:48%;
+
+  background-color: white;
+
+  border: 1px solid #dce4d8;
+  border-radius: 12px;
+
+  padding: 24px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+.category {
+  display: inline-block;
+
+  padding: 6px 10px;
+
+  background-color: #e3f0df;
+  color: #397032;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.target {
+  margin: 18px 0 10px;
+
+  color: #687365;
+  font-size: 14px;
+}
+
+.schemeName {
+  margin: 10px 0;
+color:#35652f;
+  font-size: 23px;
+  font-weight:bold;
+}
+
+.dept {
+  color: #687365;
+  font-size: 14px;
+}
+
+.benefit-box {
+  margin: 20px 0;
+  padding: 16px;
+
+  background-color: #f1f7ed;
+
+  border-radius: 8px;
+}
+
+.benefit-box p {
+  color: #5d685b;
+}
+
+.benefit {
+  color: #35652f;
+  font-size: 18px;
+}
+
+.scheme-section {
+  margin-top: 20px;
+}
+
+.scheme-section h3 {
+  font-size: 17px;
+}
+
+.scheme-section li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #596257;
+}
+
+

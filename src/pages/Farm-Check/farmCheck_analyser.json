@@ -1,0 +1,572 @@
+{
+  "version": "1.0",
+
+  "score": {
+    "min": 0,
+    "max": 100
+  },
+
+  "outputs": {
+    "location": {
+      "label": "Location & Accessibility",
+      "weight": 10,
+
+      "fields": {
+        "roadAccess": {
+          "highway": 10,
+          "main_road": 8,
+          "village_road": 5,
+          "poor": 2
+        },
+
+        "marketDistance": {
+          "0_5": 10,
+          "5_10": 8,
+          "10_20": 5,
+          "20_plus": 2
+        }
+      },
+
+      "messages": {
+        "high": "The farm has strong access to roads and markets, supporting better transportation and economic resilience.",
+        "medium": "Farm accessibility is reasonable, although transportation distance may create additional costs.",
+        "low": "Limited accessibility may increase transportation costs and reduce market flexibility."
+      },
+
+      "recommendations": [
+        "Improve farm-to-market connectivity where possible.",
+        "Consider local storage to reduce dependence on immediate market access.",
+        "Explore multiple selling channels to improve market resilience."
+      ]
+    },
+
+    "land": {
+      "label": "Land Quality",
+      "weight": 15,
+
+      "fields": {
+        "landType": {
+          "irrigated": 10,
+          "partially_irrigated": 7,
+          "rainfed": 6
+        },
+
+        "soilFertility": {
+          "excellent": 10,
+          "good": 8,
+          "moderate": 5,
+          "poor": 2
+        },
+
+        "drainage": {
+          "excellent": 10,
+          "good": 8,
+          "moderate": 5,
+          "poor": 2
+        },
+
+        "waterlogging": {
+          "none": 10,
+          "rare": 8,
+          "seasonal": 5,
+          "frequent": 2
+        }
+      },
+
+      "messages": {
+        "high": "The land has strong productive characteristics and good potential for long-term agricultural use.",
+        "medium": "The land is reasonably productive but some characteristics require continued management.",
+        "low": "Land limitations may reduce long-term productivity and require corrective management."
+      },
+
+      "recommendations": [
+        "Maintain soil fertility through balanced nutrient management.",
+        "Improve drainage where waterlogging occurs.",
+        "Monitor changes in soil quality over time."
+      ]
+    },
+
+    "soil": {
+      "label": "Soil Health",
+      "weight": 15,
+
+      "fields": {
+        "soilFertility": {
+          "excellent": 10,
+          "good": 8,
+          "moderate": 5,
+          "poor": 2
+        },
+
+        "organicCarbon": {
+          "type": "numeric",
+
+          "ranges": [
+            {
+              "max": 0.4,
+              "score": 3
+            },
+            {
+              "min": 0.4,
+              "max": 0.75,
+              "score": 6
+            },
+            {
+              "min": 0.75,
+              "score": 10
+            }
+          ]
+        },
+
+        "soilTesting": {
+          "regularly": 10,
+          "occasionally": 6,
+          "never": 2
+        },
+
+        "organicFertilizer": {
+          "high": 10,
+          "moderate": 7,
+          "low": 4,
+          "none": 1
+        },
+
+        "fertilizerUse": {
+          "low": 10,
+          "moderate": 7,
+          "high": 3
+        }
+      },
+
+      "messages": {
+        "high": "The farm demonstrates strong soil-health management that can support productivity over the long term.",
+        "medium": "Soil health is reasonable, but increasing organic matter and improving nutrient monitoring could strengthen resilience.",
+        "low": "Current soil-management practices may reduce long-term soil health and increase dependence on external inputs."
+      },
+
+      "recommendations": [
+        "Increase organic matter through compost, manure or suitable residue management.",
+        "Conduct soil testing regularly.",
+        "Use fertilizer according to crop and soil requirements.",
+        "Avoid excessive fertilizer application."
+      ]
+    },
+
+    "water": {
+      "label": "Water Sustainability",
+      "weight": 15,
+
+      "fields": {
+        "irrigationMethod": {
+          "drip": 10,
+          "sprinkler": 9,
+          "furrow": 6,
+          "flood": 3,
+          "rainfed": 7
+        },
+
+        "waterAvailability": {
+          "year_round": 10,
+          "most_year": 8,
+          "seasonal": 5,
+          "limited": 2
+        },
+
+        "waterSource": {
+          "rain": 8,
+          "borewell": 5,
+          "canal": 8,
+          "river": 8,
+          "pond": 9,
+          "mixed": 10
+        },
+
+        "waterQuality": {
+          "excellent": 10,
+          "good": 8,
+          "moderate": 5,
+          "poor": 2
+        }
+      },
+
+      "messages": {
+        "high": "The farm demonstrates strong water-security characteristics and/or efficient irrigation practices.",
+        "medium": "Water availability is adequate, but irrigation efficiency and conservation could be improved.",
+        "low": "The farm may face significant future water-security pressure."
+      },
+
+      "recommendations": [
+        "Improve irrigation efficiency where possible.",
+        "Reduce unnecessary water losses.",
+        "Monitor groundwater availability.",
+        "Consider water harvesting and storage.",
+        "Select crops according to long-term water availability."
+      ]
+    },
+
+    "weather": {
+      "label": "Climate & Weather Resilience",
+      "weight": 10,
+
+      "fields": {
+        "rainfall": {
+          "stable": 10,
+          "variable": 6,
+          "highly_variable": 3
+        },
+
+        "droughtRisk": {
+          "low": 10,
+          "medium": 6,
+          "high": 2
+        },
+
+        "floodRisk": {
+          "low": 10,
+          "medium": 6,
+          "high": 2
+        },
+
+        "heatRisk": {
+          "low": 10,
+          "medium": 6,
+          "high": 2
+        },
+
+        "climateAdaptation": {
+          "advanced": 10,
+          "good": 8,
+          "basic": 5,
+          "none": 2
+        }
+      },
+
+      "messages": {
+        "high": "The farm has strong characteristics for adapting to future climate variability.",
+        "medium": "The farm has some climate resilience, but additional adaptation could reduce future risks.",
+        "low": "The farm is relatively vulnerable to future climate variability and requires stronger adaptation."
+      },
+
+      "recommendations": [
+        "Diversify crops to reduce climate-related risk.",
+        "Improve water conservation.",
+        "Consider climate-resilient crop varieties.",
+        "Develop strategies for drought and heat periods.",
+        "Improve drainage where flood risk exists."
+      ]
+    },
+
+    "crop": {
+      "label": "Crop Resilience",
+      "weight": 10,
+
+      "fields": {
+        "cropDiversity": {
+          "mixed": 10,
+          "multiple": 9,
+          "two": 7,
+          "single": 3
+        },
+
+        "cropRotation": {
+          "yes": 10,
+          "no": 3
+        }
+      },
+
+      "messages": {
+        "high": "The cropping system has strong resilience because of crop diversity and/or rotation.",
+        "medium": "The cropping system has some resilience but could be diversified further.",
+        "low": "Dependence on a limited number of crops increases exposure to pest, climate and market risks."
+      },
+
+      "recommendations": [
+        "Increase crop diversity where economically suitable.",
+        "Introduce crop rotation.",
+        "Avoid long-term dependence on a single crop.",
+        "Consider including legumes or other soil-supporting crops in rotation."
+      ]
+    },
+
+    "chemicals": {
+      "label": "Chemical Management",
+      "weight": 10,
+
+      "fields": {
+        "pesticideUse": {
+          "low": 10,
+          "moderate": 6,
+          "high": 2
+        },
+
+        "biologicalControl": {
+          "regular": 10,
+          "some": 6,
+          "none": 2
+        }
+      },
+
+      "messages": {
+        "high": "The farm demonstrates relatively efficient and environmentally responsible pest management.",
+        "medium": "Chemical dependency is moderate and could be reduced through integrated pest management.",
+        "low": "High chemical dependency creates environmental and economic sustainability concerns."
+      },
+
+      "recommendations": [
+        "Use integrated pest management.",
+        "Monitor pests before applying pesticides.",
+        "Increase biological pest-control practices.",
+        "Avoid unnecessary pesticide applications."
+      ]
+    },
+
+    "soilConservation": {
+      "label": "Soil Conservation",
+      "weight": 10,
+
+      "fields": {
+        "tillage": {
+          "minimum": 10,
+          "reduced": 8,
+          "conventional": 4
+        },
+
+        "coverCrop": {
+          "regular": 10,
+          "occasional": 6,
+          "none": 2
+        },
+
+        "residueManagement": {
+          "composted": 10,
+          "mulched": 10,
+          "managed": 8,
+          "feed": 8,
+          "burned": 1
+        }
+      },
+
+      "messages": {
+        "high": "The farm uses practices that protect soil structure and retain useful organic material.",
+        "medium": "Some soil-conservation practices are present, but there is room for improvement.",
+        "low": "Current practices may increase soil degradation and reduce long-term resilience."
+      },
+
+      "recommendations": [
+        "Reduce unnecessary tillage.",
+        "Use cover crops where suitable.",
+        "Avoid crop-residue burning.",
+        "Consider mulching or composting residues.",
+        "Return organic material to the soil where appropriate."
+      ]
+    },
+
+    "energy": {
+      "label": "Energy Sustainability",
+      "weight": 5,
+
+      "fields": {
+        "energySource": {
+          "solar": 10,
+          "mixed": 8,
+          "electricity": 6,
+          "diesel": 3
+        },
+
+        "solar": {
+          "major": 10,
+          "partial": 7,
+          "none": 3
+        }
+      },
+
+      "messages": {
+        "high": "The farm has relatively strong renewable-energy use and energy resilience.",
+        "medium": "Some energy improvements are possible.",
+        "low": "High dependence on conventional energy creates future cost and sustainability risks."
+      },
+
+      "recommendations": [
+        "Consider renewable energy where economically practical.",
+        "Improve machinery and pump efficiency.",
+        "Reduce unnecessary fuel consumption.",
+        "Consider solar-powered agricultural systems where appropriate."
+      ]
+    },
+
+    "biodiversity": {
+      "label": "Biodiversity & Ecosystem Health",
+      "weight": 5,
+
+      "fields": {
+        "treeCover": {
+          "high": 10,
+          "moderate": 7,
+          "low": 4,
+          "none": 1
+        },
+
+        "pollinatorHabitat": {
+          "good": 10,
+          "limited": 5,
+          "none": 1
+        }
+      },
+
+      "messages": {
+        "high": "The farm provides strong ecological support for biodiversity and beneficial organisms.",
+        "medium": "Some biodiversity-supporting features exist but can be expanded.",
+        "low": "The farm has limited ecological diversity and could benefit from habitat improvements."
+      },
+
+      "recommendations": [
+        "Maintain or increase tree and vegetation cover.",
+        "Create pollinator-friendly areas.",
+        "Maintain natural vegetation where practical.",
+        "Reduce unnecessary disturbance of surrounding habitats."
+      ]
+    }
+  },
+
+  "futureRisks": [
+    {
+      "id": "water_efficiency",
+      "conditions": [
+        {
+          "field": "irrigationMethod",
+          "values": ["flood"]
+        }
+      ],
+      "severity": "medium",
+      "title": "Water Efficiency",
+      "message": "The current irrigation method may create greater water losses. Improving irrigation efficiency could strengthen future water security."
+    },
+
+    {
+      "id": "limited_water",
+      "conditions": [
+        {
+          "field": "waterAvailability",
+          "values": ["limited", "seasonal"]
+        }
+      ],
+      "severity": "high",
+      "title": "Future Water Risk",
+      "message": "Limited water availability may become a major constraint. Water conservation and crop-water planning should be prioritised."
+    },
+
+    {
+      "id": "residue_burning",
+      "conditions": [
+        {
+          "field": "residueManagement",
+          "values": ["burned"]
+        }
+      ],
+      "severity": "high",
+      "title": "Residue Burning",
+      "message": "Residue burning removes potentially useful organic material from the farming system. Consider mulching, composting or productive reuse."
+    },
+
+    {
+      "id": "monoculture",
+      "conditions": [
+        {
+          "field": "cropDiversity",
+          "values": ["single"]
+        }
+      ],
+      "severity": "medium",
+      "title": "Crop Diversity",
+      "message": "Dependence on a single crop can increase vulnerability to climate, pest, disease and market shocks."
+    },
+
+    {
+      "id": "no_rotation",
+      "conditions": [
+        {
+          "field": "cropRotation",
+          "values": ["no"]
+        }
+      ],
+      "severity": "medium",
+      "title": "Crop Rotation",
+      "message": "Introducing crop rotation can improve soil health and reduce crop-specific pest and disease pressure."
+    },
+
+    {
+      "id": "chemical_dependency",
+      "conditions": [
+        {
+          "field": "pesticideUse",
+          "values": ["high"]
+        }
+      ],
+      "severity": "high",
+      "title": "Chemical Dependency",
+      "message": "High pesticide use may increase environmental pressure and input costs. Integrated pest management could improve future sustainability."
+    },
+
+    {
+      "id": "climate_vulnerability",
+      "conditions": [
+        {
+          "field": "droughtRisk",
+          "values": ["high"]
+        },
+        {
+          "field": "climateAdaptation",
+          "values": ["none"]
+        }
+      ],
+      "severity": "high",
+      "title": "Climate Vulnerability",
+      "message": "High drought risk combined with limited adaptation may create significant future production risk."
+    },
+
+    {
+      "id": "soil_health",
+      "conditions": [
+        {
+          "field": "soilFertility",
+          "values": ["poor"]
+        },
+        {
+          "field": "organicFertilizer",
+          "values": ["none"]
+        }
+      ],
+      "severity": "high",
+      "title": "Soil Health",
+      "message": "Poor fertility combined with no organic nutrient inputs may reduce long-term soil productivity."
+    }
+  ],
+
+  "rating": [
+    {
+      "min": 90,
+      "label": "Excellent",
+      "description": "Highly sustainable and strongly prepared for future environmental and resource pressures."
+    },
+    {
+      "min": 75,
+      "label": "Very Good",
+      "description": "The farm has a strong sustainability foundation with some opportunities for improvement."
+    },
+    {
+      "min": 60,
+      "label": "Good",
+      "description": "The farm is reasonably sustainable but several areas could be improved."
+    },
+    {
+      "min": 40,
+      "label": "Needs Improvement",
+      "description": "The farm has important sustainability risks that should be addressed."
+    },
+    {
+      "min": 0,
+      "label": "High Risk",
+      "description": "The current farming system has significant long-term sustainability weaknesses."
+    }
+  ]
+}
