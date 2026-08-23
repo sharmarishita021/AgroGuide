@@ -111,7 +111,28 @@ function Samples(){
         <>
             <Heading/>
 
-            <div className="sampleText">
+            {/* <div className="sampleText">
+                Or test with a sample crop leaf:
+            </div>
+
+            <div className="tabs">
+                {samples.map(([name,id])=>(
+                    <button onClick={()=>{
+                        setFilter(id)
+                        setImage(diseases.find(x=>x.id===id).image)
+                        setShow(false)
+                    }}>
+                        {name}
+                    </button>
+                ))}
+            </div> */}
+
+            <ImageBox
+                image={image}
+                setImage={setImage}
+                onAnalyze={()=>setShow(true)}
+            />
+              <div className="sampleText">
                 Or test with a sample crop leaf:
             </div>
 
@@ -126,12 +147,6 @@ function Samples(){
                     </button>
                 ))}
             </div>
-
-            <ImageBox
-                image={image}
-                setImage={setImage}
-                onAnalyze={()=>setShow(true)}
-            />
 
        {show ? <Selected disease={disease} /> : null}
         </>
