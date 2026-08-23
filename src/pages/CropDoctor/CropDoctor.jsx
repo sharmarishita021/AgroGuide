@@ -45,11 +45,15 @@ function Selected({disease}){
     )
 }
 
-function ImageBox({image,setImage,onAnalyze}){
+function ImageBox({image,setImage,onAnalyze,onUpload}){
     
     function upload(e){
         const file=e.target.files[0]
-        if(file) setImage(URL.createObjectURL(file))
+                 if(file){
+        setImage(URL.createObjectURL(file))
+        onUpload()
+    }
+
     }
 
     return(
@@ -70,8 +74,7 @@ function ImageBox({image,setImage,onAnalyze}){
                     <img src={image} alt="Selected crop leaf"/>
 
                     <p>
-                        <strong>Size:</strong>
-                        <span>Sample Image</span>
+                        <strong>Sample Image Uploaded</strong>
                     </p>
 
                     <p>
@@ -79,7 +82,8 @@ function ImageBox({image,setImage,onAnalyze}){
                         <span className="ready"> Ready for analysis</span>
                     </p>
 
-                    <button className="change" onClick={()=>setImage(null)}>
+                    <button className="change" onClick={()=>{setImage(null) 
+                        onUpload(false)}}>
                         Change Image
                     </button>
 
@@ -97,6 +101,7 @@ function Samples(){
     const [filter,setFilter]=useState("rice-blast")
     const [image,setImage]=useState(null)
     const [show,setShow]=useState(false)
+      const [isUploaded,setIsUploaded]=useState(false)
 
     const disease=diseases.find(x=>x.id===filter)
 
@@ -110,28 +115,16 @@ function Samples(){
     return(
         <>
             <Heading/>
-
-            {/* <div className="sampleText">
-                Or test with a sample crop leaf:
-            </div>
-
-            <div className="tabs">
-                {samples.map(([name,id])=>(
-                    <button onClick={()=>{
-                        setFilter(id)
-                        setImage(diseases.find(x=>x.id===id).image)
-                        setShow(false)
-                    }}>
-                        {name}
-                    </button>
-                ))}
-            </div> */}
-
             <ImageBox
                 image={image}
                 setImage={setImage}
-                onAnalyze={()=>setShow(true)}
-            />
+                   onUpload={()=>setIsUploaded(true)}
+                 onAnalyze={()=>{
+        if(isUploaded){
+            setFilter("rice-blast")
+        }
+        setShow(true)}}
+      />
               <div className="sampleText">
                 Or test with a sample crop leaf:
             </div>
@@ -141,6 +134,7 @@ function Samples(){
                     <button onClick={()=>{
                         setFilter(id)
                         setImage(diseases.find(x=>x.id===id).image)
+                         setIsUploaded(false)
                         setShow(false)
                     }}>
                         {name}
