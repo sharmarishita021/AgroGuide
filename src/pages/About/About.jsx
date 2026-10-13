@@ -9,8 +9,14 @@ function About() {
            HERO
       ========================================= */}
       <section className="about-hero">
-        <div className="hero-subtitle">We Use</div>
-        <div className="hero-title">Only Reliable Methods</div>
+        <div className="hero-content-wrap">
+          <div className="hero-subtitle">We Use</div>
+          <h1 className="hero-title">Only Reliable Methods</h1>
+          <p className="hero-description">
+            Empowering agricultural communities with proven organic practices,
+            smart soil conservation techniques, and verified support mechanisms.
+          </p>
+        </div>
 
         <div className="hero-thumbnails">
           <img
@@ -25,54 +31,54 @@ function About() {
       </section>
 
       {/* =========================================
-           OLIVE FEATURES SECTION
+           FEATURES SECTION
       ========================================= */}
       <section className="features-section">
-        <div className="features-left">
-          <h2>The Best Quality Seeds & Traits</h2>
-          <div className="subtext">
-            Ecological farming techniques for sustainable yield.
-          </div>
-          <p>
-            Providing long-term soil protection, crop rotation guidance,
-            and water management solutions tailored to local conditions.
-          </p>
-        </div>
-
-        <div className="features-right">
-          <div className="feature-item">
-            <div className="feature-icon">🌱</div>
-            <div className="feature-text">
-              <h3>Development</h3>
-              <p>Advanced eco-friendly practices maintaining soil vitality.</p>
+        <div className="features-container">
+          <div className="features-left">
+            <h2>The Best Quality Seeds &amp; Traits</h2>
+            <div className="subtext">
+              Ecological farming techniques for sustainable yield.
             </div>
+            <p>
+              Providing long-term soil protection, crop rotation guidance,
+              and water management solutions tailored to local microclimates.
+            </p>
           </div>
 
-          <div className="feature-item">
-            <div className="feature-icon">⚙️</div>
-            <div className="feature-text">
-              <h3>Equipment</h3>
-              <p>Low-impact precision machinery reducing topsoil erosion.</p>
+          <div className="features-right">
+            <div className="feature-item">
+              <div className="feature-text">
+                <h3>Development</h3>
+                <p>Advanced eco-friendly practices maintaining soil vitality.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="feature-item">
-            <div className="feature-icon">🌾</div>
-            <div className="feature-text">
-              <h3>Our Profile</h3>
-              <p>Dedicated to water retention and chemical reduction.</p>
+            <div className="feature-item">
+              <div className="feature-text">
+                <h3>Equipment</h3>
+                <p>Low-impact precision machinery reducing topsoil erosion.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="feature-item">
-            <div className="feature-icon">🔬</div>
-            <div className="feature-text">
-              <h3>Researches</h3>
-              <p>Field analytics testing biological pest management.</p>
+            <div className="feature-item">
+              <div className="feature-text">
+                <h3>Our Profile</h3>
+                <p>Dedicated to water retention and chemical reduction.</p>
+              </div>
             </div>
-          </div>
 
-          <Link to="/problem-solver" className="more-info-link">View More Info</Link>
+            <div className="feature-item">
+              <div className="feature-text">
+                <h3>Researches</h3>
+                <p>Field analytics testing biological pest management.</p>
+              </div>
+            </div>
+
+            <Link to="/problem-solver" className="more-info-link">
+              Explore Problem Solutions →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -86,96 +92,54 @@ function About() {
           and boost long-term harvest quality with custom natural
           composts and organic soil enrichers.
         </p>
-        <Link to="/schemes" className="callout-btn">LEARN MORE</Link>
+        <Link to="/schemes" className="btn btn-primary">
+          Explore Government &amp; Organic Subsidies →
+        </Link>
       </section>
 
       {/* =========================================
            BOTTOM CARDS
       ========================================= */}
       <section className="grid-section">
-        {/* CARD 1 */}
-        <div className="grid-card">
-          <h3>Advice From Breeder</h3>
-          <div className="tagline">Ecological Soil Health</div>
-          <p>
-            Discover indigenous seed selection and multi-cropping
-            strategies tailored to regional climate shifts.
-          </p>
-        </div>
+        <div className="about-cards-container page-container">
+          {/* CARD 1 */}
+          <div className="grid-card common-card">
+            <div className="card-top-accent"></div>
+            <h3>Advice From Breeders</h3>
+            <div className="tagline">Ecological Soil Health</div>
+            <p>
+              Discover indigenous seed selection and multi-cropping
+              strategies tailored to regional climate shifts and seasonal variability.
+            </p>
+          </div>
 
-        {/* CARD 2 */}
-        <div className="grid-card">
-          <h3>Premium Quality Control & The Best Prices</h3>
-          <div className="tagline">Harvest Yield Analytics</div>
-          <p>
-            Streamlined quality checks ensuring every grain batch
-            meets international organic certification guidelines.
-          </p>
-        </div>
+          {/* CARD 2 */}
+          <div className="grid-card common-card">
+            <div className="card-top-accent"></div>
+            <h3>Premium Quality Control</h3>
+            <div className="tagline">Harvest Yield Analytics</div>
+            <p>
+              Streamlined quality checks ensuring every grain batch
+              meets international organic certification guidelines and high nutritional standards.
+            </p>
+          </div>
 
-        {/* CARD 3 */}
-        <div className="grid-card">
-          <h3>Our Locations</h3>
-          <p style={{ marginTop: '15px' }}>
-            <strong>AgroGuide HQ</strong>
-            <br />
-            28 Jackson Blvd Ste 1020
-            <br />
-            Chicago, IL
-            <br /><br />
-            <span style={{ color: '#839d09' }}>
-              info@agroguide.org
-            </span>
-          </p>
+          {/* CARD 3 */}
+          <div className="grid-card common-card">
+            <div className="card-top-accent"></div>
+            <h3>Our Community &amp; HQ</h3>
+            <div className="tagline">Global Agricultural Network</div>
+            <p>
+              <strong>AgroGuide HQ Center</strong><br />
+              28 Jackson Blvd Ste 1020<br />
+              Chicago, IL &amp; Global Farmer Hubs<br />
+              <span className="email-highlight">
+                info@agroguide.org
+              </span>
+            </p>
+          </div>
         </div>
       </section>
-
-      {/* =========================================
-           FOOTER
-      ========================================= */}
-      <footer>
-        <div className="footer-container">
-          {/* FOOTER COLUMN 1 */}
-          <div className="footer-column">
-            <h3>AgroGuide</h3>
-            <div className="footer-description">
-              <strong>Guiding agriculture towards a sustainable future.</strong>
-              <p>
-                An educational platform helping farmers and students
-                understand agricultural challenges and explore practical,
-                long-term sustainable alternatives.
-              </p>
-            </div>
-          </div>
-
-          {/* FOOTER COLUMN 2 */}
-          <div className="footer-column">
-            <h4>Main Navigation</h4>
-            <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/farm-check">Farm Check Assessment</Link></li>
-              <li><Link to="/crop-doctor">Crop Doctor (Disease Diagnostics)</Link></li>
-              <li><Link to="/problem-solver">Farm Problem Solver</Link></li>
-              <li><Link to="/schemes">Government & Private Schemes</Link></li>
-              <li><Link to="/about">About AgroGuide</Link></li>
-            </ul>
-          </div>
-
-          {/* FOOTER COLUMN 3 */}
-          <div className="footer-column">
-            <h4>Information</h4>
-            <div className="footer-info">
-              <Link to="/about">About AgroGuide</Link>
-              <a href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to Top ↑</a>
-            </div>
-          </div>
-        </div>
-
-        {/* FOOTER BOTTOM */}
-        <div className="footer-bottom">
-          © 2026 AgroGuide. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

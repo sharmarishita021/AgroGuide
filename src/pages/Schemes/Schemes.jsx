@@ -1,87 +1,96 @@
+import React, { useState } from "react";
 import schemes from "./Schemes.json";
 import "./Schemes.css";
-import { useState } from "react";
-function Heading(){
-    return(
-        <section className="schemes-hero">
-            <div className="capsule">Financial & Policy Support </div>
-            <h2 className="Title">Government and Instituional Support Schemes</h2>
-            <p className="abt"> Explore verified government subsidies and agricultural credit schemes
-        that assist farmers in adopting drip irrigation, soil testing,
-        stubble machinery, and solar pumps.</p>
-        </section>
-    )
-}
-function Cards() {
- const [filter, setFilter] = useState("all");
 
-  let filteredSchemes;
-
-  if (filter === "all") {
-    filteredSchemes = schemes;
-  } else {
-    filteredSchemes = schemes.filter((scheme) => {
-      return scheme.type === filter;
-    });
-  }
+function Heading() {
   return (
-    <>
-    <Heading />
-    <div className="filterTabs">
-        <button onClick={() => setFilter("all")}>
-          All Schemes
-        </button>
-
-        <button onClick={() => setFilter("government")}>
-          Government Subsidies
-        </button>
-
-        <button onClick={() => setFilter("credit")}>
-          Private & Credit Schemes
-        </button>
-      </div>
-    <div className="allcards">
-      {filteredSchemes.map((scheme) => (
-        <article className="scheme-card" key={scheme.id}>
-          <div className="category">{scheme.category}</div>
-
-          <div className="target">
-            Targets: {scheme.target}
-          </div>
-
-          <h2 className="schemeName">{scheme.name}</h2>
-
-          <div className="dept">
-            Department: {scheme.department}
-          </div>
-
-          <div className="benefit-box">
-            <p>Subsidy / Benefit Detail</p>
-            <h3 className="benefit">{scheme.benefit}</h3>
-            <p>{scheme.description}</p>
-          </div>
-
-          <div className="scheme-section">
-            <h3>Key Scheme Benefits</h3>
-            <ul>
-              {scheme.benefits.map((benefit, index) => (
-                <li key={index}>{benefit}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="scheme-section">
-            <h3>Application Steps</h3>
-            <ol>
-              {scheme.steps.map((step, index) => (
-                <li key={index}>{step}</li>
-              ))}
-            </ol>
-          </div>
-
-        </article>
-      ))}
-    </div></>
+    <div className="page-hero-banner">
+      <div className="page-capsule">Financial &amp; Policy Support</div>
+      <h1 className="page-hero-title">Government &amp; Institutional Support Schemes</h1>
+      <p className="page-hero-subtitle">
+        Explore verified government subsidies and agricultural credit schemes that assist
+        farmers in adopting drip irrigation, soil testing, stubble machinery, and solar pumps.
+      </p>
+    </div>
   );
 }
-export default Cards
+
+export default function Cards() {
+  const [filter, setFilter] = useState("all");
+
+  const filteredSchemes =
+    filter === "all"
+      ? schemes
+      : schemes.filter((scheme) => scheme.type === filter);
+
+  return (
+    <div className="schemes-page">
+      <Heading />
+
+      <div className="schemes-container page-container">
+        <div className="filter-tabs-row">
+          <button
+            className={`filter-tab-btn ${filter === "all" ? "active" : ""}`}
+            onClick={() => setFilter("all")}
+          >
+            All Support Schemes
+          </button>
+
+          <button
+            className={`filter-tab-btn ${filter === "government" ? "active" : ""}`}
+            onClick={() => setFilter("government")}
+          >
+            Government Subsidies
+          </button>
+
+          <button
+            className={`filter-tab-btn ${filter === "credit" ? "active" : ""}`}
+            onClick={() => setFilter("credit")}
+          >
+            Private &amp; Credit Schemes
+          </button>
+        </div>
+
+        <div className="schemes-grid">
+          {filteredSchemes.map((scheme) => (
+            <article className="scheme-card common-card" key={scheme.id}>
+              <div className="scheme-card-header">
+                <span className="scheme-category-badge">{scheme.category}</span>
+                <span className="scheme-target-badge">{scheme.target}</span>
+              </div>
+
+              <h2 className="scheme-title">{scheme.name}</h2>
+              <div className="scheme-dept">
+                <strong>Department:</strong> {scheme.department}
+              </div>
+
+              <div className="benefit-highlight-box">
+                <span className="benefit-eyebrow">Financial Benefit / Subsidy</span>
+                <div className="benefit-value">{scheme.benefit}</div>
+                <p className="benefit-desc">{scheme.description}</p>
+              </div>
+
+              <div className="scheme-details-section">
+                <h3>Key Scheme Advantages</h3>
+                <ul className="scheme-points-list">
+                  {scheme.benefits.map((benefit, index) => (
+                    <li key={index}>{benefit}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="scheme-details-section">
+                <h3>How to Apply</h3>
+                <ol className="scheme-steps-list">
+                  {scheme.steps.map((step, index) => (
+                    <li key={index}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

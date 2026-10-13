@@ -4,22 +4,18 @@ import "./Home.css";
 
 export default function Home() {
   return (
-    <div>
+    <div className="home-page">
       <section className="home-hero">
-        <div className="hero-sun"></div>
-        <div className="hero-rows"></div>
         <div className="hero-card">
-          <div className="logo">
-            Agro<span>Guide</span>
-          </div>
+          <div className="hero-badge">Sustainable Agriculture</div>
           <h1 className="tagline">
-            Guiding agriculture towards a more sustainable future.
+            Guiding Agriculture Towards a Sustainable Future
           </h1>
-          <p>
+          <p className="hero-desc">
             Modern farming feeds billions of people, but intensive farming
             practices can place long-term pressure on soil, water, and
             ecosystems. AgroGuide helps you understand these challenges, find
-            solutions, and access financial support schemes.
+            actionable solutions, and access financial support schemes.
           </p>
           <div className="hero-actions">
             <Link to="/problem-solver" className="btn btn-primary">
@@ -45,8 +41,7 @@ export default function Home() {
           </div>
           <div className="tools-grid">
             <div className="tool-card">
-              <div className="icon-circle">🌿</div>
-              <div>
+              <div className="tool-card-content">
                 <h3>Crop Doctor (Disease Diagnostics)</h3>
                 <p>
                   Upload a photo of crop leaves or choose a sample image to
@@ -58,8 +53,7 @@ export default function Home() {
               </div>
             </div>
             <div className="tool-card">
-              <div className="icon-circle">💬</div>
-              <div>
+              <div className="tool-card-content">
                 <h3>Farm Problem Solver</h3>
                 <p>
                   Type your farm-related questions (e.g. soil test, irrigation,
@@ -72,8 +66,7 @@ export default function Home() {
               </div>
             </div>
             <div className="tool-card">
-              <div className="icon-circle">🚜</div>
-              <div>
+              <div className="tool-card-content">
                 <h3>Farm Check (Sustainability Assessor)</h3>
                 <p>
                   Assess your farming practices across soil management, water efficiency, 
@@ -85,8 +78,7 @@ export default function Home() {
               </div>
             </div>
             <div className="tool-card">
-              <div className="icon-circle">📜</div>
-              <div>
+              <div className="tool-card-content">
                 <h3>Government &amp; Financial Schemes</h3>
                 <p>
                   Explore agricultural financial schemes, subsidies, and grants 

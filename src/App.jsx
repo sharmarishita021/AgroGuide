@@ -7,6 +7,7 @@ import CropDoctor from './pages/CropDoctor/CropDoctor';
 import ProblemSolver from './pages/Problem&Solution/ProblemSolver';
 import Cards from './pages/Schemes/Schemes';
 import About from './pages/About/About';
+import Footer from './Components/Footer/Footer';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
