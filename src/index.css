@@ -6906,3 +6906,1404 @@ p {
 .public-profile-bottom-cta .btn-primary:hover {
   background-color: #f1f5f9;
 }
+
+
+/* ==========================================================================
+   AUTHENTIC INDIAN AGRICULTURAL EXTENSION & ANTI-AI STYLING
+   ========================================================================== */
+
+/* District Agro-Meteorology Advisory Banner */
+.district-agro-weather-banner {
+  background-color: #f0fdf4;
+  border: 1px solid #86efac;
+  border-left: 6px solid #16a34a;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.weather-banner-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.weather-badge-tag {
+  display: inline-block;
+  background-color: #166534;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.weather-zone-info {
+  font-size: 1.05rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.weather-telemetry-row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #334155;
+  flex-wrap: wrap;
+}
+
+.weather-telemetry-row span strong {
+  color: #15803d;
+}
+
+.weather-banner-right {
+  flex: 1.2;
+  min-width: 300px;
+}
+
+.kisan-advisory-alert {
+  background-color: #ffffff;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.advisory-kicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #b45309;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.advisory-text {
+  font-size: 0.88rem;
+  color: #1e293b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Offline Connectivity Safety Net Strip */
+.offline-safety-net-strip {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.safety-net-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.safety-net-badge {
+  display: inline-block;
+  background-color: #ca8a04;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.safety-net-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.safety-net-desc {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.safety-net-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-helpline-link {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-helpline-link:hover {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.btn-helpline-link.pau-call {
+  background-color: #15803d;
+  border-color: #22c55e;
+}
+
+.btn-helpline-link.pau-call:hover {
+  background-color: #166534;
+  color: #ffffff;
+}
+
+.btn-request-sms-callback {
+  background-color: #eab308;
+  color: #713f12;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-request-sms-callback:hover {
+  background-color: #facc15;
+}
+
+/* Institutional Seals & Badges */
+.institutional-seal-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.inst-seal-pill {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.institutional-badge-tag-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.inst-badge-primary {
+  background-color: #064e3b;
+  color: #dcfce7;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inst-reg-badge {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.panchayat-verify-badge {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Photo Dropzone & Visual Symptom Library */
+.distress-photos-section {
+  margin-bottom: 20px;
+}
+
+.photo-dropzone-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.dropzone-main-box {
+  background-color: #ffffff;
+  border: 2px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+}
+
+.dropzone-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropzone-prompt-text {
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.dropzone-subtext {
+  font-size: 0.8rem;
+  color: #64748b;
+  max-width: 480px;
+  margin-bottom: 6px;
+}
+
+.btn-browse-file {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.btn-browse-file:hover {
+  background-color: #e2e8f0;
+}
+
+.dropzone-preview-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.dropzone-preview-thumb {
+  width: 100px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #cbd5e1;
+  flex-shrink: 0;
+}
+
+.preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.preview-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #15803d;
+  font-weight: 800;
+}
+
+.preview-title {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.preview-note {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.btn-remove-attachment {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 4px;
+}
+
+.sample-symptoms-wrapper {
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 14px;
+}
+
+.sample-symptoms-heading {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.sample-symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.sample-symptom-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.sample-symptom-card:hover {
+  border-color: #15803d;
+  background-color: #f0fdf4;
+}
+
+.sample-symptom-card.selected {
+  border-color: #15803d;
+  background-color: #dcfce7;
+  box-shadow: 0 0 0 2px #15803d;
+}
+
+.sample-symptom-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sample-symptom-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.sample-crop-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #15803d;
+  text-transform: uppercase;
+}
+
+.sample-name {
+  font-size: 0.8rem;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+/* Anti-AI Card & Practical Field Metrics */
+.anti-ai-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+}
+
+.consultant-designation {
+  font-size: 0.85rem;
+  color: #15803d;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.consultant-station {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.practical-field-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.field-metric-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-metric-lbl {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.field-metric-val {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.field-metric-val.available {
+  color: #15803d;
+}
+
+.extension-focus-row {
+  font-size: 0.82rem;
+  margin-bottom: 10px;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.focus-lbl {
+  font-weight: 800;
+  color: #166534;
+  margin-right: 6px;
+}
+
+.focus-text {
+  color: #15803d;
+}
+
+.regional-direct-call-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #475569;
+  background-color: #fafbfc;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.direct-desk-link {
+  font-weight: 800;
+  color: #15803d;
+  text-decoration: underline;
+}
+
+.regional-call-action-pill {
+  font-size: 0.82rem;
+  color: #334155;
+  margin-top: 4px;
+}
+
+.regional-call-action-pill a {
+  color: #15803d;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+/* Seasonal Crop Cycles Tracker */
+.crop-cycles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.crop-cycle-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.crop-cycle-card.current-cycle {
+  border-left: 5px solid #16a34a;
+  background-color: #fafdfa;
+}
+
+.cycle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cycle-season-badge {
+  display: inline-block;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.cycle-season-badge.active {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.cycle-crop-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cycle-status-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: #f8fafc;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.cycle-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.c-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-metric-lbl {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.cycle-protocols-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.protocol-block {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.protocol-lbl {
+  font-weight: 700;
+  color: #334155;
+}
+
+.protocol-val {
+  color: #15803d;
+  font-weight: 600;
+}
+
+/* Scheme Applications Grid */
+.scheme-applications-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scheme-app-card {
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 18px;
+  background-color: #ffffff;
+}
+
+.scheme-app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scheme-app-id {
+  font-size: 0.72rem;
+  font-family: monospace;
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #475569;
+}
+
+.scheme-app-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.scheme-status-pill {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.scheme-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.s-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.s-meta-lbl {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.scheme-stage-bar {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.stage-lbl {
+  font-weight: 700;
+  color: #475569;
+  margin-right: 6px;
+}
+
+.stage-val {
+  color: #15803d;
+}
+
+/* Callback Notice Box */
+.callback-notice-box {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.85rem;
+  color: #166534;
+  margin-top: 14px;
+}
+
+/* Regional Partnership Footer */
+.regional-partnership-footer {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.partnership-text {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ticket-attached-photo-preview {
+  margin: 10px 0;
+}
+
+.ticket-photo-thumb {
+  width: 140px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 4px;
+}
+
+
+/* ==========================================================================
+   SHARED UTILITY — panels, forms, buttons, badges
+   ========================================================================== */
+.simple-panel {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px;
+}
+.simple-muted  { color: var(--text-muted); font-size: .9rem; }
+.simple-eyebrow { color: var(--primary-color); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.simple-grid   { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.simple-form   { display: grid; gap: 14px; }
+.simple-form label { display: grid; gap: 5px; font-size: .875rem; font-weight: 600; color: #334155; }
+
+.simple-primary, .simple-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 8px; padding: 10px 18px; font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: background .15s, transform .1s;
+}
+.simple-primary            { color: #fff; background: var(--primary-color); }
+.simple-primary:hover      { background: var(--primary-hover); transform: translateY(-1px); }
+.simple-secondary          { color: #334155; background: var(--bg-alt); border: 1px solid var(--border-color); }
+.simple-secondary:hover    { background: #e2e8f0; }
+.btn-sm                    { padding: 6px 13px; font-size: .85rem; border-radius: 7px; }
+.btn-danger-sm             { padding: 6px 13px; font-size: .85rem; border-radius: 7px; background: #fee2e2; color: var(--danger-color); border: 1px solid #fca5a5; cursor: pointer; font-weight: 600; }
+.btn-danger-sm:hover       { background: #fecaca; }
+
+.simple-overlay { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: 20px; background: rgba(15,23,42,.65); backdrop-filter: blur(3px); }
+.dialog-close   { position: absolute; top: 14px; right: 16px; background: transparent; border: 0; font-size: 1.6rem; line-height: 1; color: var(--text-muted); cursor: pointer; }
+.dialog-close:hover { color: var(--text-main); }
+
+.auth-panel { max-width: 520px; margin: 36px auto; }
+.simple-tabs { display: flex; padding: 4px; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 16px; }
+.simple-tabs button { flex: 1; border: 0; padding: 9px 14px; border-radius: 6px; background: transparent; cursor: pointer; font-size: .9rem; font-family: inherit; }
+.simple-tabs button.active { background: #fff; color: var(--primary-color); font-weight: 700; box-shadow: var(--shadow-sm); }
+
+/* specialty / status tags */
+.cc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-tag  { font-size: .75rem; padding: 3px 9px; border-radius: 9999px; background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border-color); white-space: nowrap; }
+.cc-tag--match { background: var(--primary-light); color: var(--primary-color); border-color: var(--primary-border); font-weight: 700; }
+
+/* advisory box */
+.cq-advisory-box { background: var(--primary-light); border-left: 3px solid var(--primary-color); border-radius: 6px; padding: 10px 14px; font-size: .9rem; margin-top: 10px; }
+
+/* status pills */
+.cq-status          { font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 9999px; background: #f1f5f9; color: var(--text-muted); white-space: nowrap; }
+.cq-status--done    { background: var(--primary-light); color: var(--primary-color); }
+.cq-status--accepted{ background: #e0f2fe; color: #0369a1; }
+.cq-status--declined{ background: #fee2e2; color: var(--danger-color); }
+
+/* ==========================================================================
+   CONSULTATION PAGE
+   ========================================================================== */
+.consultation-page { background: var(--bg-main); padding-bottom: 60px; }
+
+/* banner */
+.consult-banner { position: relative; height: 260px; overflow: hidden; }
+.consult-banner-img { width: 100%; height: 100%; object-fit: cover; }
+.consult-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(5,46,22,.82) 0%, rgba(5,46,22,.45) 100%);
+  display: flex; align-items: center;
+}
+.consult-banner-title { font-size: 2rem; font-weight: 900; color: #fff; margin: 8px 0 6px; line-height: 1.2; }
+.consult-banner-sub   { color: #bbf7d0; font-size: 1rem; }
+
+/* body / mode bar */
+.consult-body { padding-top: 28px; }
+.consult-mode-bar { display: flex; justify-content: flex-end; margin-bottom: 22px; }
+
+/* two-column layout */
+.consult-layout { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: start; }
+
+/* filter sidebar */
+.consult-filter { background: #fff; border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; box-shadow: var(--shadow-sm); position: sticky; top: 90px; }
+.consult-filter-title { font-size: 1rem; font-weight: 800; margin-bottom: 16px; }
+.consult-filter-fields { display: grid; gap: 14px; }
+.cf-label { display: block; font-size: .82rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+.cf-clear-btn { width: 100%; padding: 8px; border: 1px dashed #fca5a5; border-radius: 7px; background: #fff5f5; color: var(--danger-color); font-size: .85rem; font-weight: 600; cursor: pointer; margin-top: 4px; }
+.cf-clear-btn:hover { background: #fee2e2; }
+
+/* results */
+.consult-results-header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.consult-results-header h2 { font-size: 1.1rem; font-weight: 800; }
+.cq-count { font-size: .78rem; font-weight: 800; padding: 2px 10px; border-radius: 9999px; background: var(--primary-light); color: var(--primary-color); }
+.cq-count--done { background: #f1f5f9; color: var(--text-muted); }
+
+/* consultant card — horizontal layout */
+.consultant-cards-list { display: grid; gap: 16px; }
+.cc-card {
+  background: #fff; border: 1px solid var(--border-color); border-radius: 14px;
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  display: grid; grid-template-columns: 160px 1fr;
+  transition: box-shadow .2s, transform .2s;
+  position: relative;
+}
+.cc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.cc-best-badge {
+  position: absolute; top: 12px; left: 12px;
+  font-size: .7rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px;
+  background: #fef9c3; color: #854d0e; border: 1px solid #fde047;
+}
+.cc-card-img { width: 100%; height: 100%; object-fit: cover; min-height: 180px; }
+.cc-card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.cc-card-name { font-size: 1rem; font-weight: 800; color: var(--text-main); }
+.cc-card-role { font-size: .82rem; color: var(--text-muted); margin-top: 1px; }
+.cc-card-inst { font-size: .85rem; color: var(--text-main); font-weight: 500; }
+.cc-card-exp  { font-size: .8rem; color: var(--text-muted); }
+.cc-card-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.cc-meta-item { font-size: .78rem; color: var(--text-muted); background: var(--bg-alt); padding: 3px 9px; border-radius: 6px; border: 1px solid var(--border-color); }
+.cc-meta-fee  { color: var(--primary-color); background: var(--primary-light); border-color: var(--primary-border); font-weight: 700; }
+.cc-card-btn  { margin-top: auto; align-self: flex-start; }
+
+/* consultant workbench queue */
+.consultant-queue { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cq-panel-header  { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.cq-panel-header h2 { font-size: 1rem; font-weight: 800; }
+
+/* ticket cards */
+.cq-ticket-card { border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 16px; margin-top: 10px; background: #fafafa; }
+.cq-ticket-top  { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 5px; }
+.cq-ticket-name { font-weight: 700; font-size: .95rem; }
+.cq-ticket-crop { font-size: .85rem; color: var(--text-muted); margin-left: 6px; }
+.cq-ticket-meta { font-size: .82rem; color: var(--text-muted); margin-bottom: 4px; }
+.cq-ticket-cat  { font-size: .8rem; color: var(--primary-color); margin-bottom: 4px; font-weight: 600; }
+.cq-ticket-desc { font-size: .9rem; color: var(--text-main); line-height: 1.5; }
+.cq-ticket-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.cq-reply-form  { margin-top: 12px; }
+
+/* request dialog */
+.request-dialog { width: min(640px, 100%); max-height: 90vh; overflow-y: auto; padding: 0; }
+.req-dialog-header { display: flex; gap: 16px; align-items: flex-start; padding: 24px 24px 18px; border-bottom: 1px solid var(--border-color); }
+.req-dialog-img  { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.request-dialog .simple-form { padding: 20px 24px 24px; }
+.request-dialog .simple-eyebrow { margin-bottom: 4px; }
+
+/* ==========================================================================
+   PROFILE PAGE
+   ========================================================================== */
+.profile-page { background: var(--bg-main); padding-bottom: 60px; }
+
+/* hero banner */
+.pf-hero-banner { position: relative; height: 220px; overflow: hidden; }
+.pf-hero-bg     { width: 100%; height: 100%; object-fit: cover; }
+.pf-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(5,46,22,.80) 0%, rgba(5,46,22,.45) 100%); }
+.pf-hero-content {
+  position: absolute; inset: 0; display: flex;
+  align-items: flex-end; justify-content: space-between;
+  padding-bottom: 28px; gap: 16px; flex-wrap: wrap;
+}
+.pf-hero-left { display: flex; align-items: center; gap: 18px; }
+.pf-hero-name     { font-size: 1.6rem; font-weight: 900; color: #fff; margin: 4px 0 0; }
+.pf-hero-location { font-size: .9rem; color: #bbf7d0; margin-top: 2px; }
+.pf-hero-actions  { display: flex; gap: 10px; align-items: center; }
+
+.pf-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  object-fit: cover; border: 3px solid rgba(255,255,255,.5); flex-shrink: 0;
+}
+.pf-avatar--img     { background: #e2e8f0; }
+.pf-avatar--initials {
+  background: linear-gradient(135deg, #15803d, #047857);
+  color: #fff; font-weight: 900; font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.pf-role-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.pf-role-badge  { font-size: .68rem; font-weight: 800; letter-spacing: .06em; padding: 3px 9px; border-radius: 9999px; text-transform: uppercase; }
+
+.pf-edit-btn    { padding: 8px 18px; font-size: .88rem; background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 8px; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); }
+.pf-edit-btn:hover { background: rgba(255,255,255,.25); }
+.pf-signout-btn { padding: 8px 18px; background: #fee2e2; color: var(--danger-color); border: 1px solid #fca5a5; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .88rem; }
+.pf-signout-btn:hover { background: #fecaca; }
+
+/* body */
+.pf-body { padding-top: 28px; }
+.pf-role-block  { margin-bottom: 8px; }
+.pf-role-label  { margin-bottom: 8px; }
+.pf-section-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.pf-section-row h3 { font-size: 1rem; font-weight: 700; }
+.pf-sub-label   { font-size: .85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin: 14px 0 8px; }
+
+.pf-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-top: 12px; }
+.pf-details-grid > div { display: flex; flex-direction: column; gap: 2px; }
+.pf-details-grid dt { font-size: .75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+.pf-details-grid dd { font-size: .92rem; color: var(--text-main); font-weight: 500; margin: 0; }
+
+.pf-list-row { border: 1px solid var(--border-color); border-radius: 9px; padding: 11px 14px; margin-top: 8px; background: #fafafa; }
+.pf-list-row > div { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+.pf-status-tag { font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px; background: var(--primary-light); color: var(--primary-color); }
+
+/* add role */
+.pf-add-role { border: 1.5px dashed #cbd5e1; background: #f8fafc; }
+.pf-add-role-btn { width: 100%; padding: 12px; text-align: center; color: var(--primary-color); font-weight: 700; font-size: .92rem; background: transparent; border: none; cursor: pointer; }
+.pf-add-role-btn:hover { text-decoration: underline; }
+
+/* profile ticket cards */
+.pf-ticket-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 12px;
+  background: #fafafa;
+}
+.pf-ticket-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.pf-ticket-card-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pf-ticket-card-crop  { font-size: 1rem; font-weight: 700; color: var(--text-main); }
+.pf-urgency-pill {
+  font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;
+  background: #ffedd5; color: var(--warning-color); border: 1px solid #fdba74;
+}
+.pf-ticket-status-pill {
+  font-size: .72rem; font-weight: 700; padding: 3px 10px;
+  border-radius: 9999px; white-space: nowrap; flex-shrink: 0;
+}
+.pf-ticket-card-meta {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  font-size: .82rem; color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.pf-ticket-card-category {
+  font-size: .8rem; font-weight: 600;
+  color: var(--primary-color); margin-bottom: 6px;
+}
+.pf-ticket-card-desc { font-size: .9rem; color: var(--text-main); line-height: 1.55; }
+.pf-ticket-advisory {
+  margin-top: 12px;
+  background: var(--primary-light);
+  border-left: 3px solid var(--primary-color);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.pf-ticket-advisory-label {
+  font-size: .72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--primary-color); margin-bottom: 4px;
+}
+.pf-ticket-advisory p { font-size: .9rem; color: var(--text-main); line-height: 1.5; margin: 0; }
+
+/* tab count pills */
+.pf-tab-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary-color); color: #fff;
+  border-radius: 9999px; font-size: .68rem; font-weight: 800;
+  padding: 1px 6px; margin-left: 5px; vertical-align: middle;
+}
+.pf-tab-pill--done { background: #94a3b8; }
+
+/* edit modal */
+.edit-modal { width: min(680px, 100%); max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; padding: 0; border-radius: 16px; }
+.edit-modal-head { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px 16px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+.edit-modal-head h2 { font-size: 1.1rem; font-weight: 800; }
+.edit-modal-body { padding: 20px 24px 24px; overflow-y: auto; flex: 1; }
+.edit-photo-row { display: flex; align-items: center; gap: 18px; background: var(--bg-alt); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.edit-photo-label { font-weight: 700; font-size: .9rem; margin-bottom: 1px; }
+.edit-section-label { font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 14px; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 860px) {
+  .consult-layout { grid-template-columns: 1fr; }
+  .consult-filter { position: static; }
+  .cc-card { grid-template-columns: 1fr; }
+  .cc-card-img { height: 200px; }
+  .consultant-queue { grid-template-columns: 1fr; }
+  .pf-details-grid { grid-template-columns: 1fr; }
+  .pf-hero-content { padding-bottom: 20px; }
+  .pf-hero-name { font-size: 1.3rem; }
+  .edit-photo-row { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ==========================================================================
+   DARK-GREEN / NEON THEME — Consultation & Profile pages only
+   Palette:
+     --dg-bg        #030f07   deepest dark (page bg)
+     --dg-surface   #0a1f0e   card/panel surface
+     --dg-surface2  #112918   slightly lighter surface
+     --dg-border    #1a4027   subtle border
+     --dg-neon      #4ade80   neon-green accent
+     --dg-neon-dim  #22c55e   slightly dimmer neon
+     --dg-mid       #16a34a   mid green (secondary buttons)
+     --dg-text      #f0fdf4   primary text (near white)
+     --dg-muted     #86efac   muted / secondary text
+     --dg-eyebrow   #4ade80   eyebrow / label color
+   ========================================================================== */
+
+/* ── Base page backgrounds ── */
+.consultation-page,
+.profile-page {
+  background: #030f07;
+  color: #f0fdf4;
+  min-height: 100vh;
+}
+
+/* ── Panels / cards ── */
+.consultation-page .simple-panel,
+.consultation-page .consult-filter,
+.consultation-page .cc-card,
+.consultation-page .cq-ticket-card,
+.consultation-page .request-dialog,
+.profile-page .simple-panel,
+.profile-page .pf-ticket-card {
+  background: #0a1f0e;
+  border-color: #1a4027;
+  color: #f0fdf4;
+  box-shadow: 0 4px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(74,222,128,.06);
+}
+
+/* ── Eyebrow labels ── */
+.consultation-page .simple-eyebrow,
+.profile-page .simple-eyebrow {
+  color: #4ade80;
+}
+
+/* ── Muted text ── */
+.consultation-page .simple-muted,
+.consultation-page .cc-card-role,
+.consultation-page .cc-card-exp,
+.consultation-page .cc-meta-item,
+.consultation-page .cc-ticket-meta,
+.consultation-page .cq-ticket-meta,
+.consultation-page .cf-label,
+.profile-page .simple-muted,
+.profile-page .pf-ticket-card-meta,
+.profile-page .pf-sub-label,
+.profile-page .pf-details-grid dt {
+  color: #86efac;
+}
+
+/* ── Headings ── */
+.consultation-page h1,
+.consultation-page h2,
+.consultation-page h3,
+.consultation-page .cc-card-name,
+.consultation-page .cc-card-inst,
+.consultation-page .cq-ticket-name,
+.consultation-page .cq-ticket-desc,
+.consultation-page .consult-filter-title,
+.consultation-page .consult-results-header h2,
+.consultation-page .cq-panel-header h2,
+.profile-page h1,
+.profile-page h2,
+.profile-page h3,
+.profile-page .pf-ticket-card-crop,
+.profile-page .pf-ticket-card-desc,
+.profile-page .pf-details-grid dd {
+  color: #f0fdf4;
+}
+
+/* ── Form controls ── */
+.consultation-page .form-control,
+.profile-page .form-control {
+  background: #112918;
+  border-color: #1e5432;
+  color: #f0fdf4;
+}
+.consultation-page .form-control:focus,
+.profile-page .form-control:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74,222,128,.2);
+  outline: none;
+}
+.consultation-page .form-control::placeholder,
+.profile-page .form-control::placeholder { color: #4d7a5a; }
+.consultation-page .form-control option,
+.profile-page .form-control option { background: #0a1f0e; color: #f0fdf4; }
+
+/* ── Primary button — neon green ── */
+.consultation-page .simple-primary,
+.profile-page .simple-primary {
+  background: #4ade80;
+  color: #030f07;
+  font-weight: 800;
+}
+.consultation-page .simple-primary:hover,
+.profile-page .simple-primary:hover {
+  background: #22c55e;
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(74,222,128,.4);
+}
+
+/* ── Secondary button ── */
+.consultation-page .simple-secondary,
+.profile-page .simple-secondary {
+  background: #112918;
+  color: #86efac;
+  border-color: #1e5432;
+}
+.consultation-page .simple-secondary:hover,
+.profile-page .simple-secondary:hover {
+  background: #1a3d22;
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+/* ── cc-tag specialty pills ── */
+.consultation-page .cc-tag,
+.profile-page .cc-tag {
+  background: #112918;
+  color: #86efac;
+  border-color: #1e5432;
+}
+.consultation-page .cc-tag--match,
+.profile-page .cc-tag--match {
+  background: rgba(74,222,128,.15);
+  color: #4ade80;
+  border-color: #4ade80;
+  font-weight: 700;
+}
+
+/* ── Consultant card specifics ── */
+.consultation-page .cc-best-badge {
+  background: rgba(74,222,128,.15);
+  color: #4ade80;
+  border-color: rgba(74,222,128,.4);
+}
+.consultation-page .cc-meta-item {
+  background: #112918;
+  border-color: #1e5432;
+  color: #86efac;
+}
+.consultation-page .cc-meta-fee {
+  background: rgba(74,222,128,.12);
+  border-color: rgba(74,222,128,.3);
+  color: #4ade80;
+}
+
+/* ── Filter panel ── */
+.consultation-page .consult-filter {
+  border-color: #1a4027;
+}
+.consultation-page .cf-clear-btn {
+  background: rgba(220,38,38,.1);
+  border-color: rgba(220,38,38,.3);
+  color: #f87171;
+}
+.consultation-page .cf-clear-btn:hover {
+  background: rgba(220,38,38,.2);
+}
+
+/* ── Mode bar button ── */
+.consultation-page .consult-mode-bar .simple-secondary {
+  background: rgba(74,222,128,.1);
+  color: #4ade80;
+  border-color: rgba(74,222,128,.35);
+}
+.consultation-page .consult-mode-bar .simple-secondary:hover {
+  background: rgba(74,222,128,.2);
+  box-shadow: 0 0 10px rgba(74,222,128,.25);
+}
+.consultation-page .consult-mode-bar .simple-primary {
+  box-shadow: 0 0 14px rgba(74,222,128,.35);
+}
+
+/* ── Ticket cards (workbench) ── */
+.consultation-page .cq-ticket-card {
+  background: #0d2413;
+  border-color: #1a4027;
+}
+.consultation-page .cq-ticket-crop { color: #86efac; }
+
+/* ── Status pills ── */
+.consultation-page .cq-status,
+.profile-page .pf-ticket-status-pill {
+  background: #112918;
+  color: #86efac;
+}
+.consultation-page .cq-status--done      { background: rgba(74,222,128,.15);  color: #4ade80; }
+.consultation-page .cq-status--accepted  { background: rgba(56,189,248,.12);  color: #38bdf8; }
+.consultation-page .cq-status--declined  { background: rgba(248,113,113,.1);  color: #f87171; }
+
+/* profile status pills */
+.profile-page .pf-ticket-status-pill     { background: rgba(74,222,128,.15); color: #4ade80; }
+.profile-page .pf-urgency-pill           { background: rgba(251,146,60,.12); color: #fb923c; border-color: rgba(251,146,60,.3); }
+
+/* ── Advisory box ── */
+.consultation-page .cq-advisory-box,
+.profile-page .pf-ticket-advisory {
+  background: rgba(74,222,128,.08);
+  border-left-color: #4ade80;
+}
+.profile-page .pf-ticket-advisory-label { color: #4ade80; }
+.profile-page .pf-ticket-advisory p,
+.consultation-page .cq-advisory-box { color: #d1fae5; }
+
+/* ── Count / badge pills ── */
+.consultation-page .cq-count,
+.profile-page .pf-tab-pill {
+  background: rgba(74,222,128,.2);
+  color: #4ade80;
+}
+.consultation-page .cq-count--done,
+.profile-page .pf-tab-pill--done { background: #1a3d22; color: #86efac; }
+
+.consultation-page .cq-panel-header .cq-count { background: rgba(74,222,128,.15); color: #4ade80; }
+
+/* ── Simple-tabs ── */
+.consultation-page .simple-tabs,
+.profile-page .simple-tabs {
+  background: #112918;
+  border-color: #1a4027;
+}
+.consultation-page .simple-tabs button,
+.profile-page .simple-tabs button { color: #86efac; }
+.consultation-page .simple-tabs button.active,
+.profile-page .simple-tabs button.active {
+  background: #1a4027;
+  color: #4ade80;
+  box-shadow: 0 0 8px rgba(74,222,128,.25);
+}
+
+/* ── Request dialog header ── */
+.consultation-page .req-dialog-header {
+  border-bottom-color: #1a4027;
+}
+
+/* ── Profile hero ── */
+.profile-page .pf-hero-banner { position: relative; }
+.profile-page .pf-hero-overlay {
+  background: linear-gradient(to right, rgba(3,15,7,.92) 0%, rgba(3,15,7,.55) 100%);
+}
+.profile-page .pf-hero-name     { color: #f0fdf4; }
+.profile-page .pf-hero-location { color: #86efac; }
+
+/* role badges in hero */
+.profile-page .pf-role-badge {
+  background: rgba(74,222,128,.15) !important;
+  color: #4ade80 !important;
+  border-color: rgba(74,222,128,.35) !important;
+}
+
+/* edit & signout buttons on hero */
+.profile-page .pf-edit-btn {
+  background: rgba(74,222,128,.12);
+  color: #4ade80;
+  border-color: rgba(74,222,128,.35);
+  backdrop-filter: blur(4px);
+}
+.profile-page .pf-edit-btn:hover {
+  background: rgba(74,222,128,.22);
+  box-shadow: 0 0 12px rgba(74,222,128,.3);
+}
+.profile-page .pf-signout-btn {
+  background: rgba(248,113,113,.12);
+  color: #f87171;
+  border-color: rgba(248,113,113,.3);
+}
+.profile-page .pf-signout-btn:hover { background: rgba(248,113,113,.22); }
+
+/* role section label badge */
+.profile-page .pf-role-block .pf-role-badge {
+  background: rgba(74,222,128,.12) !important;
+  color: #4ade80 !important;
+  border-color: rgba(74,222,128,.3) !important;
+}
+
+/* add-role panel */
+.profile-page .pf-add-role {
+  background: #0a1f0e;
+  border-color: #1e5432;
+}
+.profile-page .pf-add-role-btn { color: #4ade80; }
+
+/* farmer/kisan section details */
+.profile-page .pf-details-grid dt { color: #4d9966; }
+.profile-page .pf-details-grid dd { color: #f0fdf4; }
+
+/* list rows (seller orders, consultant queue) */
+.profile-page .pf-list-row {
+  background: #0d2413;
+  border-color: #1a4027;
+}
+.profile-page .pf-status-tag {
+  background: rgba(74,222,128,.15);
+  color: #4ade80;
+}
+
+/* pf-ticket-card category */
+.profile-page .pf-ticket-card-category { color: #4ade80; }
+
+/* edit modal */
+.profile-page .edit-modal,
+.profile-page .edit-modal .edit-modal-head,
+.profile-page .edit-modal .edit-modal-body {
+  background: #0a1f0e;
+  color: #f0fdf4;
+  border-color: #1a4027;
+}
+.profile-page .edit-modal .edit-modal-head {
+  border-bottom-color: #1a4027;
+}
+.profile-page .edit-photo-row {
+  background: #112918;
+}
+.profile-page .edit-section-label {
+  color: #4d9966;
+  border-top-color: #1a4027;
+}
+
+/* btn-danger-sm in modal */
+.profile-page .btn-danger-sm {
+  background: rgba(248,113,113,.1);
+  color: #f87171;
+  border-color: rgba(248,113,113,.3);
+}
+.profile-page .btn-danger-sm:hover { background: rgba(248,113,113,.2); }
+
+/* overlay backdrop */
+.consultation-page ~ .simple-overlay,
+.profile-page .simple-overlay {
+  background: rgba(3,15,7,.8);
+}
+
+/* dialog close button */
+.consultation-page .dialog-close,
+.profile-page .dialog-close { color: #4d9966; }
+.consultation-page .dialog-close:hover,
+.profile-page .dialog-close:hover { color: #4ade80; }
+
+/* Neon glow on hover for consultant cards */
+.consultation-page .cc-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(74,222,128,.2), 0 0 20px rgba(74,222,128,.08);
+  border-color: rgba(74,222,128,.25);
+}
+
+/* Consult banner overlay — deeper on dark theme */
+.consultation-page .consult-banner-overlay {
+  background: linear-gradient(to right, rgba(3,15,7,.88) 0%, rgba(3,15,7,.5) 100%);
+}
+.consultation-page .consult-banner-title { color: #f0fdf4; }
+.consultation-page .consult-banner-sub   { color: #86efac; }
+.consultation-page .page-eyebrow         { color: #4ade80; background: rgba(74,222,128,.12); }

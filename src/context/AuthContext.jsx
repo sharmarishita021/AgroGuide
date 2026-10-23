@@ -3,54 +3,77 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext(null);
 
 // Initial Demo Accounts for each role
+const KISAN_DEMO_USER = {
+  id: 'user-basic-101',
+  role: 'kisan',
+  name: 'Ramesh Kumar',
+  emailOrPhone: '9876501234',
+  location: 'Samrala, Ludhiana, Punjab',
+  state: 'Punjab',
+  district: 'Ludhiana',
+  tehsil: 'Samrala Block',
+  block: 'Samrala Block',
+  districtBlock: 'Ludhiana / Samrala Block',
+  pinCode: '141114',
+  landSize: '4.5',
+  landArea: '4.5',
+  soilType: 'Alluvial Sandy Loam (pH 7.4)',
+  irrigationSource: 'Solar Tubewell & Minor Canal Distributary',
+  soilHealthCardNo: 'SHC-PB-LDH-2025-8812',
+  primaryCrops: 'Wheat (PBW-826) & Mustard (Giriraj)',
+  avatarInitials: 'RK'
+};
+
+const SELLER_DEMO_USER = {
+  id: 'seller-gurpreet-201',
+  role: 'seller',
+  name: 'Sardar Gurpreet Singh',
+  businessName: 'GreenFields Organic Farm & Agro Supplies',
+  farmName: 'GreenFields Organic Farm & Agro Supplies',
+  category: 'Seeds, Fertilizers, Equipment',
+  pickupAddress: 'GT Road Mandi Complex, Samrala Chowk, Ludhiana, Punjab - 141114',
+  licenseGstId: 'PB-AGRI-GST-03AABCG1234F1Z5',
+  emailOrPhone: '9876543210',
+  location: 'Ludhiana, Punjab',
+  state: 'Punjab',
+  district: 'Ludhiana',
+  landArea: '25 Acres',
+  certification: 'APEDA Certified Organic (Reg: NPOP/IN/2024/098)',
+  farmBio: 'Specializing in chemical-free Sharbati wheat, basmati paddy, certified organic seed varieties, and screened desi cow vermicompost.',
+  avatarInitials: 'GS'
+};
+
+const CONSULTANT_DEMO_USER = {
+  id: 'consultant-ramesh-302',
+  role: 'consultant',
+  name: 'Dr. Ramesh Verma',
+  designation: 'Principal Soil Scientist & Micronutrient Extension Head',
+  title: 'Principal Soil Scientist & Micronutrient Extension Head',
+  institution: 'Punjab Agricultural University (PAU), Ludhiana',
+  affiliatedUniversity: 'Punjab Agricultural University (PAU), Ludhiana',
+  icarExtensionId: 'ICAR-PAU-PB-2008-4109',
+  registrationNumber: 'ICAR-PAU-PB-2008-4109',
+  agronomicSpecialties: 'Soil Health & Split Nitrogen Dosage, Precision Irrigation & Water Management, Organic Bio-Pesticides, Yellow Rust Control',
+  emailOrPhone: 'r.verma@pau.edu',
+  location: 'PAU Campus, Ferozepur Road, Ludhiana',
+  state: 'Punjab',
+  district: 'Ludhiana',
+  qualifications: 'Ph.D. Soil Science & Agricultural Chemistry (IARI New Delhi)',
+  experience: '18+ Years Field Extension & Soil Health Card Calibration',
+  specializations: [
+    'Soil Health & Split Nitrogen Dosage',
+    'Precision Irrigation & Water Management',
+    'Organic Bio-Pesticides & Neemastra',
+    'Fungal Disease Control (Yellow Rust)'
+  ],
+  avatarInitials: 'RV'
+};
+
 export const DEMO_USERS = {
-  basic: {
-    id: 'user-basic-101',
-    role: 'basic',
-    name: 'Ramesh Kumar',
-    emailOrPhone: '9876501234',
-    location: 'Ludhiana, Punjab',
-    state: 'Punjab',
-    district: 'Ludhiana',
-    landArea: '4.5 Acres',
-    primaryCrops: 'Wheat & Mustard',
-    avatarInitials: 'RK'
-  },
-  seller: {
-    id: 'seller-gurpreet-201',
-    role: 'seller',
-    name: 'Sardar Gurpreet Singh',
-    farmName: 'GreenFields Organic Farm',
-    emailOrPhone: '9876543210',
-    location: 'Ludhiana, Punjab',
-    state: 'Punjab',
-    district: 'Ludhiana',
-    landArea: '25 Acres',
-    certification: 'APEDA Certified Organic (Reg: NPOP/IN/2024/098)',
-    farmBio: 'Specializing in chemical-free Sharbati wheat, basmati paddy, and screened desi cow vermicompost.',
-    avatarInitials: 'GS'
-  },
-  consultant: {
-    id: 'consultant-ananya-301',
-    role: 'consultant',
-    name: 'Dr. Ananya Sharma',
-    title: 'Senior Agronomist & Plant Pathologist',
-    institution: 'Krishi Vigyan Kendra (KVK) & ICAR Associate',
-    emailOrPhone: 'ananya.sharma@icar.res.in',
-    location: 'Regional Krishi Research Station, New Delhi',
-    state: 'Delhi',
-    district: 'New Delhi',
-    qualifications: 'Ph.D. Plant Pathology (PAU), M.Sc. Agronomy',
-    experience: '14+ Years Field Diagnostics & Organic Agronomy',
-    specializations: [
-      'Soil NPK Balancing',
-      'Fungal Disease Control (Rust & Mildew)',
-      'Bio-Pesticides & Neemastra',
-      'Precision Drip Fertigation',
-      'Organic Crop Certification'
-    ],
-    avatarInitials: 'AS'
-  }
+  kisan: KISAN_DEMO_USER,
+  basic: { ...KISAN_DEMO_USER, role: 'kisan' },
+  seller: SELLER_DEMO_USER,
+  consultant: CONSULTANT_DEMO_USER
 };
 
 export function AuthProvider({ children }) {
@@ -58,9 +81,17 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
       const saved = localStorage.getItem('agri_auth_user');
-      return saved ? JSON.parse(saved) : DEMO_USERS.basic;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Normalize basic role to kisan if needed, preserving fields
+        if (parsed.role === 'basic') {
+          return { ...KISAN_DEMO_USER, ...parsed, role: 'kisan' };
+        }
+        return parsed;
+      }
+      return null;
     } catch {
-      return DEMO_USERS.basic;
+      return null;
     }
   });
 
@@ -197,6 +228,118 @@ export function AuthProvider({ children }) {
     ];
   });
 
+  const [registeredConsultants, setRegisteredConsultants] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('agri_registered_consultants') || '[]');
+    } catch {
+      return [];
+    }
+  });
+
+  // Track seasonal crop history for farmer dashboard
+  const [cropHistory, setCropHistory] = useState(() => {
+    try {
+      const saved = localStorage.getItem('agri_crop_history');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      {
+        id: 'CYCLE-2025-RABI',
+        season: 'Rabi Season 2025-26',
+        isCurrent: true,
+        crop: 'Wheat (PBW-826) & Yellow Mustard (Giriraj)',
+        acreage: '4.5 Acres',
+        sowingDate: '05 Nov 2025',
+        stage: 'Flowering & Grain Filling',
+        targetYield: '22 Quintals / Acre',
+        irrigationStatus: '3rd Watering Complete (Solar Tubewell)',
+        fertilizerProtocol: 'Split Nitrogen (120 kg N/ha in 3 splits) + 0.5% Zinc Spray',
+        soilHealthCardRef: 'SHC-PB-LDH-2025-8812',
+        status: 'Active Field Cycle'
+      },
+      {
+        id: 'CYCLE-2025-KHARIF',
+        season: 'Kharif Season 2025',
+        isCurrent: false,
+        crop: 'Pusa Basmati 1121 & PR-126 Paddy',
+        acreage: '4.5 Acres',
+        sowingDate: '20 Jun 2025',
+        stage: 'Harvested & Mandi Dispatched',
+        targetYield: '26.4 Quintals / Acre (Achieved)',
+        irrigationStatus: 'Canal Distributary Alternate Wetting & Drying',
+        fertilizerProtocol: 'Dhaincha Green Manuring + Neem Coated Urea',
+        soilHealthCardRef: 'SHC-PB-LDH-2025-8812',
+        status: 'Harvested & Sold at Mandi'
+      },
+      {
+        id: 'CYCLE-2025-ZAID',
+        season: 'Zaid Season 2025 (Summer Catch)',
+        isCurrent: false,
+        crop: 'Summer Moong (SML-668) & Fodder Bajra',
+        acreage: '2.0 Acres',
+        sowingDate: '28 Mar 2025',
+        stage: 'Harvested & Nodules Incorporated',
+        targetYield: '5.2 Quintals / Acre',
+        irrigationStatus: 'Light Sprinkler 2 Rotations',
+        fertilizerProtocol: 'Rhizobium Culture Seed Inoculation (Zero Chemical N)',
+        soilHealthCardRef: 'SHC-PB-LDH-2025-8812',
+        status: 'Completed Cycle'
+      }
+    ];
+  });
+
+  // Track government scheme subsidy application statuses
+  const [schemeApplications, _setSchemeApplications] = useState(() => {
+    try {
+      const saved = localStorage.getItem('agri_scheme_applications');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      {
+        id: 'APP-KUSUM-PB-9942',
+        schemeName: 'PM-KUSUM Component-B (7.5 HP Solar Agri Pump)',
+        applicationDate: '12 Sep 2025',
+        trackingNumber: 'PB-REDA-SOL-2025-11094',
+        nodalAgency: 'Punjab Energy Development Agency (PEDA) & DISCOM',
+        subsidyAmount: '60% Capital Subsidy (₹1,95,000)',
+        currentStage: 'Field Inspection Completed by Junior Engineer',
+        status: 'Sanction Letter Issued',
+        statusBadge: 'Approved'
+      },
+      {
+        id: 'APP-CRM-PB-8810',
+        schemeName: 'Crop Residue Management (CRM) Super Seeder Subsidy',
+        applicationDate: '01 Oct 2025',
+        trackingNumber: 'AGRI-CRM-LDH-2025-4421',
+        nodalAgency: 'Punjab State Dept of Agriculture, Ludhiana Office',
+        subsidyAmount: '50% Direct Machine Subsidy (₹1,25,000)',
+        currentStage: 'Physical Verification of Tractor Implement at Mandi',
+        status: 'DBT Payment Dispatched to Bank',
+        statusBadge: 'Subsidy Dispatched'
+      },
+      {
+        id: 'APP-SHC-PB-7703',
+        schemeName: 'National Soil Health Card Cycle-III',
+        applicationDate: '15 Aug 2025',
+        trackingNumber: 'SHC-PB-SAM-2025-8812',
+        nodalAgency: 'Block Agriculture Office, Samrala, Ludhiana',
+        subsidyAmount: '100% Free Lab Soil Test & Micronutrient Card',
+        currentStage: 'Lab NPK & Micronutrient Report Issued',
+        status: 'Card Active & Calibrated',
+        statusBadge: 'Report Ready'
+      }
+    ];
+  });
+
+  // Track callback requests for offline / IVR safety net
+  const [callbackRequests, setCallbackRequests] = useState(() => {
+    try {
+      const saved = localStorage.getItem('agri_callback_requests');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [];
+  });
+
   // Sync to localStorage
   useEffect(() => {
     try {
@@ -222,9 +365,36 @@ export function AuthProvider({ children }) {
     } catch {}
   }, [consultations]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('agri_registered_consultants', JSON.stringify(registeredConsultants));
+    } catch (error) {
+      console.warn('Failed to save consultant profiles:', error);
+    }
+  }, [registeredConsultants]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('agri_crop_history', JSON.stringify(cropHistory));
+    } catch {}
+  }, [cropHistory]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('agri_scheme_applications', JSON.stringify(schemeApplications));
+    } catch {}
+  }, [schemeApplications]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('agri_callback_requests', JSON.stringify(callbackRequests));
+    } catch {}
+  }, [callbackRequests]);
+
   // Login handler
   const login = (role, credentials) => {
-    const { emailOrPhone, password, name, farmName } = credentials;
+    const { emailOrPhone, password } = credentials;
+    const accountRole = role === 'basic' ? 'kisan' : role;
 
     if (!emailOrPhone || !password) {
       throw new Error('Please enter your registered contact and password.');
@@ -234,55 +404,177 @@ export function AuthProvider({ children }) {
       throw new Error('Password must be at least 4 characters.');
     }
 
+    const registeredConsultant = accountRole === 'consultant'
+      ? registeredConsultants.find((profile) =>
+          profile.emailOrPhone.toLowerCase() === emailOrPhone.toLowerCase()
+        )
+      : null;
+    const isDemoConsultant = accountRole === 'consultant' &&
+      emailOrPhone === DEMO_USERS.consultant.emailOrPhone;
+
+    if (accountRole === 'consultant' && !registeredConsultant && !isDemoConsultant) {
+      throw new Error('No consultant profile exists for this contact. Please sign up first.');
+    }
+
     // Load template or generate custom
-    const baseTemplate = DEMO_USERS[role] || DEMO_USERS.basic;
+    const baseTemplate = DEMO_USERS[accountRole] || DEMO_USERS.kisan;
     const userObj = {
       ...baseTemplate,
-      id: `${role}-${Date.now()}`,
-      role,
-      name: name || baseTemplate.name,
+      ...(registeredConsultant || {}),
+      id: registeredConsultant?.id || (isDemoConsultant ? DEMO_USERS.consultant.id : `${accountRole}-${Date.now()}`),
+      role: accountRole,
+      roles: [accountRole],
+      ...(registeredConsultant || {}),
       emailOrPhone,
-      farmName: farmName || (baseTemplate.farmName || `${name || 'Kisan'}'s Farm`),
-      avatarInitials: (name || baseTemplate.name).split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+      avatarInitials: (registeredConsultant?.name || baseTemplate.name)
+        .split(' ')
+        .map(n => n[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase()
     };
 
     setCurrentUser(userObj);
     return userObj;
   };
 
+  // Add a second role to the currently logged-in user (e.g., kisan also becomes seller)
+  const addRoleToUser = (newRole, roleDetails) => {
+    const accountRole = newRole === 'basic' ? 'kisan' : newRole;
+    if (!currentUser) throw new Error('You must be logged in to add a role.');
+
+    const existingRoles = currentUser.roles || [currentUser.role];
+    if (existingRoles.includes(accountRole)) {
+      throw new Error(`You already have a ${accountRole} profile.`);
+    }
+
+    const roleData = {
+      [`${accountRole}Profile`]: { ...roleDetails, addedAt: new Date().toISOString() },
+      roles: [...existingRoles, accountRole],
+      // Merge role-specific fields at top level as well for compatibility
+      ...roleDetails
+    };
+
+    if (accountRole === 'consultant') {
+      const consultantEntry = {
+        ...currentUser,
+        ...roleDetails,
+        id: currentUser.id,
+        role: 'consultant',
+        roles: [...existingRoles, accountRole],
+        name: currentUser.name,
+        emailOrPhone: currentUser.emailOrPhone,
+        agronomicSpecialties: Array.isArray(roleDetails.specializations)
+          ? roleDetails.specializations.join(', ')
+          : roleDetails.specializations || ''
+      };
+      setRegisteredConsultants(prev => [
+        ...prev.filter(p => p.id !== currentUser.id),
+        consultantEntry
+      ]);
+    }
+
+    const updated = { ...currentUser, ...roleData };
+    setCurrentUser(updated);
+    return updated;
+  };
+
   // Switch role quickly (useful for demonstrations)
   const switchRole = (newRole) => {
-    if (DEMO_USERS[newRole]) {
-      setCurrentUser(DEMO_USERS[newRole]);
+    const accountRole = newRole === 'basic' ? 'kisan' : newRole;
+    if (DEMO_USERS[accountRole]) {
+      setCurrentUser(DEMO_USERS[accountRole]);
     } else {
       setCurrentUser((prev) => ({
-        ...(prev || DEMO_USERS.basic),
-        role: newRole
+        ...(prev || DEMO_USERS.kisan),
+        role: accountRole
       }));
     }
   };
 
   // Register new user with specific role
   const register = (role, details) => {
-    const { name, emailOrPhone, password, farmName, district, state, qualifications, specializations } = details;
+    const {
+      name,
+      emailOrPhone,
+      password,
+      farmName,
+      businessName,
+      category,
+      pickupAddress,
+      licenseGstId,
+      district,
+      districtBlock,
+      primaryCrops,
+      landSize,
+      state,
+      qualifications,
+      specializations,
+      bio,
+      workHistory,
+      avatarUrl,
+      title,
+      institution,
+      experience,
+      icarExtensionId
+    } = details;
+    const accountRole = role === 'basic' ? 'kisan' : role;
 
     if (!name || !emailOrPhone || !password) {
       throw new Error('Please fill in all mandatory registration fields.');
     }
+    if (
+      accountRole === 'consultant' &&
+      registeredConsultants.some((profile) =>
+        profile.emailOrPhone.toLowerCase() === emailOrPhone.toLowerCase()
+      )
+    ) {
+      throw new Error('A consultant profile already exists for this contact. Please sign in.');
+    }
 
     const newUser = {
       id: `${role}-${Date.now()}`,
-      role,
+      role: accountRole,
+      roles: [accountRole],
       name,
       emailOrPhone,
-      farmName: farmName || `${name}'s Farm`,
+      businessName: businessName || farmName || '',
+      farmName: businessName || farmName || `${name}'s Farm`,
+      category: category || '',
+      pickupAddress: pickupAddress || '',
+      licenseGstId: licenseGstId || '',
+      bio: bio || '',
+      workHistory: workHistory || '',
+      avatarUrl: avatarUrl || '',
       district: district || 'Ludhiana',
+      districtBlock: districtBlock || district || 'Ludhiana',
+      primaryCrops: primaryCrops || '',
+      landSize: landSize || '',
       state: state || 'Punjab',
       location: `${district || 'Ludhiana'}, ${state || 'Punjab'}`,
-      qualifications: qualifications || 'Agricultural Graduate',
-      specializations: specializations || ['Soil Nutrition', 'Crop Diagnostics'],
+      qualifications: qualifications || '',
+      specializations: specializations || [],
+      title: title || '',
+      designation: title || '',
+      institution: institution || '',
+      affiliatedUniversity: institution || '',
+      experience: experience || '',
+      icarExtensionId: icarExtensionId || '',
+      registrationNumber: icarExtensionId || '',
+      agronomicSpecialties: Array.isArray(specializations)
+        ? specializations.join(', ')
+        : specializations || '',
       avatarInitials: name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
     };
+
+    if (accountRole === 'consultant') {
+      setRegisteredConsultants((prev) => [
+        ...prev.filter((profile) =>
+          profile.emailOrPhone.toLowerCase() !== emailOrPhone.toLowerCase()
+        ),
+        newUser
+      ]);
+    }
 
     setCurrentUser(newUser);
     return newUser;
@@ -312,7 +604,6 @@ export function AuthProvider({ children }) {
       date: 'Just now',
       status: 'Pending Review',
       recommendation: '',
-      assignedConsultant: 'Dr. Ananya Sharma',
       ...consultData
     };
     setConsultations((prev) => [newConsult, ...prev]);
@@ -320,7 +611,7 @@ export function AuthProvider({ children }) {
   };
 
   // Consultant accepts ticket based on interest
-  const acceptConsultation = (ticketId, consultantName) => {
+  const acceptConsultation = (ticketId, consultantName, consultantId) => {
     setConsultations((prev) =>
       prev.map((t) =>
         t.id === ticketId
@@ -328,7 +619,11 @@ export function AuthProvider({ children }) {
               ...t,
               status: 'Accepted / In Progress',
               acceptedBy: consultantName || 'Dr. Ananya Sharma',
-              assignedConsultant: consultantName || t.assignedConsultant
+              assignedConsultant: consultantName || t.assignedConsultant,
+              assignedConsultantId: consultantId || t.assignedConsultantId,
+              assignedConsultantIds: consultantId
+                ? [consultantId]
+                : t.assignedConsultantIds
             }
           : t
       )
@@ -352,14 +647,62 @@ export function AuthProvider({ children }) {
   };
 
   // Consultant replies to ticket
-  const respondToConsultation = (ticketId, recommendation) => {
+  const respondToConsultation = (ticketId, recommendation, consultantId, consultantName) => {
     setConsultations((prev) =>
       prev.map((t) =>
         t.id === ticketId
-          ? { ...t, recommendation, status: 'Advisory Dispatched' }
+          ? {
+              ...t,
+              recommendation,
+              status: 'Advisory Dispatched',
+              assignedConsultantId: consultantId || t.assignedConsultantId,
+              assignedConsultant: consultantName || t.assignedConsultant
+            }
           : t
       )
     );
+  };
+
+  // Update profile details (e.g. editable Farmland Details)
+  const updateUserProfile = (updatedFields) => {
+    const updated = { ...(currentUser || DEMO_USERS.basic), ...updatedFields };
+    setCurrentUser(updated);
+    if (updated.role === 'consultant') {
+      setRegisteredConsultants((prev) => {
+        const existing = prev.some((profile) => profile.id === updated.id);
+        return existing
+          ? prev.map((profile) => profile.id === updated.id
+            ? { ...profile, ...updatedFields }
+            : profile)
+          : [...prev, updated];
+      });
+    }
+    try {
+      localStorage.setItem('agri_auth_user', JSON.stringify(updated));
+    } catch {}
+  };
+
+  // Add seasonal crop cycle to history
+  const addCropHistory = (cycleData) => {
+    const newCycle = {
+      id: 'CYCLE-' + Date.now(),
+      ...cycleData
+    };
+    setCropHistory((prev) => [newCycle, ...prev]);
+    return newCycle;
+  };
+
+  // Request SMS / IVR callback for low connectivity
+  const requestCallback = (callbackData) => {
+    const newReq = {
+      id: 'IVR-' + Math.floor(10000 + Math.random() * 90000),
+      timestamp: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+      date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }),
+      status: 'Queued for KVK / PAU Kisan Call Desk',
+      ...callbackData
+    };
+    setCallbackRequests((prev) => [newReq, ...prev]);
+    return newReq;
   };
 
   // Update order status (for seller)
@@ -371,7 +714,7 @@ export function AuthProvider({ children }) {
 
   // Backward-compatible seller aliases
   const isSellerAuthenticated = Boolean(currentUser && currentUser.role === 'seller');
-  const activeRole = currentUser?.role || 'basic';
+  const activeRole = currentUser?.role || 'kisan';
   const setActiveRole = (role) => switchRole(role);
   const loginSeller = (creds) => login('seller', creds);
   const registerSeller = (dets) => register('seller', dets);
@@ -380,11 +723,13 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         currentUser,
+        updateUserProfile,
         activeRole,
         setActiveRole,
         isSellerAuthenticated,
         login,
         register,
+        addRoleToUser,
         switchRole,
         logout,
         loginSeller,
@@ -392,11 +737,17 @@ export function AuthProvider({ children }) {
         orders,
         recordOrder,
         consultations,
+        registeredConsultants,
         recordConsultation,
         acceptConsultation,
         declineConsultation,
         respondToConsultation,
-        updateOrderStatus
+        updateOrderStatus,
+        cropHistory,
+        addCropHistory,
+        schemeApplications,
+        callbackRequests,
+        requestCallback
       }}
     >
       {children}

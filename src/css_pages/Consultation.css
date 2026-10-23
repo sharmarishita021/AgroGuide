@@ -1,0 +1,297 @@
+/* ==========================================
+   Consultation Page Styles (.consult-*)
+   ========================================== */
+.consultation-page {
+  padding-bottom: 60px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* ── Banner Adapts to View ── */
+.consult-banner {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+/* Farmer/Client View Banner Theme: Agrarian Green */
+.consultation-page:has(.consultant-queue) .consult-banner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+/* Consultant Workbench Banner Theme: Corporate Professional Slate */
+.consultation-page:not(:has(.consultant-queue)) .consult-banner {
+  background: linear-gradient(135deg, #064e3b, #022c22);
+}
+
+.consult-banner-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.consult-banner-overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  width: 100%;
+}
+
+.consult-banner-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-top: 4px;
+}
+
+.consult-body {
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+}
+
+.consult-mode-bar {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── Client View Layout ── */
+.consult-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .consult-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.consult-filter {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid #10b981;
+}
+
+.consult-filter-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+
+.consult-filter-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consult-results-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.consultant-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cc-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.cc-card-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid #10b981;
+}
+
+.cc-card-body {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.cc-card-name {
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.cc-card-role {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 3px 0;
+  font-weight: 500;
+}
+
+.cc-card-btn {
+  white-space: nowrap;
+  background-color: #059669 !important;
+  color: white !important;
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Consultant Workbench View Layout ── */
+.consultant-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.consultant-queue .simple-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid #0369a1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.cq-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+
+.cq-panel-header h2 {
+  color: #0369a1;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.cq-count {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cq-ticket-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #0369a1;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.cq-ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.cq-ticket-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0f172a;
+  display: block;
+}
+
+.cq-ticket-crop {
+  font-size: 0.85rem;
+  color: #0369a1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cq-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.cq-ticket-desc {
+  margin: 12px 0;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.cq-advisory-box {
+  background: #f0fdf4;
+  border-left: 3px solid #10b981;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  border-radius: 0 8px 8px 0;
+  color: #065f46;
+}
+
+/* Modal Overlay */
+.simple-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.request-dialog {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f1f5f9;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

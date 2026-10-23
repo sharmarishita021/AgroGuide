@@ -1,1053 +1,324 @@
-import React, { useState } from 'react';
-import { Link, useSearchParams, useNavigate } from 'react-router-dom';
-import { useAuth, DEMO_USERS } from '../context/AuthContext';
-import { useMarketplace } from '../context/MarketplaceContext';
+import React, { useState, useRef } from 'react';
+import { Navigate, useSearchParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-import { getProductImage } from '../data/imagesData';
-import { getConsultantById } from '../data/consultantsData';
-import AddProductModal from '../components/marketplace/AddProductModal';
+import AuthCard from '../components/AuthCard';
+import { IMAGES } from '../data/imagesData';
 
+const roleMeta = {
+  kisan:      { label: 'Kisan',      color: '#15803d', bg: '#dcfce7', border: '#bbf7d0' },
+  seller:     { label: 'Seller',     color: '#854d0e', bg: '#fef9c3', border: '#fde047' },
+  consultant: { label: 'Consultant', color: '#0369a1', bg: '#e0f2fe', border: '#7dd3fc' },
+};
+
+const ROLE_FIELDS = {
+  kisan:      [['districtBlock','District / Block'],['primaryCrops','Primary Crops'],['landSize','Land Size (Acres)','number']],
+  seller:     [['businessName','Business Name'],['category','Category','select'],['pickupAddress','Pickup Address'],['licenseGstId','License / GST ID']],
+  consultant: [['designation','Designation'],['institution','Institution'],['icarExtensionId','ICAR / Extension ID'],['specializations','Specialties']],
+};
+
+function RoleBadge({ role }) {
+  const m = roleMeta[role] || roleMeta.kisan;
+  return <span className="pf-role-badge" style={{ background: m.bg, color: m.color, border: `1px solid ${m.border}` }}>{m.label}</span>;
+}
+
+/* ── Ticket Card Helper ── */
+function ConsultTicketCard({ ticket, viewAs }) {
+  return (
+    <div className="pf-ticket-card">
+      <div className="pf-ticket-card-head">
+        <span className="pf-ticket-card-crop">{ticket.crop}</span>
+        <span className="pf-ticket-status-pill">{ticket.status}</span>
+      </div>
+      <div className="pf-ticket-card-meta">
+        {viewAs === 'client' && ticket.assignedConsultant && <span>Consultant: <strong>{ticket.assignedConsultant}</strong></span>}
+        {viewAs === 'consultant' && <span>Farmer: <strong>{ticket.farmerName}</strong></span>}
+        {ticket.district && <span>{ticket.district}</span>}
+      </div>
+      <p className="pf-ticket-card-desc">{ticket.description}</p>
+      {ticket.recommendation && <div className="pf-ticket-advisory"><strong>Advisory:</strong> {ticket.recommendation}</div>}
+    </div>
+  );
+}
+
+/* ── Edit Profile Modal ── */
+function EditModal({ user, roles, onSave, onClose }) {
+  const fileRef = useRef();
+  const [preview, setPreview] = useState(user?.avatarUrl || null);
+  const [form, setForm] = useState({
+    name: user?.name || '',
+    districtBlock: user?.districtBlock || '',
+    primaryCrops: user?.primaryCrops || '',
+    landSize: user?.landSize || user?.landArea || '',
+    businessName: user?.businessName || '',
+    category: user?.category || '',
+    pickupAddress: user?.pickupAddress || '',
+    licenseGstId: user?.licenseGstId || '',
+    designation: user?.designation || user?.title || '',
+    institution: user?.institution || '',
+    icarExtensionId: user?.icarExtensionId || '',
+    specializations: Array.isArray(user?.specializations) ? user.specializations.join(', ') : user?.specializations || '',
+    avatarUrl: user?.avatarUrl || '',
+  });
+
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+  const handleFile = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => { setPreview(ev.target.result); set('avatarUrl', ev.target.result); };
+    reader.readAsDataURL(file);
+  };
+
+  const fields = [...new Set(roles)].flatMap(r => ROLE_FIELDS[r] || []);
+
+  return (
+    <div className="simple-overlay" onClick={onClose}>
+      <div className="edit-modal simple-panel" onClick={e => e.stopPropagation()}>
+        <div className="edit-modal-head">
+          <h2>Edit Profile</h2>
+          <button className="dialog-close" onClick={onClose}>×</button>
+        </div>
+        <div className="edit-modal-body">
+          <div className="edit-photo-row">
+            {preview ? <img src={preview} alt="" className="pf-avatar pf-avatar--img" /> : <div className="pf-avatar pf-avatar--initials">{user?.name?.slice(0, 2).toUpperCase()}</div>}
+            <div>
+              <p className="edit-photo-label">Profile Photo</p>
+              <button type="button" className="simple-secondary btn-sm" onClick={() => fileRef.current?.click()}>Upload</button>
+              <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
+            </div>
+          </div>
+
+          <form className="simple-form" onSubmit={e => { e.preventDefault(); onSave(form); }}>
+            <div className="simple-grid">
+              <label>Full Name *<input className="form-control" value={form.name} onChange={e => set('name', e.target.value)} required /></label>
+              <label>District / Block<input className="form-control" value={form.districtBlock} onChange={e => set('districtBlock', e.target.value)} /></label>
+            </div>
+
+            {fields.length > 0 && (
+              <>
+                <p className="edit-section-label">Role Details</p>
+                <div className="simple-grid">
+                  {fields.map(([key, label, type]) => (
+                    <label key={key}>{label}
+                      {type === 'select'
+                        ? <select className="form-control" value={form[key] || ''} onChange={e => set(key, e.target.value)}><option value="">Select…</option><option>Seeds</option><option>Fertilizers</option><option>Equipment</option></select>
+                        : <input className="form-control" type={type || 'text'} value={form[key] || ''} onChange={e => set(key, e.target.value)} />
+                      }
+                    </label>
+                  ))}
+                </div>
+              </>
+            )}
+
+            <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+              <button type="submit" className="simple-primary">Save Changes</button>
+              <button type="button" className="simple-secondary" onClick={onClose}>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Kisan Section ── */
+function KisanSection({ user, updateUserProfile, showToast, consultations }) {
+  const [editing, setEditing] = useState(false);
+  const [form, setForm] = useState({ landArea: user?.landArea || '', primaryCrops: user?.primaryCrops || '', soilType: user?.soilType || '' });
+  const myTickets = consultations.filter(t => t.farmerId === user.id || t.farmerName === user.name);
+
+  return (
+    <div className="simple-panel">
+      <div className="pf-section-row">
+        <h3>Farmland Details</h3>
+        <button className="simple-secondary btn-sm" onClick={() => setEditing(!editing)}>{editing ? 'Cancel' : 'Edit'}</button>
+      </div>
+      {editing ? (
+        <form className="simple-form" onSubmit={e => { e.preventDefault(); updateUserProfile({ ...form, landSize: form.landArea }); setEditing(false); showToast('Updated.', 'success'); }}>
+          <div className="simple-grid">
+            <label>Land Area (Acres)<input type="number" className="form-control" value={form.landArea} onChange={e => setForm({ ...form, landArea: e.target.value })} /></label>
+            <label>Primary Crops<input className="form-control" value={form.primaryCrops} onChange={e => setForm({ ...form, primaryCrops: e.target.value })} /></label>
+          </div>
+          <button type="submit" className="simple-primary">Save</button>
+        </form>
+      ) : (
+        <dl className="pf-details-grid">
+          <div><dt>Land Area</dt><dd>{user.landArea || '—'} Acres</dd></div>
+          <div><dt>Primary Crops</dt><dd>{user.primaryCrops || '—'}</dd></div>
+        </dl>
+      )}
+      {myTickets.length > 0 && (
+        <>
+          <p className="pf-sub-label" style={{ marginTop: 16 }}>My Consultation Requests</p>
+          {myTickets.map(t => <ConsultTicketCard key={t.id} ticket={t} viewAs="client" />)}
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ── Seller Section ── */
+function SellerSection({ user, orders }) {
+  const myOrders = orders.filter(o => o.farmerName === user.name || o.sellerId === user.id);
+  return (
+    <div className="simple-panel">
+      <h3>Seller Details</h3>
+      <dl className="pf-details-grid">
+        {user.businessName && <div><dt>Business</dt><dd>{user.businessName}</dd></div>}
+        {user.category && <div><dt>Category</dt><dd>{user.category}</dd></div>}
+      </dl>
+      {myOrders.length > 0 && myOrders.slice(0, 3).map(o => (
+        <div key={o.id} className="pf-list-row"><div><strong>{o.productTitle}</strong></div><p className="simple-muted">{o.quantity} · {o.status}</p></div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Consultant Section ── */
+function ConsultantSection({ user, consultations }) {
+  const [tab, setTab] = useState('profile');
+  const mine = consultations.filter(t => t.assignedConsultantId === user.id || t.assignedConsultant === user.name);
+  const pending  = mine.filter(t => !['Advisory Dispatched', 'Declined / Re-routed'].includes(t.status));
+  const resolved = mine.filter(t =>  ['Advisory Dispatched', 'Declined / Re-routed'].includes(t.status));
+  const specs = Array.isArray(user.specializations) ? user.specializations : (user.agronomicSpecialties || '').split(',').map(s => s.trim()).filter(Boolean);
+
+  const workHistory = user.workHistory || [
+    { role: 'Senior Agronomy Consultant', institution: 'State Agricultural University', period: '2020 — Present' },
+    { role: 'Field Extension Officer', institution: 'Krishi Vigyan Kendra (KVK)', period: '2015 — 2020' }
+  ];
+
+  return (
+    <div className="simple-panel">
+      <div className="simple-tabs">
+        <button className={tab === 'profile' ? 'active' : ''} onClick={() => setTab('profile')}>Profile &amp; History</button>
+        <button className={tab === 'pending' ? 'active' : ''} onClick={() => setTab('pending')}>
+          Received {pending.length > 0 && <span className="pf-tab-pill">{pending.length}</span>}
+        </button>
+        <button className={tab === 'resolved' ? 'active' : ''} onClick={() => setTab('resolved')}>
+          Resolved {resolved.length > 0 && <span className="pf-tab-pill pf-tab-pill--done">{resolved.length}</span>}
+        </button>
+      </div>
+
+      {tab === 'profile' && (
+        <>
+          <h3 style={{ marginBottom: 12 }}>Consultant Profile</h3>
+          <dl className="pf-details-grid">
+            {(user.designation || user.title) && <div><dt>Designation</dt><dd>{user.designation || user.title}</dd></div>}
+            {user.institution   && <div><dt>Institution</dt><dd>{user.institution}</dd></div>}
+            {user.icarExtensionId && <div><dt>ICAR ID</dt><dd>{user.icarExtensionId}</dd></div>}
+            {specs.length > 0   && <div style={{ gridColumn: '1/-1' }}><dt>Specialties</dt><dd className="cc-tags" style={{ marginTop: 6 }}>{specs.map(s => <span key={s} className="cc-tag">{s}</span>)}</dd></div>}
+          </dl>
+
+          <h3 style={{ marginTop: 24, marginBottom: 12 }}>Professional Work History</h3>
+          <div className="pf-work-history-list">
+            {workHistory.map((item, index) => (
+              <div key={index} className="pf-list-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <strong>{item.role}</strong>
+                  <p className="simple-muted" style={{ margin: '2px 0 0 0', fontSize: '0.9rem' }}>{item.institution}</p>
+                </div>
+                <span className="pf-status-tag" style={{ fontSize: '0.8rem', background: '#f1f5f9', padding: '4px 8px', borderRadius: '6px' }}>{item.period}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {tab === 'pending' && (
+        <>
+          {pending.length === 0
+            ? <p className="simple-muted" style={{ marginTop: 8 }}>No pending requests right now.</p>
+            : pending.map(t => <ConsultTicketCard key={t.id} ticket={t} viewAs="consultant" />)
+          }
+        </>
+      )}
+
+      {tab === 'resolved' && (
+        <>
+          {resolved.length === 0
+            ? <p className="simple-muted" style={{ marginTop: 8 }}>No resolved cases yet.</p>
+            : resolved.map(t => <ConsultTicketCard key={t.id} ticket={t} viewAs="consultant" />)
+          }
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ── Main Profile Component ── */
 export default function Profile() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const consultantIdParam = searchParams.get('consultantId');
-
-  const {
-    currentUser,
-    login,
-    register,
-    logout,
-    switchRole,
-    orders,
-    consultations,
-    respondToConsultation,
-    updateOrderStatus
-  } = useAuth();
-
-  const { products, savedSchemes } = useMarketplace();
+  const { currentUser, updateUserProfile, addRoleToUser, login, register, logout, consultations = [], registeredConsultants = [], orders = [] } = useAuth();
   const { showToast } = useToast();
+  const [editOpen, setEditOpen] = useState(false);
 
-  // Auth Form State (for unauthenticated or switching)
-  const [authMode, setAuthMode] = useState('login'); // 'login' or 'register'
-  const [selectedRole, setSelectedRole] = useState('basic'); // 'basic', 'seller', 'consultant'
-  const [formData, setFormData] = useState({
-    name: '',
-    emailOrPhone: '',
-    password: '',
-    farmName: '',
-    district: 'Ludhiana',
-    state: 'Punjab',
-    qualifications: '',
-    specializations: ''
-  });
-  const [authErrors, setAuthErrors] = useState({});
+  const requestedRole = searchParams.get('role');
+  const redirectPath  = searchParams.get('redirect');
+  const consultantId  = searchParams.get('consultantId');
 
-  // Consultant reply state
-  const [activeReplyTicketId, setActiveReplyTicketId] = useState(null);
-  const [replyText, setReplyText] = useState('');
+  if (consultantId) {
+    const c = registeredConsultants.find(p => p.id === consultantId);
+    if (!c) return <Navigate to="/consultation" replace />;
+    return <div className="profile-page container"><button className="btn-back-link" onClick={() => navigate('/consultation')}>&larr; Back</button><h1>{c.name}</h1></div>;
+  }
 
-  // Seller modal state
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-  // Active sub-tab inside profile
-  const [profileTab, setProfileTab] = useState('overview');
-
-  // Handle Demo Login
-  const handleDemoLogin = (roleKey) => {
-    switchRole(roleKey);
-    const demo = DEMO_USERS[roleKey];
-    showToast(`Logged in as ${demo.name} (${roleKey.toUpperCase()})`, 'success');
-  };
-
-  // Handle Login submission
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    try {
-      const user = login(selectedRole, {
-        emailOrPhone: formData.emailOrPhone,
-        password: formData.password,
-        name: formData.name,
-        farmName: formData.farmName
-      });
-      showToast(`Welcome, ${user.name}! Accessing ${selectedRole.toUpperCase()} profile.`, 'success');
-    } catch (err) {
-      showToast(err.message, 'error');
-    }
-  };
-
-  // Handle Register submission
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name.trim() || !formData.emailOrPhone.trim() || !formData.password) {
-      setAuthErrors({ general: 'Please fill in all mandatory fields.' });
-      return;
-    }
-    try {
-      const user = register(selectedRole, {
-        name: formData.name.trim(),
-        emailOrPhone: formData.emailOrPhone.trim(),
-        password: formData.password,
-        farmName: formData.farmName.trim(),
-        district: formData.district,
-        state: formData.state,
-        qualifications: formData.qualifications.trim(),
-        specializations: formData.specializations ? formData.specializations.split(',').map(s => s.trim()) : []
-      });
-      showToast(`Profile registered for ${user.name} as ${selectedRole.toUpperCase()}!`, 'success');
-    } catch (err) {
-      showToast(err.message, 'error');
-    }
-  };
-
-  // Handle Consultant responding to ticket
-  const handleSendAdvisory = (ticketId) => {
-    if (!replyText.trim()) {
-      showToast('Please type an agronomic prescription before sending.', 'warning');
-      return;
-    }
-    respondToConsultation(ticketId, replyText.trim());
-    showToast('Agronomic prescription dispatched directly to the farmer.', 'success');
-    setActiveReplyTicketId(null);
-    setReplyText('');
-  };
-
-  // =========================================================================
-  // VIEW: PUBLIC VERIFIED CONSULTANT PROFILE (when ?consultantId=... is in URL)
-  // =========================================================================
-  if (consultantIdParam) {
-    const consultant = getConsultantById(consultantIdParam);
-
+  if (!currentUser || (requestedRole === 'consultant' && currentUser.role !== 'consultant')) {
     return (
       <div className="profile-page container">
-        {/* Navigation Bar Back */}
-        <div className="public-profile-nav">
-          <button
-            type="button"
-            className="btn-back-link"
-            onClick={() => navigate('/consultation')}
-          >
-            &larr; Back to Consultation Portal
-          </button>
-          {currentUser && (
-            <Link to="/profile" className="btn-dashboard-link">
-              View My Personal Account ({currentUser.name})
-            </Link>
-          )}
-        </div>
-
-        {/* Consultant Header Card */}
-        <div className="consultant-public-hero">
-          <div className="public-hero-left">
-            <img
-              src={consultant.image}
-              alt={consultant.name}
-              className="public-consultant-avatar"
-            />
-            <div className="public-consultant-details">
-              <div className="verification-pill-row">
-                <span className="badge-verified">ICAR Verified Scientist</span>
-                <span className="badge-reg">{consultant.registrationNumber}</span>
-              </div>
-              <h1 className="public-name">{consultant.name}</h1>
-              <div className="public-title">{consultant.title}</div>
-              <div className="public-institution">{consultant.institution}</div>
-              <div className="public-experience">{consultant.qualifications} • {consultant.experience}</div>
-            </div>
-          </div>
-
-          <div className="public-hero-right">
-            <button
-              type="button"
-              className="btn-primary btn-consult-now"
-              onClick={() => navigate('/consultation')}
-            >
-              Book Consultation with {consultant.name}
-            </button>
-            <div className="public-availability-note">
-              Status: <strong>{consultant.availability}</strong> • Fee: <strong>{consultant.fee}</strong>
-            </div>
-          </div>
-        </div>
-
-        {/* Telemetry Metrics */}
-        <div className="metrics-summary-grid">
-          <div className="metric-summary-card">
-            <div className="metric-summary-value">{consultant.rating} / 5.0</div>
-            <div className="metric-summary-label">Farmer Satisfaction</div>
-            <div className="metric-summary-sub">Verified ratings</div>
-          </div>
-          <div className="metric-summary-card">
-            <div className="metric-summary-value">{consultant.totalConsultations}</div>
-            <div className="metric-summary-label">Total Consultations</div>
-            <div className="metric-summary-sub">Across 6 districts</div>
-          </div>
-          <div className="metric-summary-card">
-            <div className="metric-summary-value">{consultant.completedCases}</div>
-            <div className="metric-summary-label">Cases Resolved</div>
-            <div className="metric-summary-sub">98.9% resolution rate</div>
-          </div>
-          <div className="metric-summary-card">
-            <div className="metric-summary-value">{consultant.responseTime}</div>
-            <div className="metric-summary-label">Average Response</div>
-            <div className="metric-summary-sub">Rapid triage turnaround</div>
-          </div>
-        </div>
-
-        {/* Consultant Bio & Areas of Specialization */}
-        <div className="profile-section-card">
-          <h2 className="profile-section-title">Agronomic Focus &amp; Scientific Background</h2>
-          <p className="public-bio-paragraph">{consultant.bio}</p>
-
-          <div className="specialties-two-col">
-            <div>
-              <span className="info-spec-label">Core Technical Specialties:</span>
-              <div className="tag-pills-row">
-                {consultant.specialties.map((spec) => (
-                  <span key={spec} className="tag-pill-item">
-                    {spec}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <span className="info-spec-label">Specialized Cultivated Crops:</span>
-              <div className="tag-pills-row">
-                {consultant.cropsSpecialized.map((cr) => (
-                  <span key={cr} className="tag-pill-item crop-tag">
-                    {cr}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Published Scientific Bulletins */}
-        {consultant.publications && (
-          <div className="profile-section-card">
-            <h2 className="profile-section-title">Key Publications &amp; Extension Bulletins</h2>
-            <ul className="publications-list">
-              {consultant.publications.map((pub, idx) => (
-                <li key={idx} className="pub-item">
-                  <strong>{pub}</strong>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Documented Case Studies */}
-        {consultant.caseStudies && (
-          <div className="profile-section-card">
-            <h2 className="profile-section-title">Verified Field Case Studies &amp; Farmer Outcomes</h2>
-            <div className="case-studies-grid">
-              {consultant.caseStudies.map((cs, idx) => (
-                <div key={idx} className="case-study-card">
-                  <div className="cs-header">
-                    <span className="cs-farmer">{cs.farmer}</span>
-                    <span className="cs-crop">Crop: {cs.crop}</span>
-                  </div>
-                  <div className="cs-body">
-                    <div className="cs-problem">
-                      <span className="cs-lbl">Distress Symptoms:</span>
-                      <p>{cs.problem}</p>
-                    </div>
-                    <div className="cs-resolution">
-                      <span className="cs-lbl">Prescribed Resolution:</span>
-                      <p>{cs.resolution}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Bottom Action Footer */}
-        <div className="public-profile-bottom-cta">
-          <div>
-            <h3>Need personal advisory for your crops?</h3>
-            <p>Connect directly with {consultant.name} on the AgroGuide Consultation Portal.</p>
-          </div>
-          <button
-            type="button"
-            className="btn-primary"
-            onClick={() => navigate('/consultation')}
-          >
-            Open Consultation Request
-          </button>
-        </div>
+        <AuthCard initialRole={requestedRole === 'consultant' ? 'consultant' : 'basic'} onLogin={(r, c) => { login(r, c); if (r === 'consultant' && redirectPath) navigate(redirectPath); }} onRegister={(r, c) => { register(r, c); if (r === 'consultant' && redirectPath) navigate(redirectPath); }} />
       </div>
     );
   }
 
-  // =========================================================================
-  // VIEW: PROTECTED ROUTE GATEWAY (When NOT authenticated)
-  // =========================================================================
-  if (!currentUser) {
-    return (
-      <div className="profile-page container">
-        <div className="protected-gateway-card">
-          <div className="gateway-header">
-            <span className="gateway-badge">PROTECTED ROUTE</span>
-            <h2>AgroGuide Profile Authentication</h2>
-            <p>
-              Sign in to access your role-specific dashboard: Farmer Purchases, Seller Produce Portfolio &amp; Sold Items,
-              or Agronomy Consultant Diagnostics.
-            </p>
-          </div>
-
-          {/* Quick 1-Click Demo Profiles */}
-          <div className="demo-accounts-strip">
-            <span className="demo-strip-label">Select Instant Demo Account:</span>
-            <div className="demo-profiles-row">
-              <button
-                type="button"
-                className="demo-card-btn"
-                onClick={() => handleDemoLogin('basic')}
-              >
-                <div className="demo-card-role">Basic Farmer / Buyer</div>
-                <strong className="demo-card-name">Ramesh Kumar</strong>
-                <span className="demo-card-sub">Orders, Schemes &amp; Farmland</span>
-              </button>
-
-              <button
-                type="button"
-                className="demo-card-btn"
-                onClick={() => handleDemoLogin('seller')}
-              >
-                <div className="demo-card-role">Verified Farm Seller</div>
-                <strong className="demo-card-name">Sardar Gurpreet Singh</strong>
-                <span className="demo-card-sub">Produce Portfolio &amp; Sold Items</span>
-              </button>
-
-              <button
-                type="button"
-                className="demo-card-btn"
-                onClick={() => handleDemoLogin('consultant')}
-              >
-                <div className="demo-card-role">Agronomy Specialist</div>
-                <strong className="demo-card-name">Dr. Ananya Sharma</strong>
-                <span className="demo-card-sub">Credentials, Inquiries &amp; Prescriptions</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Manual Login / Register Form */}
-          <div className="gateway-form-container">
-            <div className="login-register-toggle">
-              <button
-                type="button"
-                className={authMode === 'login' ? 'active' : ''}
-                onClick={() => setAuthMode('login')}
-              >
-                Account Sign In
-              </button>
-              <button
-                type="button"
-                className={authMode === 'register' ? 'active' : ''}
-                onClick={() => setAuthMode('register')}
-              >
-                Register New Role
-              </button>
-            </div>
-
-            {/* Role Radio Group */}
-            <div className="role-selection-group" style={{ marginBottom: '16px' }}>
-              <label className="form-label">Select Account Profile Type:</label>
-              <div className="switch-btns-group">
-                <button
-                  type="button"
-                  className={`switch-btn ${selectedRole === 'basic' ? 'active' : ''}`}
-                  onClick={() => setSelectedRole('basic')}
-                >
-                  Basic Farmer / Buyer
-                </button>
-                <button
-                  type="button"
-                  className={`switch-btn ${selectedRole === 'seller' ? 'active' : ''}`}
-                  onClick={() => setSelectedRole('seller')}
-                >
-                  Farm Seller / Grower
-                </button>
-                <button
-                  type="button"
-                  className={`switch-btn ${selectedRole === 'consultant' ? 'active' : ''}`}
-                  onClick={() => setSelectedRole('consultant')}
-                >
-                  Agronomy Consultant
-                </button>
-              </div>
-            </div>
-
-            {authErrors.general && (
-              <div className="field-error-msg" style={{ marginBottom: '12px' }}>
-                {authErrors.general}
-              </div>
-            )}
-
-            {authMode === 'login' ? (
-              <form onSubmit={handleLoginSubmit} className="auth-form-card" noValidate>
-                <div className="form-group">
-                  <label className="form-label">Registered Phone or Email: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter phone or email..."
-                    value={formData.emailOrPhone}
-                    onChange={(e) => setFormData({ ...formData, emailOrPhone: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Password: *</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter password..."
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '10px' }}>
-                  Sign In as {selectedRole.toUpperCase()}
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleRegisterSubmit} className="auth-form-card" noValidate>
-                <div className="form-group">
-                  <label className="form-label">Full Name: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="e.g. Ramesh Kumar"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Contact Phone / Email: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="10-digit mobile number or email"
-                    value={formData.emailOrPhone}
-                    onChange={(e) => setFormData({ ...formData, emailOrPhone: e.target.value })}
-                    required
-                  />
-                </div>
-
-                {selectedRole === 'seller' && (
-                  <div className="form-group">
-                    <label className="form-label">Farm / Enterprise Name: *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="e.g. GreenFields Organic Acres"
-                      value={formData.farmName}
-                      onChange={(e) => setFormData({ ...formData, farmName: e.target.value })}
-                      required
-                    />
-                  </div>
-                )}
-
-                {selectedRole === 'consultant' && (
-                  <div className="form-group">
-                    <label className="form-label">Highest Academic Qualification: *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="e.g. Ph.D. Soil Science / M.Sc. Agronomy"
-                      value={formData.qualifications}
-                      onChange={(e) => setFormData({ ...formData, qualifications: e.target.value })}
-                      required
-                    />
-                  </div>
-                )}
-
-                <div className="form-group">
-                  <label className="form-label">Create Password (Min 4 chars): *</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter password..."
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '10px' }}>
-                  Register &amp; Activate {selectedRole.toUpperCase()} Profile
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // =========================================================================
-  // VIEW: AUTHENTICATED USER PROFILE (Role-tailored experience)
-  // =========================================================================
-  const role = currentUser.role || 'basic';
+  const primaryRole = currentUser.role === 'basic' ? 'kisan' : currentUser.role || 'kisan';
+  const roles = [...new Set((currentUser.roles || [primaryRole]).map(r => r === 'basic' ? 'kisan' : r))];
 
   return (
-    <div className="profile-page container">
-      {/* Top Profile Hero Card */}
-      <div className="profile-hero-card">
-        <div className="profile-avatar-wrap">
-          <div className="profile-avatar-circle">
-            {currentUser.avatarInitials || currentUser.name.slice(0, 2).toUpperCase()}
-          </div>
-          <div>
-            <span className={`role-badge-tag ${role}`}>
-              {role === 'seller' ? 'Verified Farm Seller' : role === 'consultant' ? 'Agronomy Specialist' : 'Farmer & Buyer'}
-            </span>
-            <h1 style={{ fontSize: '1.6rem', fontWeight: 800, margin: '2px 0 4px 0' }}>{currentUser.name}</h1>
-            <p style={{ fontSize: '0.88rem', color: '#64748b', margin: 0 }}>
-              {role === 'seller' && (
-                <>Operating <strong>{currentUser.farmName}</strong> in <strong>{currentUser.location || 'Punjab'}</strong></>
-              )}
-              {role === 'consultant' && (
-                <>{currentUser.title} • <strong>{currentUser.institution}</strong></>
-              )}
-              {role === 'basic' && (
-                <>Farmer from <strong>{currentUser.location || 'Punjab'}</strong> • Land: {currentUser.landArea || '4.5 Acres'}</>
-              )}
-            </p>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          {role === 'consultant' && (
-            <Link to="/consultation" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.85rem' }}>
-              Open Consultation Workplace
-            </Link>
-          )}
-          <button
-            type="button"
-            className="btn-prescription-submit"
-            style={{ backgroundColor: '#ef4444' }}
-            onClick={logout}
-            title="Sign out of active session"
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-
-      {/* Quick Perspective Switch Bar */}
-      <div className="profile-switch-bar">
-        <span className="profile-switch-label">Switch Account Perspective:</span>
-        <div className="switch-btns-group">
-          <button
-            type="button"
-            className={`switch-btn ${role === 'basic' ? 'active' : ''}`}
-            onClick={() => handleDemoLogin('basic')}
-          >
-            Basic Farmer (Ramesh)
-          </button>
-          <button
-            type="button"
-            className={`switch-btn ${role === 'seller' ? 'active' : ''}`}
-            onClick={() => handleDemoLogin('seller')}
-          >
-            Farm Seller (Gurpreet)
-          </button>
-          <button
-            type="button"
-            className={`switch-btn ${role === 'consultant' ? 'active' : ''}`}
-            onClick={() => handleDemoLogin('consultant')}
-          >
-            Consultant (Dr. Ananya)
-          </button>
-        </div>
-      </div>
-
-      {/* =========================================================================
-          ROLE VIEW 1: BASIC FARMER & BUYER
-          ========================================================================= */}
-      {role === 'basic' && (
-        <div>
-          <div className="profile-subtabs">
-            <button
-              type="button"
-              className={`profile-subtab ${profileTab === 'overview' ? 'active' : ''}`}
-              onClick={() => setProfileTab('overview')}
-            >
-              Farmland &amp; Purchases
-            </button>
-            <button
-              type="button"
-              className={`profile-subtab ${profileTab === 'inquiries' ? 'active' : ''}`}
-              onClick={() => setProfileTab('inquiries')}
-            >
-              My Consultation Inquiries ({consultations.filter(c => c.farmerName === currentUser.name).length})
-            </button>
-            <button
-              type="button"
-              className={`profile-subtab ${profileTab === 'schemes' ? 'active' : ''}`}
-              onClick={() => setProfileTab('schemes')}
-            >
-              Saved Subsidies ({savedSchemes.length})
-            </button>
-          </div>
-
-          {profileTab === 'overview' && (
-            <>
-              {/* Farmland Overview */}
-              <div className="profile-section-card">
-                <h3 className="profile-section-title">Farmland Operational Portfolio</h3>
-                <div className="info-spec-grid">
-                  <div className="info-spec-item">
-                    <div className="info-spec-label">Landholding Size</div>
-                    <div className="info-spec-value">{currentUser.landArea || '4.5 Acres'}</div>
-                  </div>
-                  <div className="info-spec-item">
-                    <div className="info-spec-label">Agro-Climatic Zone</div>
-                    <div className="info-spec-value">Trans-Gangetic Plains (Zone VI)</div>
-                  </div>
-                  <div className="info-spec-item">
-                    <div className="info-spec-label">Primary Cultivars</div>
-                    <div className="info-spec-value">{currentUser.primaryCrops || 'Wheat & Mustard'}</div>
-                  </div>
-                  <div className="info-spec-item">
-                    <div className="info-spec-label">Soil Classification</div>
-                    <div className="info-spec-value">Sandy Loam (pH 7.4)</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Direct Marketplace Purchase Orders */}
-              <div className="profile-section-card">
-                <h3 className="profile-section-title">
-                  Direct Farm Purchases &amp; Orders ({orders.filter(o => o.buyerName === currentUser.name).length})
-                </h3>
-                {orders.filter(o => o.buyerName === currentUser.name).length > 0 ? (
-                  <div style={{ overflowX: 'auto' }}>
-                    <table className="profile-data-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-                      <thead>
-                        <tr style={{ textAlign: 'left', borderBottom: '2px solid #e2e8f0' }}>
-                          <th style={{ padding: '10px' }}>Order ID</th>
-                          <th style={{ padding: '10px' }}>Produce Item</th>
-                          <th style={{ padding: '10px' }}>Grower / Seller</th>
-                          <th style={{ padding: '10px' }}>Quantity</th>
-                          <th style={{ padding: '10px' }}>Total Amount</th>
-                          <th style={{ padding: '10px' }}>Tracking Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {orders.filter(o => o.buyerName === currentUser.name).map((ord) => (
-                          <tr key={ord.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                            <td style={{ padding: '10px' }}><strong>{ord.id}</strong></td>
-                            <td style={{ padding: '10px' }}>{ord.productTitle}</td>
-                            <td style={{ padding: '10px' }}>{ord.farmerName}</td>
-                            <td style={{ padding: '10px' }}>{ord.quantity} {ord.unit}</td>
-                            <td style={{ padding: '10px' }}><strong>₹{ord.totalAmount.toLocaleString()}</strong></td>
-                            <td style={{ padding: '10px' }}>
-                              <span style={{ fontSize: '0.8rem', padding: '3px 8px', borderRadius: '4px', backgroundColor: ord.status.includes('Delivered') ? '#dcfce7' : '#fef08a', color: ord.status.includes('Delivered') ? '#15803d' : '#854d0e', fontWeight: 700 }}>
-                                {ord.status}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  <div className="empty-state-card">
-                    <p>No marketplace purchases made yet.</p>
-                    <Link to="/marketplace" className="btn-primary" style={{ marginTop: '10px', display: 'inline-block' }}>
-                      Browse Fresh Produce
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-
-          {profileTab === 'inquiries' && (
-            <div className="profile-section-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <h3 className="profile-section-title" style={{ margin: 0 }}>My Submitted Agronomic Inquiries</h3>
-                <Link to="/consultation" className="btn-primary" style={{ fontSize: '0.85rem' }}>
-                  Ask an Agronomist
-                </Link>
-              </div>
-
-              {consultations.filter(c => c.farmerName === currentUser.name).length > 0 ? (
-                consultations.filter(c => c.farmerName === currentUser.name).map((t) => (
-                  <div key={t.id} className="consultant-ticket-card">
-                    <div className="consultant-ticket-header">
-                      <div>
-                        <strong>{t.crop}</strong> ({t.acres} Acres) • <span style={{ color: '#64748b' }}>{t.date}</span>
-                      </div>
-                      <span style={{ fontSize: '0.78rem', padding: '2px 8px', borderRadius: '4px', backgroundColor: t.status.includes('Dispatched') ? '#dcfce7' : '#fef08a', color: t.status.includes('Dispatched') ? '#15803d' : '#854d0e', fontWeight: 700 }}>
-                        {t.status}
-                      </span>
-                    </div>
-                    <div className="consultant-ticket-body">
-                      <strong>Problem:</strong> {t.description}
-                    </div>
-                    {t.recommendation && (
-                      <div className="consultant-ticket-footer">
-                        <strong style={{ color: '#15803d' }}>Dispatched Prescription:</strong>
-                        <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem' }}>{t.recommendation}</p>
-                      </div>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <div className="empty-state-card">
-                  <p>You have not submitted any crop distress inquiries yet.</p>
-                  <Link to="/consultation" className="btn-primary" style={{ marginTop: '10px', display: 'inline-block' }}>
-                    Request Advisory on Consultation Portal
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
-
-          {profileTab === 'schemes' && (
-            <div className="profile-section-card">
-              <h3 className="profile-section-title">Bookmarked Government Subsidies ({savedSchemes.length})</h3>
-              {savedSchemes.length > 0 ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {savedSchemes.map((schemeId) => (
-                    <div key={schemeId} style={{ padding: '12px', border: '1px solid #e2e8f0', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <strong>{schemeId.toUpperCase()} Scheme</strong>
-                      <Link to="/schemes" className="btn-secondary" style={{ fontSize: '0.82rem', padding: '6px 12px' }}>
-                        View Details
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="empty-state-card">
-                  <p>No government subsidies saved yet.</p>
-                  <Link to="/schemes" className="btn-primary" style={{ marginTop: '10px', display: 'inline-block' }}>
-                    Explore Active Schemes
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* =========================================================================
-          ROLE VIEW 2: VERIFIED FARM SELLER
-          ========================================================================= */}
-      {role === 'seller' && (
-        <div>
-          {/* Sales Metrics */}
-          <div className="metrics-summary-grid">
-            <div className="metric-summary-card">
-              <div className="metric-summary-value">
-                ₹{orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0).toLocaleString()}
-              </div>
-              <div className="metric-summary-label">Total Mandi Proceeds</div>
-              <div className="metric-summary-sub">Direct buyer transfers</div>
-            </div>
-            <div className="metric-summary-card">
-              <div className="metric-summary-value">{orders.length}</div>
-              <div className="metric-summary-label">Shipments Handled</div>
-              <div className="metric-summary-sub">Zero commission orders</div>
-            </div>
-            <div className="metric-summary-card">
-              <div className="metric-summary-value">{products.length}</div>
-              <div className="metric-summary-label">Active Listed Lots</div>
-              <div className="metric-summary-sub">Available for trading</div>
-            </div>
-            <div className="metric-summary-card">
-              <div className="metric-summary-value">4.9 / 5.0</div>
-              <div className="metric-summary-label">Buyer Trust Score</div>
-              <div className="metric-summary-sub">APEDA Certified Quality</div>
-            </div>
-          </div>
-
-          {/* Seller Farm Enterprise Info */}
-          <div className="profile-section-card">
-            <h3 className="profile-section-title">Producer Enterprise Details</h3>
-            <div className="info-spec-grid">
-              <div className="info-spec-item">
-                <div className="info-spec-label">Enterprise Name</div>
-                <div className="info-spec-value">{currentUser.farmName}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Organic Certification</div>
-                <div className="info-spec-value">{currentUser.certification || 'NPOP / APEDA Verified'}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Farming Scale</div>
-                <div className="info-spec-value">{currentUser.landArea || '25 Acres Organic'}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Contact Phone</div>
-                <div className="info-spec-value">{currentUser.emailOrPhone}</div>
-              </div>
-            </div>
-            <p style={{ marginTop: '14px', fontSize: '0.9rem', color: '#475569' }}>
-              {currentUser.farmBio}
-            </p>
-          </div>
-
-          {/* Produce Listings Portfolio */}
-          <div className="profile-section-card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <h3 className="profile-section-title" style={{ margin: 0 }}>
-                My Harvest Produce Lots ({products.length})
-              </h3>
-              <button
-                type="button"
-                className="btn-primary"
-                onClick={() => setIsAddModalOpen(true)}
-              >
-                + List New Harvest Lot
-              </button>
-            </div>
-
-            <div className="seller-products-portfolio-grid">
-              {products.map((prod) => (
-                <div key={prod.id} className="seller-product-portfolio-card">
-                  <img
-                    src={getProductImage(prod)}
-                    alt={prod.title}
-                    className="seller-product-portfolio-img"
-                  />
-                  <div className="seller-product-portfolio-body">
-                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#15803d', textTransform: 'uppercase' }}>
-                      {prod.category}
-                    </span>
-                    <strong style={{ fontSize: '0.95rem', margin: '4px 0' }}>{prod.title}</strong>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0f172a' }}>
-                      ₹{prod.price} <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>/ {prod.unit}</span>
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '4px' }}>
-                      Stock: {prod.stock} {prod.unit}s available
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Incoming Orders Table */}
-          <div className="profile-section-card">
-            <h3 className="profile-section-title">
-              Incoming Buyer Orders ({orders.length})
-            </h3>
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                <thead>
-                  <tr style={{ textAlign: 'left', borderBottom: '2px solid #e2e8f0' }}>
-                    <th style={{ padding: '10px' }}>Order ID</th>
-                    <th style={{ padding: '10px' }}>Produce</th>
-                    <th style={{ padding: '10px' }}>Buyer</th>
-                    <th style={{ padding: '10px' }}>Qty</th>
-                    <th style={{ padding: '10px' }}>Amount</th>
-                    <th style={{ padding: '10px' }}>Status</th>
-                    <th style={{ padding: '10px' }}>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.map((ord) => (
-                    <tr key={ord.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                      <td style={{ padding: '10px' }}><strong>{ord.id}</strong></td>
-                      <td style={{ padding: '10px' }}>{ord.productTitle}</td>
-                      <td style={{ padding: '10px' }}>{ord.buyerName}</td>
-                      <td style={{ padding: '10px' }}>{ord.quantity} {ord.unit}</td>
-                      <td style={{ padding: '10px' }}><strong>₹{ord.totalAmount.toLocaleString()}</strong></td>
-                      <td style={{ padding: '10px' }}>
-                        <span style={{ fontSize: '0.78rem', padding: '3px 8px', borderRadius: '4px', backgroundColor: ord.status.includes('Delivered') ? '#dcfce7' : '#fef08a', color: ord.status.includes('Delivered') ? '#15803d' : '#854d0e', fontWeight: 700 }}>
-                          {ord.status}
-                        </span>
-                      </td>
-                      <td style={{ padding: '10px' }}>
-                        {ord.status.includes('Dispatched') ? (
-                          <button
-                            type="button"
-                            className="btn-prescription-submit"
-                            style={{ padding: '4px 10px', fontSize: '0.75rem' }}
-                            onClick={() => {
-                              updateOrderStatus(ord.id, 'Delivered & Inspected');
-                              showToast(`Order #${ord.id} marked as Delivered!`, 'success');
-                            }}
-                          >
-                            Mark Delivered
-                          </button>
-                        ) : (
-                          <span style={{ color: '#16a34a', fontWeight: 700, fontSize: '0.8rem' }}>Fulfilled</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================================
-          ROLE VIEW 3: AGRONOMY CONSULTANT PROFILE
-          ========================================================================= */}
-      {role === 'consultant' && (
-        <div>
-          {/* Consultant Academic & Institutional Portfolio */}
-          <div className="profile-section-card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <h3 className="profile-section-title" style={{ margin: 0 }}>
-                Agronomic Research &amp; Professional Portfolio
-              </h3>
-              <Link to="/consultation" className="btn-primary" style={{ fontSize: '0.85rem' }}>
-                Open Consultation Portal
-              </Link>
-            </div>
-
-            <div className="info-spec-grid">
-              <div className="info-spec-item">
-                <div className="info-spec-label">Current Designation</div>
-                <div className="info-spec-value">{currentUser.title || 'Senior Agronomist'}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Affiliated Institution</div>
-                <div className="info-spec-value">{currentUser.institution || 'Krishi Vigyan Kendra'}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Highest Academic Degree</div>
-                <div className="info-spec-value">{currentUser.qualifications || 'Ph.D. Plant Pathology'}</div>
-              </div>
-              <div className="info-spec-item">
-                <div className="info-spec-label">Experience</div>
-                <div className="info-spec-value">{currentUser.experience || '14+ Years in Crop Science'}</div>
-              </div>
-            </div>
-
-            {/* Specialization Tags */}
-            <div style={{ marginTop: '16px' }}>
-              <span className="info-spec-label" style={{ display: 'block', marginBottom: '8px' }}>
-                Areas of Agronomic Expertise &amp; Advisory Specialization:
-              </span>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {(currentUser.specializations || [
-                  'Soil NPK Balancing',
-                  'Fungal Blight & Rust Control',
-                  'Bio-Pesticides & Neemastra',
-                  'Precision Drip Fertigation',
-                  'Organic Crop Certification'
-                ]).map((spec, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      backgroundColor: '#f1f5f9',
-                      color: '#334155',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      fontSize: '0.82rem',
-                      fontWeight: 600
-                    }}
-                  >
-                    {spec}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Assigned Farmer Distress Tickets */}
-          <div className="profile-section-card">
-            <h3 className="profile-section-title">
-              Farmer Inquiries &amp; Diagnostics ({consultations.length})
-            </h3>
-
+    <div className="profile-page">
+      <div className="pf-hero-banner">
+        <img src={IMAGES.heroes.profile} alt="" className="pf-hero-bg" />
+        <div className="pf-hero-overlay" />
+        <div className="container pf-hero-content">
+          <div className="pf-hero-left">
+            {currentUser.avatarUrl ? <img src={currentUser.avatarUrl} alt="" className="pf-avatar pf-avatar--img" /> : <div className="pf-avatar pf-avatar--initials">{currentUser.name.slice(0, 2).toUpperCase()}</div>}
             <div>
-              {consultations.map((t) => (
-                <div key={t.id} className="consultant-ticket-card">
-                  <div className="consultant-ticket-header">
-                    <div>
-                      <strong>{t.farmerName}</strong> ({t.district}, {t.state}) • <span style={{ color: '#64748b' }}>{t.date}</span>
-                    </div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#15803d' }}>{t.crop} ({t.acres} Acres)</span>
-                      <span style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '4px', backgroundColor: t.status.includes('Dispatched') ? '#dcfce7' : '#fef08a', color: t.status.includes('Dispatched') ? '#15803d' : '#854d0e', fontWeight: 700 }}>
-                        {t.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="consultant-ticket-body">
-                    <strong>Reported Distress:</strong> {t.description}
-                  </div>
-
-                  {t.recommendation ? (
-                    <div className="consultant-ticket-footer">
-                      <strong style={{ color: '#15803d' }}>Dispatched Advisory:</strong>
-                      <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem' }}>{t.recommendation}</p>
-                    </div>
-                  ) : activeReplyTicketId === t.id ? (
-                    <div style={{ marginTop: '10px' }}>
-                      <label className="form-label">Write Scientific Prescription: *</label>
-                      <textarea
-                        rows={3}
-                        className="form-control"
-                        placeholder="Specify spray ratio, dosage, or watering schedule..."
-                        value={replyText}
-                        onChange={(e) => setReplyText(e.target.value)}
-                      />
-                      <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-                        <button
-                          type="button"
-                          className="btn-prescription-submit"
-                          onClick={() => handleSendAdvisory(t.id)}
-                        >
-                          Send Advisory
-                        </button>
-                        <button
-                          type="button"
-                          className="btn-secondary"
-                          onClick={() => {
-                            setActiveReplyTicketId(null);
-                            setReplyText('');
-                          }}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div style={{ marginTop: '10px' }}>
-                      <button
-                        type="button"
-                        className="btn-prescription-submit"
-                        onClick={() => {
-                          setActiveReplyTicketId(t.id);
-                          setReplyText('');
-                        }}
-                      >
-                        Prescribe Advisory &amp; Reply
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
+              <div className="pf-role-badges">{roles.map(r => <RoleBadge key={r} role={r} />)}</div>
+              <h1 className="pf-hero-name">{currentUser.name}</h1>
             </div>
           </div>
+          <div className="pf-hero-actions">
+            <button className="pf-edit-btn" onClick={() => setEditOpen(true)}>Edit Profile</button>
+            <button className="pf-signout-btn" onClick={logout}>Sign Out</button>
+          </div>
         </div>
-      )}
+      </div>
 
-      {/* Add Produce Modal for Sellers */}
-      <AddProductModal
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-      />
+      <div className="container pf-body">
+        {roles.map(role => (
+          <div key={role} className="pf-role-block">
+            {role === 'kisan' && <KisanSection user={currentUser} updateUserProfile={updateUserProfile} showToast={showToast} consultations={consultations} />}
+            {role === 'seller' && <SellerSection user={currentUser} orders={orders} />}
+            {role === 'consultant' && <ConsultantSection user={currentUser} consultations={consultations} />}
+          </div>
+        ))}
+      </div>
+
+      {editOpen && (
+        <EditModal 
+          user={currentUser} 
+          roles={roles} 
+          onSave={form => {
+            const specs = typeof form.specializations === 'string' ? form.specializations.split(',').map(s => s.trim()).filter(Boolean) : form.specializations;
+            updateUserProfile({ ...form, specializations: specs, title: form.designation, landArea: form.landSize });
+            setEditOpen(false);
+            showToast('Profile updated.', 'success');
+          }} 
+          onClose={() => setEditOpen(false)} 
+        />
+      )}
     </div>
   );
 }

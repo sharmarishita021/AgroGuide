@@ -62,6 +62,14 @@ export const IMAGES = {
     'vermicomposting': 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=600&q=80'
   },
 
+  // Field Crop Distress Symptoms (for Photo Dropzone & Visual Diagnostics)
+  symptoms: {
+    yellowRust: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=400&q=80',
+    bollwormDamage: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?auto=format&fit=crop&w=400&q=80',
+    powderyMildew: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80',
+    zincDeficiency: 'https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=400&q=80'
+  },
+
   // Government Subsidies & Schemes
   schemes: {
     'pm-kisan': 'https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80',

@@ -6,6 +6,7 @@ import { MarketplaceProvider } from './context/MarketplaceContext';
 
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import ProtectedRoute from './components/common/ProtectedRoute';
 import SellerLoginModal from './components/marketplace/SellerLoginModal';
 import ExpertConsultationModal from './components/common/ExpertConsultationModal';
 import FormValidationTopicModal from './components/common/FormValidationTopicModal';
@@ -68,6 +69,17 @@ export default function App() {
                   <Route path="/schemes" element={<Schemes />} />
                   <Route path="/marketplace" element={<Marketplace onOpenSellerAuth={() => setIsGlobalSellerAuthOpen(true)} />} />
                   <Route path="/consultation" element={<Consultation />} />
+                  <Route
+                    path="/consultation/consultant"
+                    element={
+                      <ProtectedRoute
+                        role="consultant"
+                        redirectTo="/profile?role=consultant&redirect=%2Fconsultation%2Fconsultant"
+                      >
+                        <Consultation consultantView />
+                      </ProtectedRoute>
+                    }
+                  />
                   <Route path="/profile" element={<Profile />} />
                   <Route
                     path="/about"

@@ -4,10 +4,11 @@ import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
 import { INDIAN_STATES, DISTRICTS_DATA } from '../../data/localitiesData';
 import { IMAGES } from '../../data/imagesData';
+import { CONSULTANTS } from '../../data/consultantsData';
 
 export default function ExpertConsultationModal({ isOpen, onClose }) {
   const { showToast } = useToast();
-  const { recordConsultation } = useAuth();
+  const { currentUser, registeredConsultants, recordConsultation } = useAuth();
 
   const [formData, setFormData] = useState({
     farmerName: '',
@@ -18,6 +19,8 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
     acres: '4.5',
     soilType: 'Alluvial Loamy Soil',
     urgency: 'Medium Priority (24-48 hrs)',
+    consultationType: 'Remote',
+    consultantCount: '1',
     description: '',
     agreeTerms: true
   });
@@ -111,7 +114,13 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
       id: ticketId,
       ...formData,
       stateName: stateObj?.name || 'Punjab',
-      createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      farmerId: currentUser?.id,
+      assignedConsultant: 'Open Pool',
+      consultationType: formData.consultationType,
+      consultantCount: formData.consultationType === 'On-site'
+        ? Number(formData.consultantCount)
+        : 1
     };
 
     recordConsultation(ticket);
@@ -133,6 +142,8 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
       acres: '4.5',
       soilType: 'Alluvial Loamy Soil',
       urgency: 'Medium Priority (24-48 hrs)',
+      consultationType: 'Remote',
+      consultantCount: '1',
       description: '',
       agreeTerms: true
     });
@@ -142,6 +153,11 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
   };
 
   const availableDistricts = DISTRICTS_DATA.filter((d) => d.stateId === formData.stateId);
+  const availableConsultantCount = registeredConsultants.length + CONSULTANTS.filter(
+    (consultant) => !registeredConsultants.some(
+      (profile) => profile.name.toLowerCase() === consultant.name.toLowerCase()
+    )
+  ).length;
 
   return (
     <Modal
@@ -324,6 +340,38 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
                   <option value="High / Pest Outbreak (Under 12 hrs)">High / Pest Outbreak (&lt; 12 hrs)</option>
                 </select>
               </div>
+            </div>
+
+            <div className="form-row-2">
+              <div className="form-group">
+                <label className="form-label" htmlFor="consult-type">Consultation type:</label>
+                <select
+                  id="consult-type"
+                  className="form-control"
+                  value={formData.consultationType}
+                  onChange={(e) => handleChange('consultationType', e.target.value)}
+                >
+                  <option value="Remote">Remote</option>
+                  <option value="On-site">On-site</option>
+                </select>
+              </div>
+              {formData.consultationType === 'On-site' && (
+                <div className="form-group">
+                  <label className="form-label" htmlFor="consultant-count">Number of consultants:</label>
+                  <select
+                    id="consultant-count"
+                    className="form-control"
+                    value={formData.consultantCount}
+                    onChange={(e) => handleChange('consultantCount', e.target.value)}
+                  >
+                    {Array.from({
+                      length: Math.max(1, availableConsultantCount)
+                    }, (_, index) => (
+                      <option key={index + 1} value={index + 1}>{index + 1}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
             {/* Description Textarea */}
