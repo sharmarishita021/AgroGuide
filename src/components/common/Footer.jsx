@@ -49,20 +49,6 @@ export default function Footer({ onOpenConsultation, onOpenValidationTopic }) {
             </ul>
           </div>
 
-          {/* Syllabus & Technologies */}
-          <div className="footer-col">
-            <h4 className="footer-heading">React Curriculum Architecture</h4>
-            <ul className="footer-syllabus-tags">
-              <li>SPA Routing (React Router v7)</li>
-              <li>Protected Routes &amp; Multi-Role Auth</li>
-              <li>Controlled Forms with Regex Validation</li>
-              <li>Accessible Dialog Modals (ARIA/ESC)</li>
-              <li>Context API (Auth &amp; Marketplace)</li>
-              <li>REST API Fetch with Loading &amp; Error States</li>
-              <li>Haversine Proximity Sorting</li>
-              <li>Real-Time Multi-Party Rating System</li>
-            </ul>
-          </div>
 
           {/* Contact / Emergency Agri Helpline */}
           <div className="footer-col">
