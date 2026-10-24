@@ -164,7 +164,7 @@ export default function FormValidationTopicModal({ isOpen, onClose }) {
             Close Topic Review
           </button>
         </div>
-      </div>
+      
     </Modal>
   );
 }
