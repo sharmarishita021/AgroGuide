@@ -200,77 +200,7 @@ export default function About({ onOpenConsultation, onOpenValidationTopic }) {
         </div>
       </section>
 
-      {/* React Syllabus Mapping */}
-      <section className="syllabus-mapping-section">
-        <div className="section-title-wrap">
-          <span className="section-category-badge">CURRICULUM MAPPING</span>
-          <div>
-            <h3 className="section-heading">React Curriculum Implementation Matrix</h3>
-            <p className="section-sub">
-              Demonstrating full mastery of foundational and advanced React concepts as specified in Lectures 19 - 72
-            </p>
-          </div>
-        </div>
-
-        <div className="syllabus-table-wrapper">
-          <table className="syllabus-table">
-            <thead>
-              <tr>
-                <th>Lecture Sessions</th>
-                <th>Syllabus Topics Covered</th>
-                <th>Implemented Features in AgroGuide</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Lec 19 - 24</strong></td>
-                <td>HTML5 semantic tags, CSS3 Box Model, Flexbox, Grid, Responsive design</td>
-                <td>Semantic layout (`header`, `nav`, `main`, `section`, `article`, `footer`), responsive cards, CSS flexbox and grid.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 25 - 30</strong></td>
-                <td>ES6+, arrow functions, destructuring, promises, async/await, fetch, browser storage</td>
-                <td>Modern ES6+ syntax, asynchronous Open-Meteo REST API data fetching, `localStorage` caching and state sync.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 31 - 36</strong></td>
-                <td>React component architecture, JSX, props, state, conditional rendering</td>
-                <td>Controlled inputs, dynamic state rendering, reusable UI elements (Rating, Modals, Badges).</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 37 - 42</strong></td>
-                <td>React Router, SPA navigation, 404 pages, protected routes</td>
-                <td>Multi-page routing via `react-router-dom`, protected seller upload portal, friendly agricultural 404 page.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 43 - 48</strong></td>
-                <td>Multi-page SPA design, header, footer, toast notifications</td>
-                <td>Persistent navigation layout, real-time toast alert system with auto-dismiss.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 49 - 54</strong></td>
-                <td>Context API, Global state architecture, async states</td>
-                <td>`AuthContext`, `MarketplaceContext`, `ToastContext` managing session, products, distance, and ratings globally.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 55 - 60</strong></td>
-                <td>Form handling, validation strategies, controlled inputs</td>
-                <td>Full client-side regex checks, touched states, character counters, seller registration, produce upload, and consultation tickets.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 61 - 66</strong></td>
-                <td>Modals, tabs, dropdowns, search/filter/sort patterns</td>
-                <td>Accessible dialog modals (ESC key dismiss, scroll lock, backdrop blur), tab switchers, typeahead autocomplete, and proximity sorting.</td>
-              </tr>
-              <tr>
-                <td><strong>Lec 67 - 72</strong></td>
-                <td>Consuming REST APIs with fetch, loading states, retry, error handling</td>
-                <td>Live Open-Meteo REST API integration for real-time district temperatures, humidity, wind, and 5-day outlook.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+     
 
       {/* Interactive FAQ Accordion */}
       <section className="faq-section">
