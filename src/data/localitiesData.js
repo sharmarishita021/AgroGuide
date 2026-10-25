@@ -14,13 +14,7 @@ export const INDIAN_STATES = [
   { id: 'RJ', name: 'Rajasthan' },
   { id: 'KA', name: 'Karnataka' },
   { id: 'TN', name: 'Tamil Nadu' },
-  { id: 'AP', name: 'Andhra Pradesh' },
-  { id: 'WB', name: 'West Bengal' },
-  { id: 'BR', name: 'Bihar' },
-  { id: 'KL', name: 'Kerala' },
-  { id: 'AS', name: 'Assam' },
-  { id: 'HP', name: 'Himachal Pradesh' },
-  { id: 'OD', name: 'Odisha' }
+  { id: 'WB', name: 'West Bengal' }
 ];
 
 export const DISTRICTS_DATA = [
