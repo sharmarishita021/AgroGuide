@@ -1,297 +1,281 @@
 /* ==========================================
-   Consultation Page Styles (.consult-*)
+   Profile Page Styles (.profile-page & .pf-*)
+   Shades of Green Theme
    ========================================== */
-.consultation-page {
+
+.profile-page {
   padding-bottom: 60px;
-  background-color: #f8fafc;
+  background-color: #f0fdf4;
   min-height: 100vh;
 }
 
-/* ── Banner Adapts to View ── */
-.consult-banner {
+.pf-hero-banner {
   position: relative;
-  height: 220px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  transition: background 0.3s ease;
-}
-
-/* Farmer/Client View Banner Theme: Agrarian Green */
-.consultation-page:has(.consultant-queue) .consult-banner {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-}
-/* Consultant Workbench Banner Theme: Corporate Professional Slate */
-.consultation-page:not(:has(.consultant-queue)) .consult-banner {
+  height: 240px;
   background: linear-gradient(135deg, #064e3b, #022c22);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  box-shadow: inset 0 -20px 40px rgba(0, 0, 0, 0.2);
 }
 
-.consult-banner-img {
+.pf-hero-bg {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.2;
+  opacity: 0.25;
 }
 
-.consult-banner-overlay {
+.pf-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2, 44, 34, 0.95), transparent);
+}
+
+.pf-hero-content {
   position: relative;
-  z-index: 1;
-  color: #fff;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 24px;
   width: 100%;
 }
 
-.consult-banner-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  margin-top: 4px;
-}
-
-.consult-body {
-  margin-top: -24px;
-  position: relative;
-  z-index: 2;
-}
-
-.consult-mode-bar {
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* ── Client View Layout ── */
-.consult-layout {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 28px;
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .consult-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-.consult-filter {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
-  border-top: 4px solid #10b981;
-}
-
-.consult-filter-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #064e3b;
-  margin-bottom: 18px;
-  border-bottom: 2px solid #f1f5f9;
-  padding-bottom: 10px;
-}
-
-.consult-filter-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.consult-results-header h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.consultant-cards-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cc-card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 20px;
+.pf-hero-left {
   display: flex;
   gap: 20px;
   align-items: center;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
-.cc-card-img {
-  width: 75px;
-  height: 75px;
+.pf-avatar {
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(6, 78, 59, 0.3);
+}
+
+.pf-avatar--img {
   object-fit: cover;
-  flex-shrink: 0;
-  border: 2px solid #10b981;
 }
 
-.cc-card-body {
-  flex-grow: 1;
+.pf-avatar--initials {
+  background: #059669; /* Lush Emerald Green */
+  color: #ffffff;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
 }
 
-.cc-card-name {
-  font-size: 1.1rem;
-  color: #0f172a;
+.pf-role-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
-.cc-card-role {
+.pf-role-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.pf-hero-name {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pf-hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pf-signout-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
   font-size: 0.9rem;
-  color: #64748b;
-  margin: 3px 0;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.4);
+  transition: all 0.2s ease;
 }
 
-.cc-card-btn {
-  white-space: nowrap;
-  background-color: #059669 !important;
-  color: white !important;
-  padding: 10px 18px !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
+.pf-signout-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
+  color: #ffffff;
 }
 
-/* ── Consultant Workbench View Layout ── */
-.consultant-queue {
+.pf-body {
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.consultant-queue .simple-panel {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid #e2e8f0;
-  border-top: 4px solid #0369a1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+.pf-role-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.cq-panel-header {
+.pf-section-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #f1f5f9;
-  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
 
-.cq-panel-header h2 {
-  color: #0369a1;
+.pf-section-row h3, 
+.simple-panel h3 {
+  color: #064e3b;
+  font-weight: 800;
   font-size: 1.25rem;
-  font-weight: 700;
 }
 
-.cq-count {
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.cq-ticket-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid #0369a1;
+.pf-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 12px 0 0 0;
+  background: #f7fee7;
+  padding: 16px;
   border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 16px;
+  border: 1px solid #d1fae5;
 }
 
-.cq-ticket-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-
-.cq-ticket-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #0f172a;
-  display: block;
-}
-
-.cq-ticket-crop {
-  font-size: 0.85rem;
-  color: #0369a1;
-  font-weight: 600;
+.pf-details-grid dt {
+  font-size: 0.8rem;
+  color: #047857;
   text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 3px;
   letter-spacing: 0.05em;
 }
 
-.cq-status {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: #fef9c3;
-  color: #854d0e;
+.pf-details-grid dd {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #022c22;
+  margin: 0;
 }
 
-.cq-ticket-desc {
-  margin: 12px 0;
+.pf-sub-label {
   font-size: 0.95rem;
-  color: #334155;
-  line-height: 1.5;
-}
-
-.cq-advisory-box {
-  background: #f0fdf4;
-  border-left: 3px solid #10b981;
-  padding: 12px;
-  margin-top: 12px;
-  font-size: 0.9rem;
-  border-radius: 0 8px 8px 0;
+  font-weight: 700;
   color: #065f46;
+  margin: 20px 0 10px 0;
 }
 
-/* Modal Overlay */
-.simple-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.pf-ticket-card {
+  background: #f7fee7;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #10b981;
+  border-radius: 12px;
   padding: 16px;
+  margin-top: 10px;
 }
 
-.request-dialog {
-  background: #fff;
-  border-radius: 20px;
-  padding: 32px;
-  width: 100%;
-  max-width: 520px;
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.dialog-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #f1f5f9;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #64748b;
+.pf-ticket-card-head {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.pf-ticket-card-crop {
+  font-weight: 700;
+  color: #047857;
+}
+
+.pf-ticket-status-pill {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pf-ticket-card-meta {
+  font-size: 0.85rem;
+  color: #065f46;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.pf-ticket-card-desc {
+  font-size: 0.95rem;
+  color: #1e3a3a;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.pf-ticket-advisory {
+  background: #ecfdf5;
+  border-left: 3px solid #059669;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #064e3b;
+  border-radius: 0 8px 8px 0;
+  font-weight: 500;
+}
+
+.pf-list-row {
+  padding: 10px 0;
+  border-bottom: 1px solid #d1fae5;
+  font-size: 0.95rem;
+  color: #022c22;
+}
+
+/* Edit Modal Layout */
+.edit-modal {
+  width: 100%;
+  max-width: 580px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(6, 78, 59, 0.35);
+  border: 1px solid #a7f3d0;
+}
+
+.edit-modal-head h2 {
+  color: #064e3b;
+  font-weight: 800;
+}
+
+.edit-section-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #065f46;
+  margin: 16px 0 8px 0;
+  border-top: 1px solid #d1fae5;
+  padding-top: 12px;
+}
+
+/* General Panel Refinement for Green Theme */
+.simple-panel {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid #d1fae5;
+  box-shadow: 0 6px 20px rgba(6, 78, 59, 0.04);
 }
