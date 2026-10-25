@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import '../css_pages/AuthCard.css';
 
 const kisanRegistrationFields = [
   ['districtBlock', 'District / Block'],
   ['primaryCrops', 'Primary Crops'],
   ['landSize', 'Land Size (Acres)', 'number']
 ];
+
 
 export default function AuthCard({ onLogin, onRegister }) {
   const [authMode, setAuthMode] = useState('signin');

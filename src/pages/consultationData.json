@@ -1,0 +1,167 @@
+{
+  "heroImg": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1000&q=80",
+  "problemCategories": [
+    "All Problem Specialties",
+    "Pest & Insect Diagnostics",
+    "Fungal & Bacterial Diseases",
+    "Soil Health & Split Nitrogen Dosage",
+    "Organic Bio-Pesticides & Neemastra",
+    "Precision Irrigation & Water Management",
+    "Post-Harvest Mandi Storage & Grading"
+  ],
+  "commodityCrops": [
+    "All Cultivated Crops",
+    "Wheat (PBW-826 / HD-3086)",
+    "Paddy / Basmati Rice (Pusa 1121 / PR-126)",
+    "Mustard (Giriraj / RH-749)",
+    "Bt Cotton & Desi Kapas",
+    "Sugarcane (Co-0238)",
+    "Maize & Millets (Bajra / Ragi)",
+    "Pulses (Desi Chana / Moong)",
+    "Horticulture & Vegetables (Kinnow / Potato / Tomato)"
+  ],
+  "urgencyTiers": [
+    "Routine (3–5 days)",
+    "Medium Priority (24–48 hrs)",
+    "High / Pest Outbreak (<12 hrs)"
+  ],
+  "defaultConsultants": [
+    {
+      "id": "consultant-ramesh-302",
+      "name": "Dr. Ramesh Verma",
+      "institutionBadge": "PAU LUDHIANA",
+      "institutionFull": "Punjab Agricultural University (PAU), Ludhiana",
+      "designation": "Principal Soil Scientist & Micronutrient Extension Head",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "avatarInitials": "RV",
+      "image": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80",
+      "qualifications": "Ph.D. Soil Science & Agricultural Chemistry (IARI New Delhi)",
+      "experience": "18+ Years Field Extension & Soil Health Card Calibration",
+      "specialties": [
+        "Soil Health & Split Nitrogen Dosage",
+        "Precision Irrigation & Water Management",
+        "Organic Bio-Pesticides & Neemastra"
+      ],
+      "cropsSpecialized": [
+        "Wheat (PBW-826 / HD-3086)",
+        "Paddy / Basmati Rice (Pusa 1121 / PR-126)",
+        "Sugarcane (Co-0238)"
+      ]
+    },
+    {
+      "id": "consultant-ananya-301",
+      "name": "Dr. Ananya Sharma",
+      "institutionBadge": "KVK AMRITSAR",
+      "institutionFull": "Regional Krishi Vigyan Kendra (KVK Amritsar) & ICAR Associate",
+      "designation": "Senior Extension Pathologist & Plant Protection Specialist",
+      "state": "Punjab",
+      "district": "Amritsar",
+      "avatarInitials": "AS",
+      "image": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=80",
+      "qualifications": "Ph.D. Plant Pathology (PAU), M.Sc. Agronomy",
+      "experience": "14+ Years Village Diagnostic Camps & Organic Bio-Inputs",
+      "specialties": [
+        "Fungal & Bacterial Diseases",
+        "Pest & Insect Diagnostics",
+        "Organic Bio-Pesticides & Neemastra",
+        "Soil Health & Split Nitrogen Dosage"
+      ],
+      "cropsSpecialized": [
+        "Wheat (PBW-826 / HD-3086)",
+        "Mustard (Giriraj / RH-749)",
+        "Paddy / Basmati Rice (Pusa 1121 / PR-126)"
+      ]
+    },
+    {
+      "id": "consultant-harvinder-305",
+      "name": "Dr. Harvinder Singh Brar",
+      "institutionBadge": "CCS HAU HISAR",
+      "institutionFull": "CCS Haryana Agricultural University (HAU), Cotton Research Station",
+      "designation": "Principal Entomologist & Cotton Integrated Pest Management Specialist",
+      "state": "Haryana",
+      "district": "Sirsa",
+      "avatarInitials": "HB",
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80",
+      "qualifications": "Ph.D. Agricultural Entomology (HAU Hisar), PG IPM",
+      "experience": "15+ Years Integrated Pest Management & Pheromone Surveillance",
+      "specialties": [
+        "Pest & Insect Diagnostics",
+        "Organic Bio-Pesticides & Neemastra",
+        "Post-Harvest Mandi Storage & Grading"
+      ],
+      "cropsSpecialized": [
+        "Bt Cotton & Desi Kapas",
+        "Mustard (Giriraj / RH-749)",
+        "Pulses (Desi Chana / Moong)"
+      ]
+    },
+    {
+      "id": "consultant-sunita-303",
+      "name": "Dr. Sunita Patel",
+      "institutionBadge": "AAU / ICAR-CICR",
+      "institutionFull": "Anand Agricultural University (AAU) & ICAR Associate",
+      "designation": "Senior IPM Specialist & Biological Control Scientist",
+      "state": "Gujarat",
+      "district": "Anand",
+      "avatarInitials": "SP",
+      "image": "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80",
+      "qualifications": "Ph.D. Entomology (AAU), M.Sc. Biological Control",
+      "experience": "12+ Years Oilseed Protection & Bio-Agent Mass Multiplication",
+      "specialties": [
+        "Pest & Insect Diagnostics",
+        "Organic Bio-Pesticides & Neemastra",
+        "Fungal & Bacterial Diseases"
+      ],
+      "cropsSpecialized": [
+        "Bt Cotton & Desi Kapas",
+        "Mustard (Giriraj / RH-749)",
+        "Pulses (Desi Chana / Moong)",
+        "Horticulture & Vegetables (Kinnow / Potato / Tomato)"
+      ]
+    },
+    {
+      "id": "consultant-vikram-304",
+      "name": "Er. Vikramaditya Singh",
+      "institutionBadge": "SKRAU BIKANER",
+      "institutionFull": "Swami Keshwanand Rajasthan Agricultural University (SKRAU) & NIAE",
+      "designation": "Senior Agricultural Engineer & Micro-Irrigation Extension Consultant",
+      "state": "Rajasthan",
+      "district": "Bikaner",
+      "avatarInitials": "VS",
+      "image": "https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=600&q=80",
+      "qualifications": "M.Tech Water Resource Engineering (IIT Kharagpur), B.Tech Agri Eng",
+      "experience": "16+ Years PM-KUSUM Solar Pumping & Gravity Drip Automation",
+      "specialties": [
+        "Precision Irrigation & Water Management",
+        "Soil Health & Split Nitrogen Dosage",
+        "Post-Harvest Mandi Storage & Grading"
+      ],
+      "cropsSpecialized": [
+        "Mustard (Giriraj / RH-749)",
+        "Pulses (Desi Chana / Moong)",
+        "Horticulture & Vegetables (Kinnow / Potato / Tomato)",
+        "Wheat (PBW-826 / HD-3086)"
+      ]
+    }
+  ],
+  "defaultConsultations": [
+    {
+      "id": "KRISHI-ADV-81920",
+      "farmerName": "Ramesh Kumar",
+      "phone": "9876501234",
+      "district": "Ludhiana",
+      "state": "Punjab",
+      "crop": "Wheat",
+      "acres": "4.5",
+      "urgency": "Medium Priority (24-48 hrs)",
+      "category": "Soil Health & NPK Dosage",
+      "description": "Noticing mild yellowing in leaf tips after second irrigation.",
+      "status": "Advisory Dispatched",
+      "recommendation": "Apply foliar spray of 1% urea + 0.5% zinc sulphate.",
+      "assignedConsultant": "Dr. Ananya Sharma",
+      "acceptedBy": "Dr. Ananya Sharma",
+      "date": "20 Oct 2026"
+    }
+  ]
+}

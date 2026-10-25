@@ -1,0 +1,109 @@
+{
+  "heroBg": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1400&q=80",
+  "initialDemoUsers": [
+    {
+      "id": "user-basic-101",
+      "role": "kisan",
+      "roles": ["kisan"],
+      "name": "Ramesh Kumar",
+      "emailOrPhone": "9876501234",
+      "password": "password123",
+      "location": "Samrala, Ludhiana, Punjab",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "tehsil": "Samrala Block",
+      "block": "Samrala Block",
+      "districtBlock": "Ludhiana / Samrala Block",
+      "pinCode": "141114",
+      "landSize": "4.5",
+      "landArea": "4.5",
+      "soilType": "Alluvial Sandy Loam (pH 7.4)",
+      "irrigationSource": "Solar Tubewell & Minor Canal Distributary",
+      "soilHealthCardNo": "SHC-PB-LDH-2025-8812",
+      "primaryCrops": "Wheat (PBW-826) & Mustard (Giriraj)",
+      "avatarInitials": "RK"
+    },
+    {
+      "id": "seller-gurpreet-201",
+      "role": "seller",
+      "roles": ["kisan", "seller"],
+      "name": "Sardar Gurpreet Singh",
+      "emailOrPhone": "9876543210",
+      "password": "password123",
+      "businessName": "GreenFields Organic Farm & Agro Supplies",
+      "farmName": "GreenFields Organic Farm & Agro Supplies",
+      "category": "Seeds, Fertilizers, Equipment",
+      "pickupAddress": "GT Road Mandi Complex, Samrala Chowk, Ludhiana - 141114",
+      "licenseGstId": "PB-AGRI-GST-03AABCG1234F1Z5",
+      "location": "Ludhiana, Punjab",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "landArea": "25 Acres",
+      "certification": "APEDA Certified Organic (Reg: NPOP/IN/2024/098)",
+      "farmBio": "Specializing in chemical-free Sharbati wheat, basmati paddy, and certified organic seed varieties.",
+      "avatarInitials": "GS"
+    },
+    {
+      "id": "consultant-ramesh-302",
+      "role": "consultant",
+      "roles": ["kisan", "consultant"],
+      "name": "Dr. Ramesh Verma",
+      "emailOrPhone": "r.verma@pau.edu",
+      "password": "password123",
+      "designation": "Principal Soil Scientist & Micronutrient Extension Head",
+      "title": "Principal Soil Scientist & Micronutrient Extension Head",
+      "institution": "Punjab Agricultural University (PAU), Ludhiana",
+      "affiliatedUniversity": "Punjab Agricultural University (PAU), Ludhiana",
+      "icarExtensionId": "ICAR-PAU-PB-2008-4109",
+      "registrationNumber": "ICAR-PAU-PB-2008-4109",
+      "agronomicSpecialties": "Soil Health & Split Nitrogen Dosage, Precision Irrigation, Organic Bio-Pesticides, Yellow Rust Control",
+      "location": "PAU Campus, Ferozepur Road, Ludhiana",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "qualifications": "Ph.D. Soil Science & Agricultural Chemistry (IARI New Delhi)",
+      "experience": "18+ Years Field Extension",
+      "specializations": [
+        "Soil Health & Split Nitrogen Dosage",
+        "Precision Irrigation & Water Management",
+        "Organic Bio-Pesticides & Neemastra",
+        "Fungal Disease Control (Yellow Rust)"
+      ],
+      "avatarInitials": "RV"
+    }
+  ],
+  "initialOrders": [
+    {
+      "id": "ORD-98214",
+      "productId": "prod-1",
+      "productTitle": "Certified Organic Sharbati Wheat (Grade A)",
+      "buyerName": "Ramesh Kumar",
+      "buyerPhone": "9876501234",
+      "farmerName": "Sardar Gurpreet Singh",
+      "quantity": 2,
+      "unit": "Quintal",
+      "price": 2450,
+      "totalAmount": 4900,
+      "status": "Dispatched to Mandi Hub",
+      "date": "20 Oct 2026"
+    }
+  ],
+  "initialConsultations": [
+    {
+      "id": "KRISHI-ADV-81920",
+      "farmerName": "Ramesh Kumar",
+      "phone": "9876501234",
+      "district": "Ludhiana",
+      "state": "Punjab",
+      "crop": "Wheat",
+      "acres": "4.5",
+      "urgency": "Medium Priority (24-48 hrs)",
+      "category": "Soil Health & NPK Dosage",
+      "description": "Noticing mild yellowing in leaf tips after second irrigation.",
+      "status": "Advisory Dispatched",
+      "recommendation": "Apply foliar spray of 1% urea + 0.5% zinc sulphate.",
+      "assignedConsultant": "Dr. Ananya Sharma",
+      "acceptedBy": "Dr. Ananya Sharma",
+      "date": "20 Oct 2026"
+    }
+  ]
+}

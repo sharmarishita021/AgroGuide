@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    AGROGUIDE GLOBAL STYLES (Pure CSS3 - Simple, Clean & Responsive)
    Syllabus Alignment: Box Model, Flexbox, CSS Grid, Responsive Design
    ========================================================================== */
@@ -5312,7 +5312,7 @@ p {
 }
 
 .service-highlights-list li::before {
-  content: "•";
+  content: "â€¢";
   color: var(--primary-color);
   font-size: 1.2rem;
   position: absolute;
@@ -6915,7 +6915,7 @@ p {
 }
 
 .pub-item::before {
-  content: "•";
+  content: "â€¢";
   color: var(--primary-color);
   font-size: 1.4rem;
   position: absolute;
@@ -7783,7 +7783,7 @@ p {
 
 
 /* ==========================================================================
-   SHARED UTILITY — panels, forms, buttons, badges
+   SHARED UTILITY â€” panels, forms, buttons, badges
    ========================================================================== */
 .simple-panel {
   background: #fff;
@@ -7872,7 +7872,7 @@ p {
 .cq-count { font-size: .78rem; font-weight: 800; padding: 2px 10px; border-radius: 9999px; background: var(--primary-light); color: var(--primary-color); }
 .cq-count--done { background: #f1f5f9; color: var(--text-muted); }
 
-/* consultant card — horizontal layout */
+/* consultant card â€” horizontal layout */
 .consultant-cards-list { display: grid; gap: 16px; }
 .cc-card {
   background: #fff; border: 1px solid var(--border-color); border-radius: 14px;
@@ -8061,366 +8061,3 @@ p {
   .pf-hero-name { font-size: 1.3rem; }
   .edit-photo-row { flex-direction: column; align-items: flex-start; }
 }
-
-
-/* ==========================================================================
-   DARK-GREEN / NEON THEME — Consultation & Profile pages only
-   Palette:
-     --dg-bg        #030f07   deepest dark (page bg)
-     --dg-surface   #0a1f0e   card/panel surface
-     --dg-surface2  #112918   slightly lighter surface
-     --dg-border    #1a4027   subtle border
-     --dg-neon      #4ade80   neon-green accent
-     --dg-neon-dim  #22c55e   slightly dimmer neon
-     --dg-mid       #16a34a   mid green (secondary buttons)
-     --dg-text      #f0fdf4   primary text (near white)
-     --dg-muted     #86efac   muted / secondary text
-     --dg-eyebrow   #4ade80   eyebrow / label color
-   ========================================================================== */
-
-/* ── Base page backgrounds ── */
-.consultation-page,
-.profile-page {
-  background: #030f07;
-  color: #f0fdf4;
-  min-height: 100vh;
-}
-
-/* ── Panels / cards ── */
-.consultation-page .simple-panel,
-.consultation-page .consult-filter,
-.consultation-page .cc-card,
-.consultation-page .cq-ticket-card,
-.consultation-page .request-dialog,
-.profile-page .simple-panel,
-.profile-page .pf-ticket-card {
-  background: #0a1f0e;
-  border-color: #1a4027;
-  color: #f0fdf4;
-  box-shadow: 0 4px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(74,222,128,.06);
-}
-
-/* ── Eyebrow labels ── */
-.consultation-page .simple-eyebrow,
-.profile-page .simple-eyebrow {
-  color: #4ade80;
-}
-
-/* ── Muted text ── */
-.consultation-page .simple-muted,
-.consultation-page .cc-card-role,
-.consultation-page .cc-card-exp,
-.consultation-page .cc-meta-item,
-.consultation-page .cc-ticket-meta,
-.consultation-page .cq-ticket-meta,
-.consultation-page .cf-label,
-.profile-page .simple-muted,
-.profile-page .pf-ticket-card-meta,
-.profile-page .pf-sub-label,
-.profile-page .pf-details-grid dt {
-  color: #86efac;
-}
-
-/* ── Headings ── */
-.consultation-page h1,
-.consultation-page h2,
-.consultation-page h3,
-.consultation-page .cc-card-name,
-.consultation-page .cc-card-inst,
-.consultation-page .cq-ticket-name,
-.consultation-page .cq-ticket-desc,
-.consultation-page .consult-filter-title,
-.consultation-page .consult-results-header h2,
-.consultation-page .cq-panel-header h2,
-.profile-page h1,
-.profile-page h2,
-.profile-page h3,
-.profile-page .pf-ticket-card-crop,
-.profile-page .pf-ticket-card-desc,
-.profile-page .pf-details-grid dd {
-  color: #f0fdf4;
-}
-
-/* ── Form controls ── */
-.consultation-page .form-control,
-.profile-page .form-control {
-  background: #112918;
-  border-color: #1e5432;
-  color: #f0fdf4;
-}
-.consultation-page .form-control:focus,
-.profile-page .form-control:focus {
-  border-color: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74,222,128,.2);
-  outline: none;
-}
-.consultation-page .form-control::placeholder,
-.profile-page .form-control::placeholder { color: #4d7a5a; }
-.consultation-page .form-control option,
-.profile-page .form-control option { background: #0a1f0e; color: #f0fdf4; }
-
-/* ── Primary button — neon green ── */
-.consultation-page .simple-primary,
-.profile-page .simple-primary {
-  background: #4ade80;
-  color: #030f07;
-  font-weight: 800;
-}
-.consultation-page .simple-primary:hover,
-.profile-page .simple-primary:hover {
-  background: #22c55e;
-  transform: translateY(-1px);
-  box-shadow: 0 0 12px rgba(74,222,128,.4);
-}
-
-/* ── Secondary button ── */
-.consultation-page .simple-secondary,
-.profile-page .simple-secondary {
-  background: #112918;
-  color: #86efac;
-  border-color: #1e5432;
-}
-.consultation-page .simple-secondary:hover,
-.profile-page .simple-secondary:hover {
-  background: #1a3d22;
-  color: #4ade80;
-  border-color: #4ade80;
-}
-
-/* ── cc-tag specialty pills ── */
-.consultation-page .cc-tag,
-.profile-page .cc-tag {
-  background: #112918;
-  color: #86efac;
-  border-color: #1e5432;
-}
-.consultation-page .cc-tag--match,
-.profile-page .cc-tag--match {
-  background: rgba(74,222,128,.15);
-  color: #4ade80;
-  border-color: #4ade80;
-  font-weight: 700;
-}
-
-/* ── Consultant card specifics ── */
-.consultation-page .cc-best-badge {
-  background: rgba(74,222,128,.15);
-  color: #4ade80;
-  border-color: rgba(74,222,128,.4);
-}
-.consultation-page .cc-meta-item {
-  background: #112918;
-  border-color: #1e5432;
-  color: #86efac;
-}
-.consultation-page .cc-meta-fee {
-  background: rgba(74,222,128,.12);
-  border-color: rgba(74,222,128,.3);
-  color: #4ade80;
-}
-
-/* ── Filter panel ── */
-.consultation-page .consult-filter {
-  border-color: #1a4027;
-}
-.consultation-page .cf-clear-btn {
-  background: rgba(220,38,38,.1);
-  border-color: rgba(220,38,38,.3);
-  color: #f87171;
-}
-.consultation-page .cf-clear-btn:hover {
-  background: rgba(220,38,38,.2);
-}
-
-/* ── Mode bar button ── */
-.consultation-page .consult-mode-bar .simple-secondary {
-  background: rgba(74,222,128,.1);
-  color: #4ade80;
-  border-color: rgba(74,222,128,.35);
-}
-.consultation-page .consult-mode-bar .simple-secondary:hover {
-  background: rgba(74,222,128,.2);
-  box-shadow: 0 0 10px rgba(74,222,128,.25);
-}
-.consultation-page .consult-mode-bar .simple-primary {
-  box-shadow: 0 0 14px rgba(74,222,128,.35);
-}
-
-/* ── Ticket cards (workbench) ── */
-.consultation-page .cq-ticket-card {
-  background: #0d2413;
-  border-color: #1a4027;
-}
-.consultation-page .cq-ticket-crop { color: #86efac; }
-
-/* ── Status pills ── */
-.consultation-page .cq-status,
-.profile-page .pf-ticket-status-pill {
-  background: #112918;
-  color: #86efac;
-}
-.consultation-page .cq-status--done      { background: rgba(74,222,128,.15);  color: #4ade80; }
-.consultation-page .cq-status--accepted  { background: rgba(56,189,248,.12);  color: #38bdf8; }
-.consultation-page .cq-status--declined  { background: rgba(248,113,113,.1);  color: #f87171; }
-
-/* profile status pills */
-.profile-page .pf-ticket-status-pill     { background: rgba(74,222,128,.15); color: #4ade80; }
-.profile-page .pf-urgency-pill           { background: rgba(251,146,60,.12); color: #fb923c; border-color: rgba(251,146,60,.3); }
-
-/* ── Advisory box ── */
-.consultation-page .cq-advisory-box,
-.profile-page .pf-ticket-advisory {
-  background: rgba(74,222,128,.08);
-  border-left-color: #4ade80;
-}
-.profile-page .pf-ticket-advisory-label { color: #4ade80; }
-.profile-page .pf-ticket-advisory p,
-.consultation-page .cq-advisory-box { color: #d1fae5; }
-
-/* ── Count / badge pills ── */
-.consultation-page .cq-count,
-.profile-page .pf-tab-pill {
-  background: rgba(74,222,128,.2);
-  color: #4ade80;
-}
-.consultation-page .cq-count--done,
-.profile-page .pf-tab-pill--done { background: #1a3d22; color: #86efac; }
-
-.consultation-page .cq-panel-header .cq-count { background: rgba(74,222,128,.15); color: #4ade80; }
-
-/* ── Simple-tabs ── */
-.consultation-page .simple-tabs,
-.profile-page .simple-tabs {
-  background: #112918;
-  border-color: #1a4027;
-}
-.consultation-page .simple-tabs button,
-.profile-page .simple-tabs button { color: #86efac; }
-.consultation-page .simple-tabs button.active,
-.profile-page .simple-tabs button.active {
-  background: #1a4027;
-  color: #4ade80;
-  box-shadow: 0 0 8px rgba(74,222,128,.25);
-}
-
-/* ── Request dialog header ── */
-.consultation-page .req-dialog-header {
-  border-bottom-color: #1a4027;
-}
-
-/* ── Profile hero ── */
-.profile-page .pf-hero-banner { position: relative; }
-.profile-page .pf-hero-overlay {
-  background: linear-gradient(to right, rgba(3,15,7,.92) 0%, rgba(3,15,7,.55) 100%);
-}
-.profile-page .pf-hero-name     { color: #f0fdf4; }
-.profile-page .pf-hero-location { color: #86efac; }
-
-/* role badges in hero */
-.profile-page .pf-role-badge {
-  background: rgba(74,222,128,.15) !important;
-  color: #4ade80 !important;
-  border-color: rgba(74,222,128,.35) !important;
-}
-
-/* edit & signout buttons on hero */
-.profile-page .pf-edit-btn {
-  background: rgba(74,222,128,.12);
-  color: #4ade80;
-  border-color: rgba(74,222,128,.35);
-  backdrop-filter: blur(4px);
-}
-.profile-page .pf-edit-btn:hover {
-  background: rgba(74,222,128,.22);
-  box-shadow: 0 0 12px rgba(74,222,128,.3);
-}
-.profile-page .pf-signout-btn {
-  background: rgba(248,113,113,.12);
-  color: #f87171;
-  border-color: rgba(248,113,113,.3);
-}
-.profile-page .pf-signout-btn:hover { background: rgba(248,113,113,.22); }
-
-/* role section label badge */
-.profile-page .pf-role-block .pf-role-badge {
-  background: rgba(74,222,128,.12) !important;
-  color: #4ade80 !important;
-  border-color: rgba(74,222,128,.3) !important;
-}
-
-/* add-role panel */
-.profile-page .pf-add-role {
-  background: #0a1f0e;
-  border-color: #1e5432;
-}
-.profile-page .pf-add-role-btn { color: #4ade80; }
-
-/* farmer/kisan section details */
-.profile-page .pf-details-grid dt { color: #4d9966; }
-.profile-page .pf-details-grid dd { color: #f0fdf4; }
-
-/* list rows (seller orders, consultant queue) */
-.profile-page .pf-list-row {
-  background: #0d2413;
-  border-color: #1a4027;
-}
-.profile-page .pf-status-tag {
-  background: rgba(74,222,128,.15);
-  color: #4ade80;
-}
-
-/* pf-ticket-card category */
-.profile-page .pf-ticket-card-category { color: #4ade80; }
-
-/* edit modal */
-.profile-page .edit-modal,
-.profile-page .edit-modal .edit-modal-head,
-.profile-page .edit-modal .edit-modal-body {
-  background: #0a1f0e;
-  color: #f0fdf4;
-  border-color: #1a4027;
-}
-.profile-page .edit-modal .edit-modal-head {
-  border-bottom-color: #1a4027;
-}
-.profile-page .edit-photo-row {
-  background: #112918;
-}
-.profile-page .edit-section-label {
-  color: #4d9966;
-  border-top-color: #1a4027;
-}
-
-/* btn-danger-sm in modal */
-.profile-page .btn-danger-sm {
-  background: rgba(248,113,113,.1);
-  color: #f87171;
-  border-color: rgba(248,113,113,.3);
-}
-.profile-page .btn-danger-sm:hover { background: rgba(248,113,113,.2); }
-
-/* overlay backdrop */
-.consultation-page ~ .simple-overlay,
-.profile-page .simple-overlay {
-  background: rgba(3,15,7,.8);
-}
-
-/* dialog close button */
-.consultation-page .dialog-close,
-.profile-page .dialog-close { color: #4d9966; }
-.consultation-page .dialog-close:hover,
-.profile-page .dialog-close:hover { color: #4ade80; }
-
-/* Neon glow on hover for consultant cards */
-.consultation-page .cc-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(74,222,128,.2), 0 0 20px rgba(74,222,128,.08);
-  border-color: rgba(74,222,128,.25);
-}
-
-/* Consult banner overlay — deeper on dark theme */
-.consultation-page .consult-banner-overlay {
-  background: linear-gradient(to right, rgba(3,15,7,.88) 0%, rgba(3,15,7,.5) 100%);
-}
-.consultation-page .consult-banner-title { color: #f0fdf4; }
-.consultation-page .consult-banner-sub   { color: #86efac; }
-.consultation-page .page-eyebrow         { color: #4ade80; background: rgba(74,222,128,.12); }

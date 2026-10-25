@@ -127,18 +127,7 @@ export default function Navbar({ onOpenConsultation }) {
             About
           </NavLink>
 
-          {onOpenConsultation && (
-            <button
-              type="button"
-              className="btn-nav-consult"
-              onClick={() => {
-                closeMenu();
-                onOpenConsultation();
-              }}
-            >
-              Consult Expert
-            </button>
-          )}
+          
         </div>
       </nav>
     </header>

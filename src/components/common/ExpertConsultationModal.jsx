@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../css_pages/ExpertConsultModal.css';
 import Modal from './Modal';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';

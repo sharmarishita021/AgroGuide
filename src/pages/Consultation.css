@@ -1,0 +1,715 @@
+/* ============================================================
+   Consultation Page & Advisory Workbench (Dedicated Stylesheet)
+   "Shades of Green" Theme — Distinctive Banner & All-Around Borders
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800;900&display=swap');
+
+:root {
+  /* Rich Spectrum of Greens */
+  --cs-forest-deep:  #062817;   /* Deepest forest ink for text/details (14:1+ contrast) */
+  --cs-pine-dark:    #064e3b;   /* Deep pine green for headers, titles & agronomist names */
+  --cs-forest-mid:   #047857;   /* Classic forest green for labels, subtitles, icons */
+  --cs-emerald:      #059669;   /* Rich emerald green for primary buttons & highlights */
+  --cs-jade:         #10b981;   /* Vibrant jade for active accents & focus rings */
+  --cs-mint-bright:  #34d399;   /* Bright mint for highlights & border accents */
+  --cs-mint-soft:    #86efac;   /* Soft mint for borders on all sides */
+  --cs-sage-pale:    #bbf7d0;   /* Pale sage for all-around card borders */
+  --cs-mint-mist:    #d1fae5;   /* Mint mist for badge backgrounds & counter pills */
+  --cs-botanical:    #f0fdf4;   /* Light botanical tint for ticket cards & inputs */
+  --cs-page-bg:      #f2f9f4;   /* Soft botanical page background */
+  --cs-card-bg:      #ffffff;   /* Pure white card surface */
+  --cs-radius-sm:    8px;
+  --cs-radius-md:    14px;
+  --cs-radius-lg:    20px;
+  --cs-radius-xl:    26px;
+  --cs-shadow-sm:    0 2px 10px rgba(6, 78, 59, 0.05);
+  --cs-shadow-md:    0 8px 24px rgba(6, 78, 59, 0.09);
+  --cs-shadow-banner: 0 20px 48px rgba(6, 78, 59, 0.22), 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.consultation-page {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background: var(--cs-page-bg);
+  color: var(--cs-forest-deep);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── DISTINCTIVE CONSULT BANNER (Curved Floating Hero Card) ── */
+.consult-banner {
+  position: relative;
+  min-height: 310px;
+  margin: 18px auto 0;
+  max-width: min(1360px, calc(100% - 32px));
+  border-radius: var(--cs-radius-xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(110, 231, 183, 0.45) !important;
+  background: radial-gradient(circle at 82% 18%, rgba(52, 211, 153, 0.28) 0%, transparent 45%),
+              radial-gradient(circle at 18% 85%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
+              linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f391f 100%);
+  box-shadow: var(--cs-shadow-banner);
+}
+
+.consult-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.16;
+  filter: saturate(1.2);
+}
+
+.consult-banner-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 40px 0;
+  background: linear-gradient(160deg, rgba(2, 44, 34, 0.92) 0%, rgba(6, 78, 59, 0.75) 100%);
+}
+
+.consult-banner-container {
+  width: 100%;
+}
+
+.consult-banner-text {
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a7f3d0 !important;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(6, 78, 59, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(167, 243, 208, 0.45) !important;
+  width: fit-content;
+}
+
+.page-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cs-mint-bright);
+  box-shadow: 0 0 10px var(--cs-mint-bright);
+  animation: cs-pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes cs-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.consult-banner-title {
+  color: #ffffff !important;
+  font-size: clamp(24px, 3.4vw, 40px);
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(2, 44, 34, 0.7);
+}
+
+.consult-banner-sub {
+  color: #d1fae5 !important;
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 720px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.consult-banner-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.cb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(6, 78, 59, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(134, 239, 172, 0.45) !important;
+  color: #ecfdf5 !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.cb-badge:hover {
+  background: rgba(6, 78, 59, 0.85);
+  border-color: var(--cs-mint-bright) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Body & Layout ──────────────────────────────────────── */
+.consult-body {
+  padding-top: 28px;
+}
+
+.consult-mode-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 22px;
+}
+
+.consult-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* ── Filter Sidebar (Border on All Sides) ────────────────── */
+.consult-filter {
+  background: var(--cs-card-bg) !important;
+  border: 2px solid var(--cs-sage-pale) !important;
+  border-radius: var(--cs-radius-lg);
+  padding: 22px;
+  box-shadow: var(--cs-shadow-sm);
+  position: sticky;
+  top: 20px;
+}
+
+.consult-filter-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cs-mint-mist);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.consult-filter-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.consult-filter-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--cs-forest-mid) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.consult-filter-fields .form-control {
+  background: var(--cs-botanical) !important;
+  color: var(--cs-pine-dark) !important;
+  border: 2px solid var(--cs-mint-soft) !important;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: var(--cs-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.consult-filter-fields .form-control:focus {
+  background: #ffffff !important;
+  border-color: var(--cs-emerald) !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18) !important;
+}
+
+.consult-filter-fields .form-control option {
+  background: #ffffff !important;
+  color: var(--cs-pine-dark) !important;
+}
+
+/* ── Results Header & Agronomist Cards (Border on All Sides) */
+.consult-results {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.consult-results-header h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consultant-cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.cc-card {
+  background: var(--cs-card-bg) !important;
+  border: 2px solid var(--cs-sage-pale) !important;
+  border-radius: var(--cs-radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--cs-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cs-shadow-md);
+  border-color: var(--cs-emerald) !important;
+}
+
+.cc-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #e8f5ee;
+}
+
+.cc-card-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.cc-card-name {
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.cc-card-role {
+  font-size: 0.86rem;
+  color: var(--cs-forest-mid) !important;
+  font-weight: 700;
+  margin: 2px 0 0;
+}
+
+.cc-card-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: var(--cs-radius-sm);
+  border: 1.5px solid var(--cs-emerald) !important;
+  background: linear-gradient(135deg, var(--cs-emerald) 0%, var(--cs-forest-mid) 100%) !important;
+  color: #ffffff !important;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  transition: all 0.2s ease;
+}
+
+.cc-card-btn:hover {
+  background: linear-gradient(135deg, var(--cs-pine-dark) 0%, var(--cs-emerald) 100%) !important;
+  border-color: var(--cs-pine-dark) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+}
+
+/* ── Consultant Workbench Queue (Border on All Sides) ────── */
+.consultant-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.consultant-queue .simple-panel {
+  background: var(--cs-card-bg) !important;
+  border-radius: var(--cs-radius-lg);
+  padding: 24px;
+  border: 2px solid var(--cs-sage-pale) !important;
+  box-shadow: var(--cs-shadow-sm);
+  color: var(--cs-forest-deep) !important;
+}
+
+.cq-panel-header h2 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+  margin: 0;
+}
+
+.cq-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--cs-mint-mist) !important;
+  color: var(--cs-pine-dark) !important;
+  border: 1.5px solid var(--cs-mint-soft) !important;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-left: 8px;
+}
+
+.cq-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.cq-ticket-card {
+  background: var(--cs-botanical) !important;
+  border: 2px solid var(--cs-mint-soft) !important;
+  border-radius: var(--cs-radius-md);
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(6, 78, 59, 0.04);
+}
+
+.cq-ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cq-ticket-top strong {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+}
+
+.cq-status {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--cs-mint-mist) !important;
+  color: var(--cs-pine-dark) !important;
+  border: 1.5px solid var(--cs-mint-bright) !important;
+  white-space: nowrap;
+}
+
+.cq-ticket-desc {
+  font-size: 0.92rem;
+  color: var(--cs-forest-deep) !important;
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
+
+.cq-advisory-box {
+  background: #ecfdf5 !important;
+  border: 2px solid var(--cs-jade) !important;
+  padding: 14px 16px;
+  border-radius: var(--cs-radius-sm);
+  font-size: 0.88rem;
+  color: var(--cs-pine-dark) !important;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.cq-advisory-box strong {
+  color: var(--cs-pine-dark) !important;
+}
+
+.cq-ticket-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 2px solid var(--cs-mint-mist);
+}
+
+.cq-reply-form {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cq-reply-form textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--cs-mint-soft) !important;
+  border-radius: var(--cs-radius-sm);
+  background: #ffffff !important;
+  color: var(--cs-forest-deep) !important;
+  font-size: 0.92rem;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+
+.cq-reply-form textarea:focus {
+  border-color: var(--cs-emerald) !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18) !important;
+}
+
+.cq-reply-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Green Buttons (Borders on All Sides) ─────────────────── */
+.simple-primary {
+  padding: 10px 22px;
+  border-radius: var(--cs-radius-sm);
+  border: 1.5px solid var(--cs-emerald) !important;
+  background: linear-gradient(135deg, var(--cs-emerald) 0%, var(--cs-forest-mid) 100%) !important;
+  color: #ffffff !important;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.22);
+  transition: all 0.2s ease;
+}
+
+.simple-primary:hover {
+  background: linear-gradient(135deg, var(--cs-pine-dark) 0%, var(--cs-emerald) 100%) !important;
+  border-color: var(--cs-pine-dark) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.32);
+}
+
+.simple-secondary {
+  padding: 8px 18px;
+  border-radius: var(--cs-radius-sm);
+  border: 2px solid var(--cs-mint-soft) !important;
+  background: var(--cs-botanical) !important;
+  color: var(--cs-pine-dark) !important;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simple-secondary:hover {
+  background: var(--cs-mint-mist) !important;
+  border-color: var(--cs-emerald) !important;
+  color: var(--cs-pine-dark) !important;
+}
+
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 0.8rem;
+}
+
+.simple-muted {
+  color: var(--cs-forest-mid) !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── Modals & Request Advisory Dialog (Border on All Sides) ── */
+.simple-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(2, 44, 34, 0.70);
+  backdrop-filter: blur(5px);
+}
+
+.request-dialog {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--cs-radius-lg);
+  padding: 30px;
+  background: #ffffff !important;
+  border: 2px solid var(--cs-emerald) !important;
+  box-shadow: 0 20px 48px rgba(2, 44, 34, 0.25);
+  position: relative;
+  color: var(--cs-forest-deep) !important;
+}
+
+.request-dialog h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  color: var(--cs-pine-dark) !important;
+  margin: 0 0 18px 0;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--cs-mint-mist);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cs-mint-soft) !important;
+  background: var(--cs-botanical);
+  color: var(--cs-forest-mid);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.dialog-close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5 !important;
+}
+
+.simple-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.simple-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--cs-forest-mid) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--cs-mint-soft) !important;
+  border-radius: var(--cs-radius-sm);
+  background: var(--cs-botanical) !important;
+  color: var(--cs-forest-deep) !important;
+  font-size: 0.92rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #84a991 !important;
+}
+
+.form-control:focus {
+  border-color: var(--cs-emerald) !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18) !important;
+  background: #ffffff !important;
+}
+
+.error-modal-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: 'Manrope', sans-serif;
+  color: #dc2626 !important;
+  margin: 0 0 10px 0;
+}
+
+/* ── Green Toasts (Border on All Sides) ──────────────────── */
+.cs-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+}
+
+.cs-toast {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #022c22;
+  color: #ffffff !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(2, 44, 34, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  animation: cs-toast-pop 0.2s ease;
+}
+
+.cs-toast.success {
+  background: #064e3b;
+  border: 2px solid var(--cs-mint-bright) !important;
+}
+
+.cs-toast.error {
+  background: #7f1d1d;
+  border: 2px solid #f87171 !important;
+}
+
+.cs-toast.info {
+  background: #047857;
+  border: 2px solid #a7f3d0 !important;
+}
+
+.cs-toast-close {
+  background: none;
+  border: none;
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.cs-toast-close:hover {
+  opacity: 1;
+}
+
+@keyframes cs-toast-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 900px) {
+  .consult-layout { grid-template-columns: 1fr; }
+  .consult-filter { position: static; }
+  .consult-banner { margin: 12px 12px 0; max-width: calc(100% - 24px); min-height: 280px; }
+}
+
+@media (max-width: 640px) {
+  .consult-banner { margin: 8px 8px 0; max-width: calc(100% - 16px); min-height: 240px; border-radius: 18px; }
+  .consult-banner-overlay { padding: 26px 0; }
+  .consult-banner-title { font-size: 1.55rem; }
+  .request-dialog { padding: 22px; }
+  .cq-ticket-top { flex-direction: column; gap: 6px; }
+}
