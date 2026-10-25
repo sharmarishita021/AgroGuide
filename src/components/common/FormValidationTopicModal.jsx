@@ -47,48 +47,14 @@ export default function FormValidationTopicModal({ isOpen, onClose }) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Form Validation & Modal Architecture (Syllabus Lectures 55-66)"
+      
       maxWidth="780px"
     >
-      <div className="topic-modal-content">
-        <div className="topic-overview-banner">
-          <span className="topic-pill">WEB CURRICULUM DEEP DIVE</span>
-          <h4>Controlled Components, Dynamic Form Validation &amp; Accessible Dialogs</h4>
-          <p>
-            This technical reference outlines the implementation of rigorous client-side form validation
-            strategies and modal dialog lifecycle in modern React applications.
-          </p>
-        </div>
+      
 
-        {/* Key Architectural Concepts */}
-        <div className="topic-pillars-grid">
-          <div className="topic-pillar-card">
-            <span className="concept-badge-tag">FOUNDATION</span>
-            <h5>Controlled Inputs</h5>
-            <p>
-              Form element values are bounded strictly to component state via <code>value</code> and <code>onChange</code>.
-              The React component acts as the single source of truth.
-            </p>
-          </div>
+        
+      
 
-          <div className="topic-pillar-card">
-            <span className="concept-badge-tag">VALIDATION</span>
-            <h5>Touched State &amp; Regex</h5>
-            <p>
-              Error messages only show after an input has been focused and blurred (<code>onBlur</code>).
-              Regex patterns validate formats like phone <code>/^[6-9]\d{9}$/</code> and email.
-            </p>
-          </div>
-
-          <div className="topic-pillar-card">
-            <span className="concept-badge-tag">ACCESSIBILITY</span>
-            <h5>Accessible Modal Shell</h5>
-            <p>
-              Modals feature backdrop blur, <code>role="dialog"</code>, ESC key dismissal (<code>useEffect</code> listener),
-              and scroll-locking by updating <code>document.body.style.overflow</code>.
-            </p>
-          </div>
-        </div>
 
         {/* Live Interactive Testing Sandbox */}
         <div className="topic-sandbox-box">
@@ -198,7 +164,7 @@ export default function FormValidationTopicModal({ isOpen, onClose }) {
             Close Topic Review
           </button>
         </div>
-      </div>
+      
     </Modal>
   );
 }
