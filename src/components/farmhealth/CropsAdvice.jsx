@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { getCropImage } from '../../data/imagesData';
 
+/**
+ * CropsAdvice Component
+ * Displays favourable crops for the selected district with:
+ * - Crop name
+ * - Water requirement
+ * - Sowing season
+ * - Expected yield
+ * - Soil suitability
+ */
+
 export default function CropsAdvice({ district }) {
   const [filterType, setFilterType] = useState('All');
 
@@ -18,32 +28,34 @@ export default function CropsAdvice({ district }) {
           <div>
             <h3 className="section-heading">Favourable Crops for {district?.name}</h3>
             <p className="section-sub">
-              Scientifically proven high-yielding cultivars matched to {district?.climateZone} and {district?.soilType}
+              Recommended cultivars matched to {district?.climateZone} and {district?.soilType}
             </p>
           </div>
         </div>
 
         {/* Filter Tabs */}
-        <div className="filter-tabs-row">
-          {cropTypes.map((type) => (
-            <button
-              key={type}
-              type="button"
-              className={`filter-tab-pill ${filterType === type ? 'active' : ''}`}
-              onClick={() => setFilterType(type)}
-            >
-              {type}
-            </button>
-          ))}
-        </div>
+        {cropTypes.length > 1 && (
+          <div className="filter-tabs-row">
+            {cropTypes.map((type) => (
+              <button
+                key={type}
+                type="button"
+                className={`filter-tab-pill ${filterType === type ? 'active' : ''}`}
+                onClick={() => setFilterType(type)}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="crops-grid">
         {filteredCrops.map((crop, idx) => {
-          const cropImg = getCropImage(crop.name);
+          const cropImg = getCropImage(crop.name, crop.type);
           return (
             <div key={idx} className="crop-card">
-              {/* Relevant Crop Image */}
+              {/* Crop Image */}
               <div className="crop-image-wrapper">
                 <img
                   src={cropImg}
@@ -55,30 +67,42 @@ export default function CropsAdvice({ district }) {
               </div>
 
               <div className="crop-card-body">
+                {/* 1. Crop Name */}
                 <div className="crop-header">
                   <h4 className="crop-name">{crop.name}</h4>
-                  <span className={`water-badge water-${crop.waterNeed.toLowerCase()}`}>
-                    Water: {crop.waterNeed}
+                  <span className={`water-badge water-${(crop.waterNeed || '').toLowerCase()}`}>
+                    {crop.waterNeed} Water
                   </span>
                 </div>
 
                 <div className="crop-details-list">
+                  {/* 2. Water Requirement */}
+                  <div className="detail-item">
+                    <span className="detail-label">Water Requirement:</span>
+                    <span className="detail-value">{crop.waterNeed}</span>
+                  </div>
+
+                  {/* 3. Sowing Season */}
                   <div className="detail-item">
                     <span className="detail-label">Sowing Season:</span>
                     <span className="detail-value">{crop.season}</span>
                   </div>
+
+                  {/* 4. Expected Yield */}
                   <div className="detail-item">
-                    <span className="detail-label">Estimated Yield:</span>
+                    <span className="detail-label">Expected Yield:</span>
                     <span className="detail-value highlight">{crop.yield}</span>
                   </div>
+
+                  {/* 5. Soil Suitability */}
                   <div className="detail-item">
                     <span className="detail-label">Soil Suitability:</span>
-                    <span className="detail-value">{district?.soilType}</span>
+                    <span className="detail-value">{crop.soilSuitability || district?.soilType}</span>
                   </div>
                 </div>
 
                 <div className="crop-card-footer">
-                  <span className="crop-status-check">Verified for Current Agro-Zone</span>
+                  <span className="crop-status-check">Favourable for {district?.name}</span>
                 </div>
               </div>
             </div>

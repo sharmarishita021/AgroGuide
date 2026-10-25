@@ -1151,6 +1151,123 @@ input, select, textarea {
   color: #ffffff;
 }
 
+
+/* Regional Agricultural Conditions Dashboard (Static Regional Data) */
+.regional-conditions-dashboard {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.regional-conditions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.regional-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  padding: 3px 10px;
+  border-radius: var(--border-radius-full);
+  margin-bottom: 6px;
+}
+
+.regional-location-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.regional-sub-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.regional-status-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0369a1;
+  background-color: #e0f2fe;
+  border: 1px solid #bae6fd;
+  padding: 4px 12px;
+  border-radius: var(--border-radius-full);
+}
+
+.regional-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .regional-conditions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .regional-conditions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.condition-card {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.condition-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.condition-card-highlight {
+  grid-column: 1 / -1;
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.condition-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.condition-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.condition-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 /* Weather Dashboard Card */
 .weather-dashboard-card {
   background-color: #ffffff;

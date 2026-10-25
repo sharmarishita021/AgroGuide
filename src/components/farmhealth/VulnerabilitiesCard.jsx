@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * VulnerabilitiesCard Component
+ * Displays district vulnerabilities and risk defense:
+ * - Risk level: High / Moderate / Low
+ * - Vulnerability/problem
+ * - Description
+ * - Recommended Action / Prevention
+ */
 export default function VulnerabilitiesCard({ district }) {
   const vulnerabilities = district?.vulnerabilities || [];
 
@@ -9,9 +17,9 @@ export default function VulnerabilitiesCard({ district }) {
         <div className="title-left">
           <span className="section-category-badge">DEFENSIVE AGRONOMY</span>
           <div>
-            <h3 className="section-heading">Regional Agro-Vulnerabilities &amp; Risk Defense</h3>
+            <h3 className="section-heading">Agro-Vulnerabilities &amp; Risk Defense</h3>
             <p className="section-sub">
-              Known climatic stress patterns, pest vectors, and soil degradation risks identified in {district?.name}
+              Regional climatic stress patterns, pest vectors, and soil degradation risks identified in {district?.name}
             </p>
           </div>
         </div>
@@ -23,16 +31,20 @@ export default function VulnerabilitiesCard({ district }) {
 
       <div className="vulnerabilities-grid">
         {vulnerabilities.map((vuln, idx) => (
-          <div key={idx} className={`vuln-card severity-${vuln.severity.toLowerCase()}`}>
+          <div key={idx} className={`vuln-card severity-${(vuln.severity || '').toLowerCase()}`}>
             <div className="vuln-header">
-              <span className={`severity-tag ${vuln.severity.toLowerCase()}`}>
-                {vuln.severity} Risk Tier
+              {/* Risk Level */}
+              <span className={`severity-tag ${(vuln.severity || '').toLowerCase()}`}>
+                Risk Level: {vuln.severity}
               </span>
+              {/* Vulnerability / Problem */}
               <h4 className="vuln-title">{vuln.title}</h4>
             </div>
 
+            {/* Description */}
             <p className="vuln-desc">{vuln.description}</p>
 
+            {/* Recommended Action / Prevention */}
             <div className="vuln-prevention-box">
               <div className="prevention-label">
                 <span>Recommended Action / Prevention:</span>

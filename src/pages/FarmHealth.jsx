@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DISTRICTS_DATA } from '../data/localitiesData';
 import { IMAGES } from '../data/imagesData';
 import LocalitySelector from '../components/farmhealth/LocalitySelector';
-import WeatherCard from '../components/farmhealth/WeatherCard';
+import RegionalConditions from '../components/farmhealth/RegionalConditions';
 import CropsAdvice from '../components/farmhealth/CropsAdvice';
 import VulnerabilitiesCard from '../components/farmhealth/VulnerabilitiesCard';
 import SoilCalculator from '../components/farmhealth/SoilCalculator';
@@ -33,8 +33,8 @@ export default function FarmHealth({ onOpenConsultation }) {
           <span className="page-eyebrow">UNIFIED AGRONOMY &amp; ECO-FARMING</span>
           <h1 className="page-title">Farm Health &amp; Sustainable Agriculture</h1>
           <p className="page-lead">
-            A comprehensive, simplified portal combining regional climate intelligence, high-yielding crop cultivars,
-            plant disease diagnostics, and chemical-free organic farming practices.
+            A comprehensive regional agronomy portal providing static agro-climatic intelligence, high-yielding crop cultivars,
+            soil nutrition diagnostics, and chemical-free sustainable farming practices.
           </p>
 
           <div className="header-quick-actions">
@@ -58,14 +58,14 @@ export default function FarmHealth({ onOpenConsultation }) {
         </div>
       </div>
 
-      {/* Simplified Navigation Switcher */}
+      {/* Main Navigation Tabs: Only ONE section is visible at a time using React state */}
       <div className="farm-health-tabs-nav">
         <button
           type="button"
           className={`fh-tab-btn ${activeTab === 'climate-crops' ? 'active' : ''}`}
           onClick={() => setActiveTab('climate-crops')}
         >
-          1. Climate &amp; Recommended Crops
+          1. Recommendation / Climate &amp; Recommended Crops
         </button>
         <button
           type="button"
@@ -79,13 +79,14 @@ export default function FarmHealth({ onOpenConsultation }) {
           className={`fh-tab-btn ${activeTab === 'sustainable' ? 'active' : ''}`}
           onClick={() => setActiveTab('sustainable')}
         >
-          3. Sustainable Organic Practices
+          3. Sustainable Methods
         </button>
       </div>
 
-      {/* Tab 1: Regional Climate & Crops */}
+      {/* 1. Recommendation / Climate & Recommended Crops */}
       {activeTab === 'climate-crops' && (
         <div className="tab-pane-content">
+          {/* State and District selection */}
           <section className="locality-section">
             <LocalitySelector
               selectedDistrict={selectedDistrict}
@@ -93,21 +94,24 @@ export default function FarmHealth({ onOpenConsultation }) {
             />
           </section>
 
-          <section className="weather-section">
-            <WeatherCard district={selectedDistrict} />
+          {/* Agriculture-focused Regional Conditions Dashboard (Static Data - NO Weather API) */}
+          <section className="regional-conditions-section">
+            <RegionalConditions district={selectedDistrict} />
           </section>
 
+          {/* Favourable Crops */}
           <section className="crops-section">
             <CropsAdvice district={selectedDistrict} />
           </section>
 
+          {/* Agro-Vulnerabilities & Risk Defense */}
           <section className="vulnerabilities-section">
             <VulnerabilitiesCard district={selectedDistrict} />
           </section>
         </div>
       )}
 
-      {/* Tab 2: Diagnostics & Soil Health */}
+      {/* 2. Diagnostics & Soil Nutrition (Untouched for now per instruction) */}
       {activeTab === 'diagnostics' && (
         <div className="tab-pane-content">
           <div className="section-title-wrap">
@@ -129,7 +133,7 @@ export default function FarmHealth({ onOpenConsultation }) {
         </div>
       )}
 
-      {/* Tab 3: Sustainable Organic Practices (formerly GoGreen) */}
+      {/* 3. Sustainable Methods (Untouched for now per instruction) */}
       {activeTab === 'sustainable' && (
         <div className="tab-pane-content">
           <div className="section-title-wrap">
@@ -144,7 +148,6 @@ export default function FarmHealth({ onOpenConsultation }) {
             </div>
           </div>
 
-          {/* Core Principles with Clean Images - No 'Pillar' or 'Module' labels */}
           <div className="principles-grid">
             <div className="principle-card">
               <div className="principle-media-wrap">
@@ -215,12 +218,10 @@ export default function FarmHealth({ onOpenConsultation }) {
             </div>
           </div>
 
-          {/* DIY Bio-Inputs & Organic Formulations Guide */}
           <section className="gogreen-recipes-section" style={{ marginTop: '36px' }}>
             <BioFertilizerGuide />
           </section>
 
-          {/* Pledge Action Strip */}
           <section className="pledge-banner-section">
             <div className="pledge-banner-card">
               <div className="pledge-banner-text">
