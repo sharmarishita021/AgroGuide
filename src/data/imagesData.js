@@ -40,22 +40,22 @@ export const IMAGES = {
     // 6. Cotton field with fluffy white bolls ready for harvest
     'Cotton': 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=600&q=80',
     // 7. Fresh yellow maize on corn plant
-    'Maize': 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80',
+    'Maize': 'https://imgs.search.brave.com/MHQSAaNzGvGQUEPrdKI8jYX7keYBekSzDu2LpZQigas/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ldm9s/dXRpb24uZWFydGhh/dGhvbWUub3JnL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIyLzEw/L0Nvcm4taGFydmVz/dC1Vbml0ZWRTb3li/ZWFuQm9hcmQtMjAw/MHB4LmpwZw',
     // 8. Harvested raw farm potatoes
     'Potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80',
     'Groundnut': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80',
     // 9. Fresh red tomatoes on vine
     'Tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80',
     // 10. Growing green soybean plants and pods in field
-    'Soybean': 'https://images.unsplash.com/photo-1657799556767-e2881afffe88?auto=format&fit=crop&w=600&q=80',
+    'Soybean': 'https://imgs.search.brave.com/XwBahFHO1Y83_qkEzPhJvwt-xQaTeUCDw3ESRqnEqgE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNzAv/NjY0LzA3My9zbWFs/bC9oYXJ2ZXN0aW5n/LW1hdHVyZS1zb3li/ZWFucy1pbi1hLWdv/bGRlbi1maWVsZC1k/dXJpbmctbGF0ZS1h/ZnRlcm5vb24tbGln/aHQtb24tYS13YXJt/LWF1dHVtbi1kYXkt/ZnJlZS1waG90by5q/cGc',
     // Additional authentic crops
     'Sunflower': 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80',
     'Onion': 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=600&q=80',
-    'Pomegranate': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
+    'Pomegranate': 'https://imgs.search.brave.com/Ah_n1z56Vlgn1aWolLHSTzY6vI7ibnkb7U5ivj6YkU0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ0/MzQ2MDM1OS9waG90/by9iZWF1dGlmdWwt/b3JjaGFyZC1wb21l/Z3JhbmF0ZS10cmVl/cy13aXRoLWZydWl0/cy1vbi1icmFuY2hl/cy5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9eWFaQUFfMFB5/YmljNjZvSGZvaDBa/ZUV1enZjV0VsVlVr/ekJvQU43YjlROD0',
     'Citrus / Orange': 'https://images.unsplash.com/photo-1582979512210-99b6a53386f9?auto=format&fit=crop&w=600&q=80',
     'Citrus': 'https://images.unsplash.com/photo-1582979512210-99b6a53386f9?auto=format&fit=crop&w=600&q=80',
     'Mango': 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80',
-    'Millets': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80',
+    'Millets': 'https://imgs.search.brave.com/Us8G69zgwfqlPASLaG7zjFGiXOjzpMH2RbuCvPvwU4s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91bnJp/Yy5vcmcvZW4vd3At/Y29udGVudC91cGxv/YWRzL3NpdGVzLzE1/LzIwMjMvMDEvTWls/bGV0cy02OTZ4NDE4/LmpwZw',
     'Banana': 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80',
     'Coconut': 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80',
     'Grapes': 'https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=600&q=80',
@@ -72,8 +72,8 @@ export const IMAGES = {
 
   // Sustainable Agronomy Practices
   practices: {
-    seedTreatment: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=600&q=80',
-    mulching: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80',
+    seedTreatment: 'https://imgs.search.brave.com/NZt7f8yRf49GjNoqd-fF2WwwDmmcaSLweP3xUePTQj0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hZ3Rl/Y2guZm9saW8zLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/Ni8wMy9zZWVkLXRy/ZWF0bWVudC1zdHJh/dGVnaWVzLWZlYXR1/cmVkLnBuZw',
+    mulching: 'https://imgs.search.brave.com/PJgeARzkZQV0mFt3sTMm-3J6y-t05_PpCEpN22p2SEQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtZXUuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzcxaWVjQjUzTXhM/Ll9BQ19VTDMwMF9T/UjMwMCwyMDBfLmpw/Zw',
     aeration: 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=600&q=80',
     biologicalBuffer: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80',
     'drip-fertigation': 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=600&q=80',

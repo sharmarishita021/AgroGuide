@@ -9,6 +9,7 @@ import Footer from './components/common/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import SellerLoginModal from './components/marketplace/SellerLoginModal';
 import FormValidationTopicModal from './components/common/FormValidationTopicModal';
+import ExpertConsultationModal from './components/common/ExpertConsultationModal';
 
 import Home from './pages/Home';
 import FarmHealth from './pages/FarmHealth';
@@ -105,7 +106,10 @@ export default function App() {
                 onClose={() => setIsGlobalSellerAuthOpen(false)}
               />
 
-              
+              <ExpertConsultationModal
+                isOpen={isConsultationModalOpen}
+                onClose={() => setIsConsultationModalOpen(false)}
+              />
 
               <FormValidationTopicModal
                 isOpen={isValidationTopicModalOpen}

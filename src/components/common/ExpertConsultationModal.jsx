@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../../css_pages/ExpertConsultModal.css';
 import Modal from './Modal';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
@@ -172,7 +171,7 @@ export default function ExpertConsultationModal({ isOpen, onClose }) {
           {/* Header Banner with Clean Agriculture Image */}
           <div className="modal-banner-image-wrap">
             <img
-              src={IMAGES.heroes.consultation}
+              src={"https://imgs.search.brave.com/43QXPoCGZ5OS4DD6avSfJa6cP9CZwYstD_-p0m0HgKI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjQ5/NzMwMzIwL3Bob3Rv/L2JlYXV0aWZ1bC12/aWV3LW9mLWNvcm4t/ZmFybS1kdXJpbmct/c3Vuc2V0LmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1icHZ3/S09aV2Zuc1J1Smsz/YXpyTGdiOUdjV2xj/STE4b3Y1M3JSekh6/eWFZPQ"}
               alt="Agronomy scientist examining crop health in field"
               className="modal-banner-image"
             />

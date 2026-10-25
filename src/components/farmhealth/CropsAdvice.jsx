@@ -10,7 +10,6 @@ import { getCropImage } from '../../data/imagesData';
  * - Expected yield
  * - Soil suitability
  */
-
 export default function CropsAdvice({ district }) {
   const [filterType, setFilterType] = useState('All');
 
