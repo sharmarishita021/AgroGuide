@@ -83,7 +83,7 @@ function Schemes() {
       <div className="filter-box">
         <h3>Step 1: Enter Your Details</h3>
         <div className="input-row">
-          {/* State Dropdown */}
+     
           <div className="form-group">
             <label>Select State</label>
             <select
