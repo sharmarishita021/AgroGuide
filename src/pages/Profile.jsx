@@ -22,7 +22,7 @@ function ConsultTicketCard({ ticket, viewAs }) {
         <div className="pf-ticket-card-actions">
           <span className="pf-ticket-status-pill">{ticket.status}</span>
           <button className="pf-expand-arrow-btn" onClick={() => setExpanded(!expanded)}>
-            {expanded ? '▲ Less' : '▼ More'}
+            {expanded ? ' Less' : ' More'}
           </button>
         </div>
       </div>
@@ -57,7 +57,7 @@ function AddRoleModal({ roleType, onClose, onAdd }) {
       <div className="edit-modal simple-panel" onClick={e => e.stopPropagation()}>
         <div className="edit-modal-head">
           <h2>Register as {isSeller ? 'Farm Seller' : 'Consultant / Expert'}</h2>
-          <button className="dialog-close" onClick={onClose}>×</button>
+          <button className="dialog-close" onClick={onClose}>x</button>
         </div>
         <form className="simple-form" onSubmit={(e) => { e.preventDefault(); onAdd(roleType, form); }}>
           {isSeller ? (
@@ -239,7 +239,6 @@ export default function Profile() {
       setRegisteredUsers(users);
       localStorage.setItem('agri_registered_users', JSON.stringify(users));
     }
-    window.dispatchEvent(new Event('storage'));
   };
 
   const login = ({ emailOrPhone, password }) => {
@@ -281,49 +280,83 @@ export default function Profile() {
 
   const roles = currentUser?.roles || ['kisan'];
 
+  
+
+  const renderToast = () => {
+    if (!toast) return null;
+    return (
+      <div className="pf-toast-container">
+        <div className={`pf-toast ${toast.type}`}>
+          <span>{toast.message}</span>
+          <button className="pf-toast-close" onClick={() => setToast(null)}>x</button>
+        </div>
+      </div>
+    );
+  };
+
+  const renderAuthView = () => (
+    <div className="profile-page container">
+      <AuthForm onLogin={login} onRegister={register} />
+    </div>
+  );
+
+  const renderHeroBanner = () => (
+    <div className="pf-hero-banner">
+      <img src={heroBg} alt="" className="pf-hero-bg" />
+      <div className="pf-hero-overlay" />
+      <div className="container pf-hero-content">
+        <div className="pf-hero-left">
+          <div className="pf-avatar">{currentUser.name?.slice(0, 2).toUpperCase()}</div>
+          <div>
+            <div className="pf-role-badges">
+              {roles.map(r => <RoleBadge key={r} role={r} />)}
+            </div>
+            <h1 className="pf-hero-name">{currentUser.name}</h1>
+          </div>
+        </div>
+        <div className="pf-hero-actions">
+          {!roles.includes('seller') && (
+            <button className="simple-secondary" onClick={() => setAddingRole('seller')}>+ Add Seller</button>
+          )}
+          {!roles.includes('consultant') && (
+            <button className="simple-secondary" onClick={() => setAddingRole('consultant')}>+ Add Consultant</button>
+          )}
+          <button className="pf-signout-btn" onClick={() => syncUser(null)}>Sign Out</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderProfileSections = () => (
+    <div className="container pf-body">
+      {roles.includes('kisan') && (
+        <KisanSection user={currentUser} onUpdate={updateProfile} showToast={showToast} consultations={consultations} />
+      )}
+      {roles.includes('seller') && (
+        <SellerSection user={currentUser} orders={orders} />
+      )}
+      {roles.includes('consultant') && (
+        <ConsultantSection user={currentUser} consultations={consultations} />
+      )}
+    </div>
+  );
+
+  const renderProfileView = () => (
+    <div className="profile-page">
+      {renderHeroBanner()}
+      {renderProfileSections()}
+      {addingRole && (
+        <AddRoleModal roleType={addingRole} onClose={() => setAddingRole(null)} onAdd={addRole} />
+      )}
+    </div>
+  );
+
+  // Main Render 
+
   return (
     <>
-      {toast && (
-        <div className="pf-toast-container">
-          <div className={`pf-toast ${toast.type}`}>
-            <span>{toast.message}</span>
-            <button className="pf-toast-close" onClick={() => setToast(null)}>×</button>
-          </div>
-        </div>
-      )}
-
-      {!currentUser ? (
-        <div className="profile-page container"><AuthForm onLogin={login} onRegister={register} /></div>
-      ) : (
-        <div className="profile-page">
-          <div className="pf-hero-banner">
-            <img src={heroBg} alt="" className="pf-hero-bg" />
-            <div className="pf-hero-overlay" />
-            <div className="container pf-hero-content">
-              <div className="pf-hero-left">
-                <div className="pf-avatar">{currentUser.name?.slice(0, 2).toUpperCase()}</div>
-                <div>
-                  <div className="pf-role-badges">{roles.map(r => <RoleBadge key={r} role={r} />)}</div>
-                  <h1 className="pf-hero-name">{currentUser.name}</h1>
-                </div>
-              </div>
-              <div className="pf-hero-actions">
-                {!roles.includes('seller') && <button className="simple-secondary" onClick={() => setAddingRole('seller')}>+ Add Seller</button>}
-                {!roles.includes('consultant') && <button className="simple-secondary" onClick={() => setAddingRole('consultant')}>+ Add Consultant</button>}
-                <button className="pf-signout-btn" onClick={() => syncUser(null)}>Sign Out</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="container pf-body">
-            {roles.includes('kisan') && <KisanSection user={currentUser} onUpdate={updateProfile} showToast={showToast} consultations={consultations} />}
-            {roles.includes('seller') && <SellerSection user={currentUser} orders={orders} />}
-            {roles.includes('consultant') && <ConsultantSection user={currentUser} consultations={consultations} />}
-          </div>
-
-          {addingRole && <AddRoleModal roleType={addingRole} onClose={() => setAddingRole(null)} onAdd={addRole} />}
-        </div>
-      )}
+      {renderToast()}
+      {!currentUser ? renderAuthView() : renderProfileView()}
     </>
   );
 }
