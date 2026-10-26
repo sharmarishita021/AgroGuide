@@ -1,34 +1,36 @@
 import React, { useState } from "react";
-import "./Marketplace.css";
 import initialProducts from "./marketplaceData";
+import "./Marketplace.css";
+
+// Fallback image if a product image link is broken
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=600&q=80";
+
 function Marketplace() {
-  // Demo seller credentials
   const DEMO_SELLER_EMAIL = "demo.seller@agroguide.com";
   const DEMO_SELLER_PASSWORD = "AgroGuide@123";
 
-  // Email and password validation
+  // Regex validations
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
-  // Save and load products using localStorage
-  const [products, setProducts] = useState(function () {
+  // Load products from localStorage or use initial dataset
+  const [products, setProducts] = useState(() => {
     try {
-      const savedProducts = localStorage.getItem("agroguideProducts");
-      return savedProducts ? JSON.parse(savedProducts) : initialProducts;
-    } catch (error) {
+      const saved = localStorage.getItem("agroguideProducts");
+      return saved ? JSON.parse(saved) : initialProducts;
+    } catch {
       return initialProducts;
     }
   });
 
-  // Page and buyer filters
-  const [page, setPage] = useState("buyer");
+  // Navigation & Filtering
+  const [page, setPage] = useState("buyer"); // 'buyer' or 'seller'
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-  const [buyerLocation, setBuyerLocation] = useState("");
 
-  // Seller login and registration
+  // Seller auth states
   const [showLogin, setShowLogin] = useState(false);
   const [authMode, setAuthMode] = useState("login");
   const [sellerFullName, setSellerFullName] = useState("");
@@ -36,7 +38,7 @@ function Marketplace() {
   const [password, setPassword] = useState("");
   const [sellerName, setSellerName] = useState("");
 
-  // Product form fields
+  // Product form states
   const [name, setName] = useState("");
   const [newCategory, setNewCategory] = useState("Crops");
   const [price, setPrice] = useState("");
@@ -44,14 +46,13 @@ function Marketplace() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [stock, setStock] = useState("");
-  const [productLocation, setProductLocation] = useState("Rajpura");
 
-  // Popup message
+  // Modal / Popup state
   const [showMessage, setShowMessage] = useState(false);
   const [messageTitle, setMessageTitle] = useState("");
   const [messageText, setMessageText] = useState("");
 
-  // Demo basket
+  // Cart
   const [cartCount, setCartCount] = useState(0);
 
   const categories = [
@@ -62,114 +63,52 @@ function Marketplace() {
     "Farm Equipment"
   ];
 
-  const locations = [
-    "Rajpura",
-    "Patiala",
-    "Chandigarh",
-    "Ambala",
-    "Ludhiana",
-    "Jalandhar",
-    "Amritsar",
-    "Bathinda",
-    "Mohali",
-    "Barnala"
-  ];
-
-  // Approximate coordinates for supported locations
-  const locationCoordinates = {
-    rajpura: [30.484, 76.594],
-    patiala: [30.3398, 76.3869],
-    chandigarh: [30.7333, 76.7794],
-    ambala: [30.3782, 76.7767],
-    ludhiana: [30.901, 75.8573],
-    jalandhar: [31.326, 75.5762],
-    amritsar: [31.634, 74.8723],
-    bathinda: [30.211, 74.9455],
-    mohali: [30.7046, 76.7179],
-    barnala: [30.3783, 75.5468]
-  };
-
-  // Show popup messages
-  function showPopup(title, text) {
+  // Show dialog popup
+  const showPopup = (title, text) => {
     setMessageTitle(title);
     setMessageText(text);
     setShowMessage(true);
-  }
+  };
 
-  // Read registered sellers
-  function getSavedSellers() {
+  const getSavedSellers = () => {
     try {
-      return JSON.parse(
-        localStorage.getItem("agroguideSellers") || "[]"
-      );
-    } catch (error) {
+      return JSON.parse(localStorage.getItem("agroguideSellers") || "[]");
+    } catch {
       return [];
     }
-  }
+  };
 
-  // Open seller dashboard or login window
-  function openSellerPage() {
-    if (sellerName !== "") {
+  const openSellerPage = () => {
+    if (sellerName) {
       setPage("seller");
     } else {
       setAuthMode("login");
       setShowLogin(true);
     }
-  }
+  };
 
-  // Seller registration
-  function handleSignup(event) {
-    event.preventDefault();
+  // Handle seller registration
+  const handleSignup = (e) => {
+    e.preventDefault();
 
-    if (
-      sellerFullName.trim() === "" ||
-      email.trim() === "" ||
-      password === ""
-    ) {
-      showPopup(
-        "Missing details",
-        "Please fill in your name, email and password."
-      );
+    if (!sellerFullName.trim() || !email.trim() || !password) {
+      showPopup("Missing details", "Please fill in your name, email and password.");
       return;
     }
 
     if (!emailRegex.test(email.trim())) {
-      showPopup(
-        "Invalid email",
-        "Enter a valid email address, such as name@example.com."
-      );
+      showPopup("Invalid email", "Enter a valid email address.");
       return;
     }
 
     if (!passwordRegex.test(password)) {
-      showPopup(
-        "Weak password",
-        "Your password must have at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character."
-      );
-      return;
-    }
-
-    if (email.trim().toLowerCase() === DEMO_SELLER_EMAIL) {
-      showPopup(
-        "Email reserved",
-        "This email is reserved for the demo seller account. Please use another email."
-      );
+      showPopup("Weak password", "Password must have 8+ chars with uppercase, lowercase, number and symbol.");
       return;
     }
 
     const savedSellers = getSavedSellers();
-
-    const alreadyRegistered = savedSellers.some(function (seller) {
-      return (
-        seller.email.toLowerCase() === email.trim().toLowerCase()
-      );
-    });
-
-    if (alreadyRegistered) {
-      showPopup(
-        "Account already exists",
-        "This email is already registered. Please sign in."
-      );
+    if (savedSellers.some((s) => s.email.toLowerCase() === email.trim().toLowerCase())) {
+      showPopup("Account already exists", "This email is already registered. Please sign in.");
       setAuthMode("login");
       return;
     }
@@ -178,152 +117,82 @@ function Marketplace() {
       id: Date.now(),
       name: sellerFullName.trim(),
       email: email.trim().toLowerCase(),
-      password: password
+      password
     };
 
     savedSellers.push(newSeller);
-
-    localStorage.setItem(
-      "agroguideSellers",
-      JSON.stringify(savedSellers)
-    );
+    localStorage.setItem("agroguideSellers", JSON.stringify(savedSellers));
 
     setSellerFullName("");
     setPassword("");
     setAuthMode("login");
+    showPopup("Account created!", "Your account has been created. Please sign in.");
+  };
 
-    showPopup(
-      "Account created!",
-      "Your account has been saved. Please sign in using your new credentials."
-    );
-  }
+  // Handle seller login
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  // Seller login
-  function handleLogin(event) {
-    event.preventDefault();
-
-    // Allow the fixed demo account
-    if (
-      email.trim().toLowerCase() === DEMO_SELLER_EMAIL &&
-      password === DEMO_SELLER_PASSWORD
-    ) {
+    // Check fixed demo account
+    if (email.trim().toLowerCase() === DEMO_SELLER_EMAIL && password === DEMO_SELLER_PASSWORD) {
       setSellerName("Demo Seller");
       setShowLogin(false);
       setPage("seller");
       setEmail("");
       setPassword("");
-
-      showPopup(
-        "Login successful!",
-        "Welcome to your Demo Seller dashboard."
-      );
+      showPopup("Login successful!", "Welcome to your Demo Seller dashboard.");
       return;
     }
 
-    // Check accounts created through sign-up
     const savedSellers = getSavedSellers();
+    const found = savedSellers.find(
+      (s) => s.email.toLowerCase() === email.trim().toLowerCase() && s.password === password
+    );
 
-    const foundSeller = savedSellers.find(function (seller) {
-      return (
-        seller.email.toLowerCase() === email.trim().toLowerCase() &&
-        seller.password === password
-      );
-    });
-
-    if (!foundSeller) {
-      showPopup(
-        "Login failed",
-        "The email or password is incorrect. Please sign up first or check your details."
-      );
+    if (!found) {
+      showPopup("Login failed", "Incorrect email or password. Please try again.");
       return;
     }
 
-    setSellerName(foundSeller.name);
+    setSellerName(found.name);
     setShowLogin(false);
     setPage("seller");
     setEmail("");
     setPassword("");
+    showPopup("Login successful!", `Welcome back, ${found.name}!`);
+  };
 
-    showPopup(
-      "Login successful!",
-      "Welcome back, " + foundSeller.name + "!"
-    );
-  }
+  // Add a new product (no location required)
+  const handleAddProduct = (e) => {
+    e.preventDefault();
 
-  // Calculate approximate distance between two locations
-  function getDistance(locationOne, locationTwo) {
-    const first =
-      locationCoordinates[
-        (locationOne || "").trim().toLowerCase()
-      ];
-
-    const second =
-      locationCoordinates[
-        (locationTwo || "").trim().toLowerCase()
-      ];
-
-    if (!first || !second) {
-      return 999999;
-    }
-
-    const latitudeDifference =
-      (second[0] - first[0]) * Math.PI / 180;
-
-    const longitudeDifference =
-      (second[1] - first[1]) * Math.PI / 180;
-
-    const a =
-      Math.sin(latitudeDifference / 2) *
-        Math.sin(latitudeDifference / 2) +
-      Math.cos(first[0] * Math.PI / 180) *
-        Math.cos(second[0] * Math.PI / 180) *
-        Math.sin(longitudeDifference / 2) *
-        Math.sin(longitudeDifference / 2);
-
-    return (
-      6371 *
-      2 *
-      Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-    );
-  }
-
-  // Add a new product
-  function handleAddProduct(event) {
-    event.preventDefault();
-
-    if (name.trim() === "") {
+    if (!name.trim()) {
       showPopup("Missing name", "Please enter a product name.");
       return;
     }
 
-    if (price === "" || Number(price) <= 0) {
+    if (!price || Number(price) <= 0) {
       showPopup("Invalid price", "Please enter a valid price.");
       return;
     }
+
     const newProduct = {
       id: Date.now(),
       name: name.trim(),
       category: newCategory,
       price: Number(price),
-      unit: unit,
-      description: description,
+      unit,
+      description,
       image: image.trim(),
       stock: Number(stock) || 0,
-      location: productLocation,
-      seller: sellerName,
-      rating: null,
-      badge: ""
+      seller: sellerName || "Demo Seller"
     };
 
-    const updatedProducts = [newProduct, ...products];
+    const updated = [newProduct, ...products];
+    setProducts(updated);
+    localStorage.setItem("agroguideProducts", JSON.stringify(updated));
 
-    setProducts(updatedProducts);
-
-    localStorage.setItem(
-      "agroguideProducts",
-      JSON.stringify(updatedProducts)
-    );
-
+    // Reset fields
     setName("");
     setNewCategory("Crops");
     setPrice("");
@@ -331,114 +200,61 @@ function Marketplace() {
     setDescription("");
     setImage("");
     setStock("");
-    setProductLocation("Rajpura");
 
-    showPopup(
-      "Product published!",
-      "Your product has been added to the buyer marketplace."
-    );
-  }
-  // Filter products by category and search
-  const filteredProducts = products.filter(function (product) {
-    const matchesCategory =
-      category === "All" || product.category === category;
+    showPopup("Product published!", "Your product has been added to the marketplace.");
+  };
 
-    const productText =
-      product.name +
-      " " +
-      (product.description || "") +
-      " " +
-      product.category +
-      " " +
-      (product.location || "");
-
-    const matchesSearch = productText
-      .toLowerCase()
-      .includes(search.trim().toLowerCase());
+  // Filter products by category and keyword
+  const filteredProducts = products.filter((p) => {
+    const matchesCategory = category === "All" || p.category === category;
+    const query = search.trim().toLowerCase();
+    const matchesSearch =
+      !query ||
+      p.name.toLowerCase().includes(query) ||
+      (p.description || "").toLowerCase().includes(query) ||
+      p.category.toLowerCase().includes(query);
 
     return matchesCategory && matchesSearch;
   });
 
-  // Sort products from nearest to farthest
-  const visibleProducts = [...filteredProducts].sort(
-    function (productOne, productTwo) {
-      if (buyerLocation.trim() === "") {
-        return 0;
-      }
-
-      return (
-        getDistance(buyerLocation, productOne.location) -
-        getDistance(buyerLocation, productTwo.location)
-      );
-    }
-  );
-
-  // View product information
-  function viewProduct(product) {
+  const viewProduct = (p) => {
     showPopup(
-      product.name,
-      (product.description || "No description available.") +
-        " Price: ₹" +
-        product.price +
-        " / " +
-        product.unit +
-        ". Location: " +
-        (product.location || "Not specified") +
-        ". Seller: " +
-        (product.seller || "AgroGuide seller") +
-        "."
+      p.name,
+      `${p.description || "No description available."} Price: ₹${p.price} / ${p.unit}. Seller: ${
+        p.seller || "AgroGuide seller"
+      }.`
     );
-  }
+  };
 
-  // Add item to demo basket
-  function addToCart(product) {
-    setCartCount(cartCount + 1);
-
-    showPopup(
-      "Added to basket",
-      product.name + " was added to your demo basket."
-    );
-  }
+  const addToCart = (p) => {
+    setCartCount((prev) => prev + 1);
+    showPopup("Added to basket", `${p.name} was added to your basket.`);
+  };
 
   return (
     <main className="ag-marketplace">
-
-      {/* Navigation */}
+      {/* Top Navbar */}
       <header className="ag-topbar">
-        <a
-          className="ag-brand"
-          href="#marketplace"
-          onClick={function (event) {
-            event.preventDefault();
-            setPage("buyer");
-          }}
-        >
+        <a className="ag-brand" href="#marketplace" onClick={() => setPage("buyer")}>
           <span className="ag-brand-icon">✳</span>
-          <span>
-            Agro<span>Guide</span>
-            <small>GROW TOGETHER</small>
-          </span>
+          <span>Agro<span>Guide</span></span>
         </a>
 
         <nav className="ag-main-nav">
           <a
             className={page === "buyer" ? "active" : ""}
             href="#marketplace"
-            onClick={function (event) {
-              event.preventDefault();
-              setPage("buyer");
-            }}
+            onClick={() => setPage("buyer")}
           >
             Marketplace
           </a>
-
           <a
             href="#how-it-works"
-            onClick={function (event) {
-              event.preventDefault();
+            onClick={(e) => {
+              e.preventDefault();
               showPopup(
                 "How AgroGuide works",
-                "Browse products, search by name, choose a category and enter your location to find nearby products. Sellers can register and list their products."
+                "Browse agricultural products, search by keyword, filter by categories, and buy or list your own harvest."
               );
             }}
           >
@@ -449,52 +265,31 @@ function Marketplace() {
         <div className="ag-header-actions">
           <button
             className="ag-cart-button"
-            onClick={function () {
-              showPopup(
-                "Your basket",
-                "You have " + cartCount + " item(s) in your demo basket."
-              );
-            }}
+            onClick={() => showPopup("Your basket", `You have ${cartCount} item(s) in your basket.`)}
           >
             ♧ Basket <b>{cartCount}</b>
           </button>
 
-          <button
-            className="ag-seller-button"
-            onClick={openSellerPage}
-          >
-            {sellerName === ""
-              ? "Become a seller ↗"
-              : "Seller dashboard ↗"}
+          <button className="ag-seller-button" onClick={openSellerPage}>
+            {!sellerName ? "Become a seller ↗" : "Seller dashboard ↗"}
           </button>
         </div>
       </header>
 
-      {/* Hero section */}
+      {/* Hero Section */}
       <section className="ag-hero" id="marketplace">
         <div className="ag-hero-copy">
           <div className="ag-eyebrow">
             <span /> FARMING'S NEXT CHAPTER
           </div>
-
           <h1>
-            Good things grow
-            <br />
-            when we <em>grow together.</em>
+            Good things grow<br />when we <em>grow together.</em>
           </h1>
-
-          <p>
-            Find quality seeds, fresh crops, and useful farming essentials
-            in one simple marketplace.
-          </p>
+          <p>Find quality seeds, fresh crops, and useful farming essentials in one simple marketplace.</p>
 
           <button
             className="ag-hero-cta"
-            onClick={function () {
-              document.getElementById("ag-products").scrollIntoView({
-                behavior: "smooth"
-              });
-            }}
+            onClick={() => document.getElementById("ag-products").scrollIntoView({ behavior: "smooth" })}
           >
             Explore marketplace <span>↘</span>
           </button>
@@ -504,25 +299,21 @@ function Marketplace() {
               <strong>{products.length}+</strong>
               <span>Products listed</span>
             </div>
-
             <i />
-
             <div>
-              <strong>Local first</strong>
-              <span>Supporting farmers</span>
+              <strong>Farmer first</strong>
+              <span>Direct agricultural trade</span>
             </div>
           </div>
         </div>
 
         <div className="ag-hero-art">
-          <div className="ag-art-circle ag-art-circle-one"></div>
-          <div className="ag-art-circle ag-art-circle-two"></div>
-
+          <div className="ag-art-circle ag-art-circle-one" />
+          <div className="ag-art-circle ag-art-circle-two" />
           <img
             src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85"
             alt="Green agricultural fields"
           />
-
           <div className="ag-floating-note">
             <span>✦</span>
             <div>
@@ -530,39 +321,27 @@ function Marketplace() {
               <small>Growing a better harvest</small>
             </div>
           </div>
-
           <div className="ag-art-label">
-            FROM OUR FIELDS
-            <br />
-            TO YOUR FUTURE.
+            FROM OUR FIELDS<br />TO YOUR FUTURE.
           </div>
         </div>
       </section>
 
-      {/* Marketplace heading */}
+      {/* View Switcher Header */}
       <section className="ag-market-tools" id="ag-products">
         <div>
           <p className="ag-section-kicker">THE MARKETPLACE</p>
-
-          <h2>
-            Find your next <em>good thing.</em>
-          </h2>
-
-          <p className="ag-section-subtitle">
-            A little something for every growing season.
-          </p>
+          <h2>Find your next <em>good thing.</em></h2>
+          <p className="ag-section-subtitle">A little something for every growing season.</p>
         </div>
 
         <div className="ag-interface-switch">
           <button
             className={page === "buyer" ? "selected" : ""}
-            onClick={function () {
-              setPage("buyer");
-            }}
+            onClick={() => setPage("buyer")}
           >
             Buyer view
           </button>
-
           <button
             className={page === "seller" ? "selected" : ""}
             onClick={openSellerPage}
@@ -572,9 +351,10 @@ function Marketplace() {
         </div>
       </section>
 
-      {/* Buyer marketplace */}
+      {/* BUYER VIEW */}
       {page === "buyer" && (
         <div>
+          {/* Categories */}
           <section className="ag-categories">
             <div className="ag-category-heading">
               <h3>Shop by category</h3>
@@ -582,201 +362,111 @@ function Marketplace() {
             </div>
 
             <div className="ag-category-list">
-              {categories.map(function (item) {
-                return (
-                  <button
-                    key={item}
-                    className={
-                      "ag-category-chip " +
-                      (category === item ? "selected" : "")
-                    }
-                    onClick={function () {
-                      setCategory(item);
-                    }}
-                  >
-                    <span className="ag-category-icon">
-                      {item === "All" && "✳"}
-                      {item === "Crops" && "🌾"}
-                      {item === "Seeds" && "🌱"}
-                      {item === "Fertilizers" && "♧"}
-                      {item === "Farm Equipment" && "⚒"}
-                    </span>
-
-                    {item}
-
-                    {category === item && <b>✓</b>}
-                  </button>
-                );
-              })}
+              {categories.map((item) => (
+                <button
+                  key={item}
+                  className={`ag-category-chip ${category === item ? "selected" : ""}`}
+                  onClick={() => setCategory(item)}
+                >
+                  <span className="ag-category-icon">
+                    {item === "All" && "✳"}
+                    {item === "Crops" && "🌾"}
+                    {item === "Seeds" && "🌱"}
+                    {item === "Fertilizers" && "♧"}
+                    {item === "Farm Equipment" && "⚒"}
+                  </span>
+                  {item}
+                  {category === item && <b>✓</b>}
+                </button>
+              ))}
             </div>
           </section>
 
+          {/* Products Grid Section */}
           <section className="ag-product-section">
             <div className="ag-products-heading">
               <div>
-                <h2>
-                  {category === "All"
-                    ? "Made for your farm"
-                    : category}
-                </h2>
-
-                <p>{visibleProducts.length} products to explore</p>
+                <h2>{category === "All" ? "Made for your farm" : category}</h2>
+                <p>{filteredProducts.length} products to explore</p>
               </div>
 
-              <div className="ag-location-box">
-                <label htmlFor="buyer-location">
-                  Your location
-                </label>
-
-                <input
-                  id="buyer-location"
-                  list="ag-location-options"
-                  value={buyerLocation}
-                  onChange={function (event) {
-                    setBuyerLocation(event.target.value);
-                  }}
-                  placeholder="Enter your city"
-                />
-
-                <datalist id="ag-location-options">
-                  {locations.map(function (location) {
-                    return (
-                      <option key={location} value={location} />
-                    );
-                  })}
-                </datalist>
-              </div>
-
+              {/* Keyword Search Box */}
               <label className="ag-search-box">
                 <span>⌕</span>
-
                 <input
                   type="text"
                   value={search}
-                  onChange={function (event) {
-                    setSearch(event.target.value);
-                  }}
+                  onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search seeds, crops, tools..."
                 />
-
-                {search !== "" && (
-                  <button
-                    type="button"
-                    onClick={function () {
-                      setSearch("");
-                    }}
-                  >
+                {search && (
+                  <button type="button" onClick={() => setSearch("")}>
                     ×
                   </button>
                 )}
               </label>
             </div>
 
-            {buyerLocation.trim() !== "" &&
-              !locationCoordinates[
-                buyerLocation.trim().toLowerCase()
-              ] && (
-                <p className="ag-section-subtitle">
-                  Please select a supported city from the suggestions
-                  to sort products by approximate distance.
-                </p>
-              )}
-
-            {visibleProducts.length > 0 ? (
+            {filteredProducts.length > 0 ? (
               <div className="ag-product-grid">
-                {visibleProducts.map(function (product) {
-                  const distance = getDistance(
-                    buyerLocation,
-                    product.location
-                  );
+                {filteredProducts.map((product) => (
+                  <div className="ag-product-card" key={product.id}>
+                    <div className="ag-product-image-wrap">
+                      <img
+                        className="ag-product-image"
+                        src={product.image || FALLBACK_IMAGE}
+                        alt={product.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = FALLBACK_IMAGE;
+                        }}
+                      />
+                      <button
+                        className="ag-quick-view"
+                        onClick={() => viewProduct(product)}
+                      >
+                        Quick view ↗
+                      </button>
+                    </div>
 
-                  return (
-                    <div
-                      className="ag-product-card"
-                      key={product.id}
-                    >
-                      <div className="ag-product-image-wrap">
-                        {product.image && (
-                          <img
-                            className="ag-product-image"
-                            src={product.image}
-                            alt={product.name}
-                            onError={function (event) {
-                              event.target.style.display = "none";
-                            }}
-                          />
-                        )}
+                    <div className="ag-product-content">
+                      <div className="ag-product-meta">
+                        <span>{product.category}</span>
+                      </div>
 
+                      <h3>{product.name}</h3>
+
+                      <p className="ag-product-description">
+                        {product.description || "Quality farming product."}
+                      </p>
+
+                      <div className="ag-product-bottom">
+                        <div>
+                          <strong>₹{product.price}</strong>
+                          <small> / {product.unit}</small>
+                        </div>
                         <button
-                          className="ag-quick-view"
-                          onClick={function () {
-                            viewProduct(product);
-                          }}
+                          className="ag-add-button"
+                          onClick={() => addToCart(product)}
                         >
-                          Quick view ↗
+                          +
                         </button>
                       </div>
 
-                      <div className="ag-product-content">
-                        <div className="ag-product-meta">
-                          <span>{product.category}</span>
-                        </div>
-
-                        <h3>{product.name}</h3>
-
-                        <p className="ag-product-description">
-                          {product.description ||
-                            "Quality farming product."}
-                        </p>
-
-                        <div className="ag-product-bottom">
-                          <div>
-                            <strong>₹{product.price}</strong>
-                            <small> / {product.unit}</small>
-                          </div>
-
-                          <button
-                            className="ag-add-button"
-                            onClick={function () {
-                              addToCart(product);
-                            }}
-                          >
-                            +
-                          </button>
-                        </div>
-
-                        <p className="ag-seller-name">
-                          Sold by {product.seller || "AgroGuide seller"}
-                        </p>
-
-                        <p className="ag-seller-name">
-                          Location: {product.location || "Not specified"}
-                        </p>
-
-                        {buyerLocation.trim() !== "" &&
-                          locationCoordinates[
-                            buyerLocation.trim().toLowerCase()
-                          ] && (
-                            <p className="ag-seller-name">
-                              Approx. distance:{" "}
-                              {distance >= 999999
-                                ? "Not available"
-                                : Math.round(distance) + " km"}
-                            </p>
-                          )}
-                      </div>
+                      <p className="ag-seller-name">
+                        Sold by {product.seller || "AgroGuide seller"}
+                      </p>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="ag-empty-state">
                 <span>⌕</span>
                 <h3>No products found</h3>
                 <p>Try another search or category.</p>
-
                 <button
-                  onClick={function () {
+                  onClick={() => {
                     setSearch("");
                     setCategory("All");
                   }}
@@ -789,35 +479,24 @@ function Marketplace() {
         </div>
       )}
 
-      {/* Seller dashboard */}
-      {page === "seller" && sellerName !== "" && (
+      {/* SELLER DASHBOARD VIEW */}
+      {page === "seller" && sellerName && (
         <section className="ag-seller-dashboard">
           <div className="ag-seller-welcome">
             <div>
               <p className="ag-section-kicker">SELLER STUDIO</p>
-
-              <h2>
-                Bring your harvest <em>to market.</em>
-              </h2>
-
-              <p>
-                Add a product here and it will appear in the buyer marketplace.
-              </p>
+              <h2>Bring your harvest <em>to market.</em></h2>
+              <p>Add a product here and it will appear in the buyer marketplace.</p>
             </div>
-
             <div className="ag-seller-avatar">
               {sellerName.charAt(0).toUpperCase()}
             </div>
           </div>
 
           <div className="ag-seller-layout">
-            <form
-              className="ag-listing-form"
-              onSubmit={handleAddProduct}
-            >
+            <form className="ag-listing-form" onSubmit={handleAddProduct}>
               <div className="ag-form-heading">
                 <span>01</span>
-
                 <div>
                   <h3>List a new product</h3>
                   <p>Fields marked * are required.</p>
@@ -828,9 +507,7 @@ function Marketplace() {
                 Product name *
                 <input
                   value={name}
-                  onChange={function (event) {
-                    setName(event.target.value);
-                  }}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Premium wheat seeds"
                   required
                 />
@@ -841,9 +518,7 @@ function Marketplace() {
                   Category *
                   <select
                     value={newCategory}
-                    onChange={function (event) {
-                      setNewCategory(event.target.value);
-                    }}
+                    onChange={(e) => setNewCategory(e.target.value)}
                   >
                     <option value="Crops">Crops</option>
                     <option value="Seeds">Seeds</option>
@@ -858,9 +533,7 @@ function Marketplace() {
                     type="number"
                     min="1"
                     value={price}
-                    onChange={function (event) {
-                      setPrice(event.target.value);
-                    }}
+                    onChange={(e) => setPrice(e.target.value)}
                     placeholder="e.g. 850"
                     required
                   />
@@ -872,9 +545,7 @@ function Marketplace() {
                   Price unit
                   <input
                     value={unit}
-                    onChange={function (event) {
-                      setUnit(event.target.value);
-                    }}
+                    onChange={(e) => setUnit(e.target.value)}
                     placeholder="per kg or per bag"
                   />
                 </label>
@@ -885,40 +556,18 @@ function Marketplace() {
                     type="number"
                     min="0"
                     value={stock}
-                    onChange={function (event) {
-                      setStock(event.target.value);
-                    }}
+                    onChange={(e) => setStock(e.target.value)}
                     placeholder="e.g. 25"
                   />
                 </label>
               </div>
 
               <label>
-                Farm / shop location *
-                <select
-                  value={productLocation}
-                  onChange={function (event) {
-                    setProductLocation(event.target.value);
-                  }}
-                >
-                  {locations.map(function (location) {
-                    return (
-                      <option key={location} value={location}>
-                        {location}
-                      </option>
-                    );
-                  })}
-                </select>
-              </label>
-
-              <label>
                 Description
                 <textarea
                   rows="3"
                   value={description}
-                  onChange={function (event) {
-                    setDescription(event.target.value);
-                  }}
+                  onChange={(e) => setDescription(e.target.value)}
                   placeholder="Describe your product..."
                 />
               </label>
@@ -928,9 +577,7 @@ function Marketplace() {
                 <input
                   type="url"
                   value={image}
-                  onChange={function (event) {
-                    setImage(event.target.value);
-                  }}
+                  onChange={(e) => setImage(e.target.value)}
                   placeholder="https://example.com/product.jpg"
                 />
               </label>
@@ -938,21 +585,13 @@ function Marketplace() {
               <button className="ag-publish-button" type="submit">
                 Publish product <span>↗</span>
               </button>
-
-              <p className="ag-form-note">
-                Products are saved in this browser using localStorage.
-              </p>
             </form>
 
             <aside className="ag-seller-side">
               <div className="ag-side-card ag-side-green">
                 <span className="ag-side-icon">✳</span>
                 <h3>Your farm, your business.</h3>
-
-                <p>
-                  Share your products with people looking for farming essentials.
-                </p>
-
+                <p>Share your harvest with buyers looking for agricultural essentials.</p>
                 <div className="ag-side-stat">
                   <strong>{products.length}</strong>
                   <span>Total products in marketplace</span>
@@ -961,33 +600,23 @@ function Marketplace() {
 
               <div className="ag-side-card">
                 <h3>Quick listing tips</h3>
-
                 <ul>
-                  <li>Use a clear product name.</li>
-                  <li>Choose the correct category.</li>
-                  <li>Enter the correct price and unit.</li>
-                  <li>Select the correct farm location.</li>
+                  <li>Use a clear product title.</li>
+                  <li>Pick the appropriate category.</li>
+                  <li>Enter reasonable price and unit.</li>
                 </ul>
               </div>
 
-              <button
-                className="ag-back-to-buyer"
-                onClick={function () {
-                  setPage("buyer");
-                }}
-              >
+              <button className="ag-back-to-buyer" onClick={() => setPage("buyer")}>
                 ← Back to buyer marketplace
               </button>
 
               <button
                 className="ag-back-to-buyer"
-                onClick={function () {
+                onClick={() => {
                   setSellerName("");
                   setPage("buyer");
-                  showPopup(
-                    "Signed out",
-                    "You have been signed out of the seller dashboard."
-                  );
+                  showPopup("Signed out", "You have been signed out of the seller dashboard.");
                 }}
               >
                 Sign out
@@ -997,67 +626,24 @@ function Marketplace() {
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="ag-footer">
-        <a
-          className="ag-brand ag-footer-brand"
-          href="#marketplace"
-          onClick={function (event) {
-            event.preventDefault();
-            setPage("buyer");
-          }}
-        >
-          <span className="ag-brand-icon">✳</span>
-
-          <span>
-            Agro<span>Guide</span>
-            <small>GROW TOGETHER</small>
-          </span>
-        </a>
-
-        <p>
-          Growing stronger, together. © {new Date().getFullYear()} AgroGuide
-        </p>
-
-        <span className="ag-footer-leaf">✳</span>
-      </footer>
-
-      {/* Seller login and sign-up modal */}
+      {/* Seller Login / Signup Modal */}
       {showLogin && (
-        <div
-          className="ag-modal-backdrop"
-          onClick={function () {
-            setShowLogin(false);
-          }}
-        >
+        <div className="ag-modal-backdrop" onClick={() => setShowLogin(false)}>
           <section
             className="ag-modal"
             role="dialog"
             aria-modal="true"
-            onClick={function (event) {
-              event.stopPropagation();
-            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <button
-              className="ag-modal-close"
-              onClick={function () {
-                setShowLogin(false);
-              }}
-            >
+            <button className="ag-modal-close" onClick={() => setShowLogin(false)}>
               ×
             </button>
 
             <div className="ag-modal-mark">✦</div>
-
-            <h2>
-              {authMode === "login"
-                ? "Welcome back, seller."
-                : "Join AgroGuide."}
-            </h2>
-
+            <h2>{authMode === "login" ? "Welcome back, seller." : "Join AgroGuide."}</h2>
             <p className="ag-modal-message">
               {authMode === "login"
-                ? "Sign in using your registered email and password."
+                ? "Sign in using your registered credentials."
                 : "Create your seller account to list farming products."}
             </p>
 
@@ -1069,22 +655,14 @@ function Marketplace() {
               </div>
             )}
 
-            <form
-              className="ag-login-form"
-              onSubmit={
-                authMode === "login" ? handleLogin : handleSignup
-              }
-            >
+            <form className="ag-login-form" onSubmit={authMode === "login" ? handleLogin : handleSignup}>
               {authMode === "signup" && (
                 <label>
                   Full name
-
                   <input
                     type="text"
                     value={sellerFullName}
-                    onChange={function (event) {
-                      setSellerFullName(event.target.value);
-                    }}
+                    onChange={(e) => setSellerFullName(e.target.value)}
                     placeholder="Enter your full name"
                     required
                   />
@@ -1093,13 +671,10 @@ function Marketplace() {
 
               <label>
                 Email address
-
                 <input
                   type="email"
                   value={email}
-                  onChange={function (event) {
-                    setEmail(event.target.value);
-                  }}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
                 />
@@ -1107,49 +682,26 @@ function Marketplace() {
 
               <label>
                 Password
-
                 <input
                   type="password"
                   value={password}
-                  onChange={function (event) {
-                    setPassword(event.target.value);
-                  }}
-                  placeholder={
-                    authMode === "signup"
-                      ? "8+ characters, uppercase, number, symbol"
-                      : "Enter your password"
-                  }
-                  minLength={authMode === "signup" ? 8 : undefined}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
                   required
                 />
               </label>
 
-              {authMode === "signup" && (
-                <p className="ag-demo-note">
-                  Use at least 8 characters with an uppercase letter,
-                  a lowercase letter, a number and a special character.
-                </p>
-              )}
-
               <button className="ag-publish-button" type="submit">
-                {authMode === "login"
-                  ? "Sign in to seller view ↗"
-                  : "Create seller account ↗"}
+                {authMode === "login" ? "Sign in to seller view ↗" : "Create seller account ↗"}
               </button>
             </form>
 
             <p className="ag-auth-toggle">
-              {authMode === "login"
-                ? "Not registered yet? "
-                : "Already have an account? "}
-
+              {authMode === "login" ? "Not registered yet? " : "Already have an account? "}
               <button
                 type="button"
-                onClick={function () {
-                  setAuthMode(
-                    authMode === "login" ? "signup" : "login"
-                  );
-
+                onClick={() => {
+                  setAuthMode(authMode === "login" ? "signup" : "login");
                   setEmail("");
                   setPassword("");
                   setSellerFullName("");
@@ -1162,41 +714,22 @@ function Marketplace() {
         </div>
       )}
 
-      {/* Popup messages */}
+      {/* Message Dialog Modal */}
       {showMessage && (
-        <div
-          className="ag-modal-backdrop"
-          onClick={function () {
-            setShowMessage(false);
-          }}
-        >
+        <div className="ag-modal-backdrop" onClick={() => setShowMessage(false)}>
           <section
             className="ag-modal"
             role="dialog"
             aria-modal="true"
-            onClick={function (event) {
-              event.stopPropagation();
-            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <button
-              className="ag-modal-close"
-              onClick={function () {
-                setShowMessage(false);
-              }}
-            >
+            <button className="ag-modal-close" onClick={() => setShowMessage(false)}>
               ×
             </button>
-
             <div className="ag-modal-mark">✓</div>
-
             <h2>{messageTitle}</h2>
             <p className="ag-modal-message">{messageText}</p>
-            <button
-              className="ag-modal-action"
-              onClick={function () {
-                setShowMessage(false);
-              }}
-            >
+            <button className="ag-modal-action" onClick={() => setShowMessage(false)}>
               Got it
             </button>
           </section>
@@ -1205,5 +738,5 @@ function Marketplace() {
     </main>
   );
 }
-export default Marketplace;
 
+export default Marketplace;

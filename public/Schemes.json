@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "PM Kisan Samman Nidhi",
+    "state": "All India",
+    "category": "Direct Income Support",
+    "maxIncome": null,
+    "benefit": "₹6,000 / year (3 installments of ₹2,000 each)",
+    "description": "Central government direct income support transferring funds directly into bank accounts of farmer families for procuring agriculture inputs.",
+    "eligibility": "Small and marginal farmer families owning cultivable land across all states.",
+    "link": "https://pmkisan.gov.in/"
+  },
+  {
+    "id": 2,
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "state": "All India",
+    "category": "Crop Insurance",
+    "maxIncome": null,
+    "benefit": "Lowest premium (1.5% - 2%) with comprehensive crop risk cover",
+    "description": "Comprehensive insurance coverage against non-preventable natural risks from pre-sowing to post-harvest stages.",
+    "eligibility": "All farmers growing notified crops including sharecroppers and tenant farmers.",
+    "link": "https://pmfby.gov.in/"
+  },
+  {
+    "id": 3,
+    "name": "Kisan Credit Card (KCC) Scheme",
+    "state": "All India",
+    "category": "Agricultural Credit",
+    "maxIncome": null,
+    "benefit": "Collateral-free loan up to ₹1.6 Lakh (up to ₹3 Lakh at 4% interest)",
+    "description": "Timely credit for cultivating crops, post-harvest expenses, and farm asset maintenance at subsidized interest rates.",
+    "eligibility": "Individual/joint cultivators, tenant farmers, oral lessees, and Self Help Groups.",
+    "link": "https://www.myscheme.gov.in/schemes/kcc"
+  },
+  {
+    "id": 4,
+    "name": "PM Krishi Sinchayee Yojana (Per Drop More Crop)",
+    "state": "All India",
+    "category": "Micro Irrigation",
+    "maxIncome": 300000,
+    "benefit": "Up to 55% subsidy for small farmers on Drip/Sprinkler systems",
+    "description": "Enhances water use efficiency at farm level through micro-irrigation technologies, reducing water wastage and boosting yield.",
+    "eligibility": "All landholding farmers with assured irrigation source.",
+    "link": "https://pmksy.gov.in/"
+  },
+  {
+    "id": 6,
+    "name": "Sub-Mission on Agricultural Mechanization (SMAM)",
+    "state": "All India",
+    "category": "Farm Machinery",
+    "maxIncome": 250000,
+    "benefit": "40% to 50% subsidy on tractors, power tillers, and harvesters",
+    "description": "Increases reach of farm mechanization to small and marginal farmers and promotes custom hiring centers in low-mechanized regions.",
+    "eligibility": "Small/marginal farmers, women farmers, and SC/ST farmers with agricultural land.",
+    "link": "https://agrimachinery.nic.in/"
+  },
+  {
+    "id": 7,
+    "name": "PM KUSUM (Solar Irrigation Pump Scheme)",
+    "state": "All India",
+    "category": "Solar Energy & Irrigation",
+    "maxIncome": 350000,
+    "benefit": "60% government subsidy on standalone solar agriculture pumps",
+    "description": "De-dieselization of farm sector by replacing diesel irrigation pumps with off-grid solar pumps and solarizing grid-connected tubewells.",
+    "eligibility": "Individual farmers, groups of farmers, and water user associations.",
+    "link": "https://pmkusum.mnre.gov.in/"
+  },
+  {
+    "id": 8,
+    "name": "Krishak Bandhu Scheme",
+    "state": "West Bengal",
+    "category": "Input Assistance & Life Cover",
+    "maxIncome": null,
+    "benefit": "₹10,000/year (two crop seasons) + ₹2 Lakh death benefit",
+    "description": "Flagship scheme of West Bengal providing bi-annual financial assistance for agricultural inputs and grant in case of farmer's demise.",
+    "eligibility": "All recorded cultivators, patta holders, and registered bargadars (sharecroppers).",
+    "link": "https://krishakbandhu.wb.gov.in/"
+  },
+  {
+    "id": 10,
+    "name": "Namo Shetkari Mahasanman Nidhi Yojana",
+    "state": "Maharashtra",
+    "category": "Direct Income Support",
+    "maxIncome": null,
+    "benefit": "₹6,000 / year (in addition to PM-Kisan, totaling ₹12,000/yr)",
+    "description": "Top-up financial assistance provided by Maharashtra Government alongside central PM-Kisan to boost rural farmer income.",
+    "eligibility": "Active registered beneficiaries of PM-Kisan owning land in Maharashtra.",
+    "link": "https://mahadbt.maharashtra.gov.in/"
+  },
+  {
+    "id": 12,
+    "name": "Krishi Bhagya Scheme",
+    "state": "Karnataka",
+    "category": "Rainfed Irrigation & Farm Ponds",
+    "maxIncome": 250000,
+    "benefit": "Up to 80% subsidy for farm ponds (Krishi Honda) & polythene mulching",
+    "description": "Empowers rain-dependent farmers by conserving rainwater in farm ponds and adopting diesel/solar lifting pumps with micro-irrigation.",
+    "eligibility": "Rain-fed agricultural landholders in drought-prone taluks of Karnataka.",
+    "link": "https://raitamitra.karnataka.gov.in/"
+  },
+  {
+    "id": 14,
+    "name": "Rythu Bandhu Scheme",
+    "state": "Telangana",
+    "category": "Input Investment Support",
+    "maxIncome": null,
+    "benefit": "₹10,000 per acre per year (₹5,000 for Kharif + ₹5,000 for Rabi)",
+    "description": "Pioneering farm investment support scheme giving financial aid for procuring seeds, fertilizers, pesticides, and field operations.",
+    "eligibility": "Land-owning farmers registered with pattadar passbooks in Telangana.",
+    "link": "https://rythubandhu.telangana.gov.in/"
+  },
+  {
+    "id": 19,
+    "name": "Rajasthan Tarbandi Yojana (Boundary Fencing)",
+    "state": "Rajasthan",
+    "category": "Crop Protection",
+    "maxIncome": 200000,
+    "benefit": "50% subsidy up to ₹40,000 for barbed wire fencing",
+    "description": "Helps farmers construct protective wire boundaries around agricultural plots to prevent crop destruction by stray animals and blue bulls.",
+    "eligibility": "Farmers of Rajasthan owning a minimum of 1.5 hectares of cultivable land.",
+    "link": "https://rajkisan.rajasthan.gov.in/"
+  },
+  {
+    "id": 20,
+    "name": "Paani Bachao Paise Kamao Scheme",
+    "state": "Punjab",
+    "category": "Water & Energy Conservation",
+    "maxIncome": 300000,
+    "benefit": "Direct cash incentive of ₹4 per kilowatt-hour of saved electricity",
+    "description": "Unique incentive initiative rewarding tubewell farmers with direct bank cash for conserving groundwater and electricity during paddy season.",
+    "eligibility": "Farmers in Punjab having agricultural power connections with installed digital meters.",
+    "link": "https://pspcl.in/"
+  }
+]
